@@ -64,7 +64,7 @@
 
 
                 <li>
-                    <a href="tiposinmuebles" class="waves-effect">
+                    <a href="{{ route('tiposinmuebles.index') }}" class="waves-effect">
                         <i class="fas fa-home"></i>
                         <span>Tipo de inmuebles</span>
                     </a>

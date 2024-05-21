@@ -20,6 +20,9 @@ class TipoInmuebleController extends Controller
             'tiposinmuebles' => TipoInmueble::with('user')->orderBy('id', 'DESC')->get()
 
         ]);
+
+
+
     }
     
 
