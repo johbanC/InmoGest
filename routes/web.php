@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TipoInmuebleController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +23,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('{any}',[HomeController::class,'index']);
+    /*Route::get('{any}',[HomeController::class,'index']);*/
+
+    Route::get('/index',[HomeController::class,'index']);
+
+
+   
+
+
+
+    Route::get('/tiposinmuebles', [TipoInmuebleController::class, 'index'])
+    ->name('tiposinmuebles.index');
+
+
+
+
 });

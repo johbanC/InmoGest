@@ -35,7 +35,123 @@
                     </ul>
                 </li>
 
+
+                <li>
+                    <a href="fichastecnicas" class=" waves-effect">
+                        <i class="ti-receipt"></i>
+                        <span>Ficha Tecnica</span>
+                    </a>
+                </li>
+
+
+                <li class="menu-title">PROXIMAMENTE</li>
+
+                <li>
+                    <a href="inventario" class="waves-effect">
+                        <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
+                        <span>Inventario</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="reparaciones" class="waves-effect">
+                        <i class="fas fa-tools"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
+                        <span>Reparaciones</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">CONFIGURACION</li>
+
+
+                <li>
+                    <a href="tiposinmuebles" class="waves-effect">
+                        <i class="fas fa-home"></i>
+                        <span>Tipo de inmuebles</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tipostransaccions" class="waves-effect">
+                        <i class="fas fa-exchange-alt "></i>
+                        <span>Tipo de transacciones</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="calentadors" class="waves-effect">
+                        <i class="fas fa-thermometer-half"></i>
+                        <span>Tipo de calentador</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tipococinas" class="waves-effect">
+                        <i class="fas fa-utensils"></i>
+                        <span>Tipo de cocina</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tipoporterias" class="waves-effect">
+                        <i class="fas fa-door-open"></i>
+                        <span>Tipo de portería</span>
+                    </a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <li class="menu-title">Components</li>
+
+                
 
                 <li>
                     <a href="#" class="has-arrow waves-effect">
