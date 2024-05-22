@@ -40,6 +40,7 @@ class TipoInmuebleController extends Controller
      */
     public function store(Request $request){
 
+
         $request->validate([
             'nombre' => 'required'
         ]);

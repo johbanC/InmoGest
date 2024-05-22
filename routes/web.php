@@ -32,9 +32,24 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+     // Tipo de Inmuebles
     Route::get('/tiposinmuebles', [TipoInmuebleController::class, 'index'])
     ->name('tiposinmuebles.index');
 
+    Route::get('/tiposinmuebles/new', [TipoInmuebleController::class , 'create'])
+    ->name('tiposinmuebles.new');
+
+    Route::post('tiposinmuebles/new', [TipoInmuebleController::class, 'store'])
+    ->name('tiposinmuebles.store');
+
+    Route::get('tiposinmuebles/{tipoinmueble}/edit', [TipoInmuebleController::class, 'edit'])
+    ->name('tiposinmuebles.edit');
+
+    Route::put('/tiposinmuebles/{tipoinmueble}', [TipoInmuebleController::class, 'update'])
+    ->name('tiposinmuebles.update');
+
+    Route::delete('/tiposinmuebles/{tipoinmueble}', [TipoInmuebleController::class, 'destroy'])
+    ->name('tiposinmuebles.destroy');
 
 
 
