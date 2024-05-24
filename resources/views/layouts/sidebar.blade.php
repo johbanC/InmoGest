@@ -71,28 +71,28 @@
                 </li>
 
                 <li>
-                    <a href="tipostransaccions" class="waves-effect">
+                    <a href="{{ route('tipostransaccions.index') }}" class="waves-effect">
                         <i class="fas fa-exchange-alt "></i>
                         <span>Tipo de transacciones</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="calentadors" class="waves-effect">
+                    <a href="{{ route('calentadors.index') }}" class="waves-effect">
                         <i class="fas fa-thermometer-half"></i>
                         <span>Tipo de calentador</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="tipococinas" class="waves-effect">
+                    <a href="{{ route('tipococinas.index') }}" class="waves-effect">
                         <i class="fas fa-utensils"></i>
                         <span>Tipo de cocina</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="tipoporterias" class="waves-effect">
+                    <a href="{{ route('tipoporterias.index') }}" class="waves-effect">
                         <i class="fas fa-door-open"></i>
                         <span>Tipo de portería</span>
                     </a>
