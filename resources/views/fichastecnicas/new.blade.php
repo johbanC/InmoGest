@@ -27,6 +27,7 @@
 
     @include('layouts.notificaciones')
 
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -43,11 +44,13 @@
     @endsection
 
     @section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
     <!-- App js -->
     <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+
 
     <script>
 

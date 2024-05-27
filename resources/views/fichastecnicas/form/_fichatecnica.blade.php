@@ -17,15 +17,15 @@
 		<div class="row">
 			<div class="col-md-4">
 				<label for="input-cedula" class="form-label">Cedula</label><br>
-				<input type="text" class="form-control {{ $errors->has('cedula') ? 'is-invalid' : '' }}" id="input-cedula" placeholder="Cedula" value="{{ old('cedula') }}" required autofocus>
+				<input type="text" name="cedula" class="form-control {{ $errors->has('cedula') ? 'is-invalid' : '' }}" id="input-cedula" placeholder="Cedula" value="{{ old('cedula') }}" required autofocus>
 				@if ($errors->has('cedula'))
 				<div class="invalid-feedback">{{ $errors->first('cedula') }}</div>
 				@endif
 			</div>
 
 			<div class="col-md-4">
-				<label for="input-cedula" class="form-label">Nombre del Propietario</label><br>
-				<input type="text" class="form-control {{ $errors->has('nom_propietario') ? 'is-invalid' : '' }}" id="input-cedula" placeholder="Nombre del Propietario" value="{{ old('nom_propietario') }}" required autofocus>
+				<label for="input-propietario" class="form-label">Nombre del Propietario</label><br>
+				<input type="text" name="nom_propietario"  class="form-control {{ $errors->has('nom_propietario') ? 'is-invalid' : '' }}" id="input-propietario" placeholder="Nombre del Propietario" value="{{ old('nom_propietario') }}" required autofocus>
 				@if ($errors->has('nom_propietario'))
 				<div class="invalid-feedback">{{ $errors->first('nom_propietario') }}</div>
 				@endif
@@ -33,7 +33,7 @@
 
 			<div class="col-md-4">
 				<label for="input-telefono" class="form-label">Teléfono</label><br>
-				<input type="text" class="form-control {{ $errors->has('telefono') ? 'is-invalid' : '' }}" id="input-telefono" placeholder="Teléfono" value="{{ old('telefono') }}">
+				<input type="text" name="telefono" class="form-control {{ $errors->has('telefono') ? 'is-invalid' : '' }}" id="input-telefono" placeholder="Teléfono" value="{{ old('telefono') }}">
 				@if ($errors->has('telefono'))
 				<div class="invalid-feedback">{{ $errors->first('telefono') }}</div>
 				@endif
@@ -46,7 +46,7 @@
 
 			<div class="col-md-4">
 				<label for="input-nom_propiedad" class="form-label">Nombre Propiedad</label><br>
-				<input type="text" class="form-control {{ $errors->has('nom_propiedad') ? 'is-invalid' : '' }}" id="input-nom_propiedad" placeholder="Ej: Remanso914" value="{{ old('nom_propiedad') }}">
+				<input type="text" name="nom_propietario" class="form-control {{ $errors->has('nom_propiedad') ? 'is-invalid' : '' }}" id="input-nom_propiedad" placeholder="Ej: Remanso914" value="{{ old('nom_propiedad') }}">
 				@if ($errors->has('nom_propiedad'))
 				<div class="invalid-feedback">{{ $errors->first('nom_propiedad') }}</div>
 				@endif
@@ -54,7 +54,7 @@
 
 			<div class="col-md-4">
 				<label for="input-barrio" class="form-label">Barrio</label><br>
-				<input type="text" class="form-control {{ $errors->has('barrio') ? 'is-invalid' : '' }}" id="input-barrio" placeholder="Barrio" value="{{ old('barrio') }}">
+				<input type="text" name="barrio" class="form-control {{ $errors->has('barrio') ? 'is-invalid' : '' }}" id="input-barrio" placeholder="Barrio" value="{{ old('barrio') }}">
 				@if ($errors->has('barrio'))
 				<div class="invalid-feedback">{{ $errors->first('barrio') }}</div>
 				@endif
@@ -62,7 +62,7 @@
 
 			<div class="col-md-4">
 				<label for="input-direccion" class="form-label">Dirección</label><br>
-				<input type="text" class="form-control {{ $errors->has('direccion') ? 'is-invalid' : '' }}" id="input-direccion" placeholder="Dirección" value="{{ old('direccion') }}">
+				<input type="text" name="direccion" class="form-control {{ $errors->has('direccion') ? 'is-invalid' : '' }}" id="input-direccion" placeholder="Dirección" value="{{ old('direccion') }}">
 				@if ($errors->has('direccion'))
 				<div class="invalid-feedback">{{ $errors->first('direccion') }}</div>
 				@endif
@@ -74,7 +74,7 @@
 
 			<div class="col-md-6">
 				<label for="input-administracion" class="form-label">Administración</label><br>
-				<input type="text" class="form-control {{ $errors->has('administracion') ? 'is-invalid' : '' }}" id="input-administracion" placeholder="Administración" value="{{ old('administracion') }}">
+				<input type="text" name="administracion" class="form-control {{ $errors->has('administracion') ? 'is-invalid' : '' }}" id="input-administracion" placeholder="Administración" value="{{ old('administracion') }}">
 				@if ($errors->has('administracion'))
 				<div class="invalid-feedback">{{ $errors->first('administracion') }}</div>
 				@endif
@@ -82,7 +82,7 @@
 
 			<div class="col-md-6">
 				<label for="input-valor" class="form-label">Valor</label><br>
-				<input type="text" class="form-control {{ $errors->has('valor') ? 'is-invalid' : '' }}" id="input-valor" placeholder="Valor" value="{{ old('valor') }}">
+				<input type="text" name="valor" class="form-control {{ $errors->has('valor') ? 'is-invalid' : '' }}" id="input-valor" placeholder="Valor" value="{{ old('valor') }}">
 				@if ($errors->has('valor'))
 				<div class="invalid-feedback">{{ $errors->first('valor') }}</div>
 				@endif
@@ -96,7 +96,6 @@
 
 
 			<div class="col-md-6">
-
 				<label for="tipo_inmuebles_id" class="form-label">Tipo de Inmueble <a href="{{ route('tiposinmuebles.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a></label><br>
 				<select name="tipo_inmuebles_id" id="tipo_inmuebles_id" class="form-select {{ $errors->has('tipo_inmuebles_id') ? 'is-invalid' : '' }}">
 					<option value="">Seleccione una opción...</option>
@@ -143,7 +142,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				<label for="input-alcobas" class="form-label">Alcobas</label><br>
-				<input type="text" class="form-control {{ $errors->has('alcobas') ? 'is-invalid' : '' }}" id="input-alcobas" placeholder="Alcobas" value="{{ old('alcobas') }}">
+				<input type="text" name="alcobas" class="form-control {{ $errors->has('alcobas') ? 'is-invalid' : '' }}" id="input-alcobas" placeholder="Alcobas" value="{{ old('alcobas') }}">
 				@if ($errors->has('alcobas'))
 				<div class="invalid-feedback">{{ $errors->first('alcobas') }}</div>
 				@endif
@@ -268,8 +267,8 @@
 
 			<div class="col-md-2 col-xs-4">
 				<label class="form-label" for="vestier" data-on-label="Si" data-off-label="No">Vestier</label><br>
-				<input id="vestier"  type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger" id="vestier" 
-				@if(isset($FichaTecnica) && $FichaTecnica->vestier === 1) checked @endif switch="none">
+				<input id="vestier" name="vestier" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
+				@if(old('vestier', isset($FichaTecnica) && $FichaTecnica->vestier === 1)) checked @endif switch="none">
 				@if ($errors->has('vestier'))
 				<div class="invalid-feedback">{{ $errors->first('vestier') }}</div>
 				@endif
@@ -278,10 +277,11 @@
 
 
 
+
 			<div class="col-md-2 col-xs-4">
 				<label class="form-label" for="balcon" data-on-label="Si" data-off-label="No">Balcón</label><br>
-				<input id="balcon" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->balcon === 1) checked @endif switch="none">
+				<input id="balcon" name="balcon" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
+				@if(old('balcon', isset($FichaTecnica) && $FichaTecnica->balcon === 1)) checked @endif switch="none">
 				@if ($errors->has('balcon'))
 				<div class="invalid-feedback">{{ $errors->first('balcon') }}</div>
 				@endif
@@ -290,8 +290,8 @@
 
 			<div class="col-md-2 col-xs-4">
 				<label class="form-label" for="sala_comedor" data-on-label="Si" data-off-label="No">Sala Comedor</label><br>
-				<input id="sala_comedor" type="checkbox"  data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->sala_comedor === 1) checked @endif switch="none">
+				<input id="sala_comedor" name="sala_comedor" type="checkbox"  data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
+				@if(old('sala_comedor', isset($FichaTecnica) && $FichaTecnica->sala_comedor === 1)) checked @endif switch="none">
 				@if ($errors->has('sala_comedor'))
 				<div class="invalid-feedback">{{ $errors->first('sala_comedor') }}</div>
 				@endif
@@ -300,7 +300,7 @@
 			<div class="col-md-2 col-xs-4">
 				<label class="form-label" for="patio" data-on-label="Si" data-off-label="No">Patio</label><br>
 				<input id="patio" type="checkbox"  data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->patio === 1) checked @endif switch="none">
+				@if(old('patio', isset($FichaTecnica) && $FichaTecnica->patio === 1)) checked @endif switch="none">
 				@if ($errors->has('patio'))
 				<div class="invalid-feedback">{{ $errors->first('patio') }}</div>
 				@endif
@@ -309,7 +309,7 @@
 			<div class="col-md-2 col-xs-4">
 				<label class="form-label" for="zona_ropa" data-on-label="Si" data-off-label="No">Zona de ropa</label><br>
 				<input id="zona_ropa" type="checkbox"  data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->zona_ropa === 1) checked @endif switch="none">
+				@if(old('zona_ropa', isset($FichaTecnica) && $FichaTecnica->zona_ropa === 1)) checked @endif switch="none">
 				@if ($errors->has('zona_ropa'))
 				<div class="invalid-feedback">{{ $errors->first('zona_ropa') }}</div>
 				@endif
@@ -318,7 +318,7 @@
 			<div class="col-md-2 col-xs-4">
 				<label class="form-label" for="estudio_estar" data-on-label="Si" data-off-label="No">Estudio / Estar</label><br>
 				<input id="estudio_estar" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->estudio_estar === 1) checked @endif switch="none">
+				@if(old('estudio_estar', isset($FichaTecnica) && $FichaTecnica->estudio_estar === 1)) checked @endif switch="none">
 				@if ($errors->has('estudio_estar'))
 				<div class="invalid-feedback">{{ $errors->first('estudio_estar') }}</div>
 				@endif
@@ -335,7 +335,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="red_gas" data-on-label="Si" data-off-label="No">Red de gas</label><br>
 				<input id="red_gas" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->red_gas === 1) checked @endif switch="none">
+				@if(old('red_gas', isset($FichaTecnica) && $FichaTecnica->red_gas === 1)) checked @endif switch="none">
 				@if ($errors->has('red_gas'))
 				<div class="invalid-feedback">{{ $errors->first('red_gas') }}</div>
 				@endif
@@ -344,7 +344,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="cuarto_util" data-on-label="Si" data-off-label="No">Cuarto Util</label><br>
 				<input id="cuarto_util" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->cuarto_util === 1) checked @endif switch="none">
+				@if(old('cuarto_util', isset($FichaTecnica) && $FichaTecnica->cuarto_util === 1)) checked @endif switch="none">
 				@if ($errors->has('cuarto_util'))
 				<div class="invalid-feedback">{{ $errors->first('cuarto_util') }}</div>
 				@endif
@@ -353,7 +353,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="ascensor" data-on-label="Si" data-off-label="No">Ascensor</label><br>
 				<input id="ascensor" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->ascensor === 1) checked @endif switch="none">
+				@if(old('ascensor', isset($FichaTecnica) && $FichaTecnica->ascensor === 1)) checked @endif switch="none">
 				@if ($errors->has('ascensor'))
 				<div class="invalid-feedback">{{ $errors->first('ascensor') }}</div>
 				@endif
@@ -362,7 +362,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="parqueadero" data-on-label="Si" data-off-label="No">Parqueadero</label><br>
 				<input id="parqueadero" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->parqueadero === 1) checked @endif switch="none">
+				@if(old('parqueadero', isset($FichaTecnica) && $FichaTecnica->parqueadero === 1)) checked @endif switch="none">
 				@if ($errors->has('parqueadero'))
 				<div class="invalid-feedback">{{ $errors->first('parqueadero') }}</div>
 				@endif
@@ -371,20 +371,12 @@
 			<div class="col-md-2">
 				<label class="form-label" for="parqueadero_visitantes" data-on-label="Si" data-off-label="No">Parqueadero Visitantes</label><br>
 				<input id="parqueadero_visitantes" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->parqueadero_visitantes === 1) checked @endif switch="none">
+				@if(old('parqueadero_visitantes', isset($FichaTecnica) && $FichaTecnica->parqueadero_visitantes === 1)) checked @endif switch="none">
 				@if ($errors->has('parqueadero_visitantes'))
 				<div class="invalid-feedback">{{ $errors->first('parqueadero_visitantes') }}</div>
 				@endif
 			</div>
 
-			<div class="col-md-2">
-				<label class="form-label" for="parqueadero_visitantes" data-on-label="Si" data-off-label="No">Parqueadero Visitantes</label><br>
-				<input id="parqueadero_visitantes" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->parqueadero_visitantes === 1) checked @endif switch="none">
-				@if ($errors->has('parqueadero_visitantes'))
-				<div class="invalid-feedback">{{ $errors->first('parqueadero_visitantes') }}</div>
-				@endif
-			</div>
 		</div>
 
 
@@ -398,7 +390,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="salon_social" data-on-label="Si" data-off-label="No">Salon Social</label><br>
 				<input id="salon_social" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->salon_social === 1) checked @endif switch="none">
+				@if(old('salon_social', isset($FichaTecnica) && $FichaTecnica->salon_social === 1)) checked @endif switch="none">
 				@if ($errors->has('salon_social'))
 				<div class="invalid-feedback">{{ $errors->first('salon_social') }}</div>
 				@endif
@@ -408,7 +400,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="propiedad_horizontal" data-on-label="Si" data-off-label="No">Propiedad Horizontal</label><br>
 				<input id="propiedad_horizontal" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->propiedad_horizontal === 1) checked @endif switch="none">
+				@if(old('propiedad_horizontal', isset($FichaTecnica) && $FichaTecnica->propiedad_horizontal === 1)) checked @endif switch="none">
 				@if ($errors->has('propiedad_horizontal'))
 				<div class="invalid-feedback">{{ $errors->first('propiedad_horizontal') }}</div>
 				@endif
@@ -417,7 +409,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="citofono" data-on-label="Si" data-off-label="No">Citofono</label><br>
 				<input id="citofono" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->citofono === 1) checked @endif switch="none">
+				@if(old('citofono', isset($FichaTecnica) && $FichaTecnica->citofono === 1)) checked @endif switch="none">
 				@if ($errors->has('citofono'))
 				<div class="invalid-feedback">{{ $errors->first('citofono') }}</div>
 				@endif
@@ -426,7 +418,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="unidad" data-on-label="Si" data-off-label="No">Unidad</label><br>
 				<input id="unidad" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->unidad === 1) checked @endif switch="none">
+				@if(old('unidad', isset($FichaTecnica) && $FichaTecnica->unidad === 1)) checked @endif switch="none">
 				@if ($errors->has('unidad'))
 				<div class="invalid-feedback">{{ $errors->first('unidad') }}</div>
 				@endif
@@ -436,7 +428,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="shut_basura" data-on-label="Si" data-off-label="No">Shut Basura</label><br>
 				<input id="shut_basura" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->shut_basura === 1) checked @endif switch="none">
+				@if(old('shut_basura', isset($FichaTecnica) && $FichaTecnica->shut_basura === 1)) checked @endif switch="none">
 				@if ($errors->has('shut_basura'))
 				<div class="invalid-feedback">{{ $errors->first('shut_basura') }}</div>
 				@endif
@@ -446,7 +438,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="jacuzzi" data-on-label="Si" data-off-label="No">Jacuzzi</label><br>
 				<input id="jacuzzi" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->jacuzzi === 1) checked @endif switch="none">
+				@if(old('jacuzzi', isset($FichaTecnica) && $FichaTecnica->jacuzzi === 1)) checked @endif switch="none">
 				@if ($errors->has('jacuzzi'))
 				<div class="invalid-feedback">{{ $errors->first('jacuzzi') }}</div>
 				@endif
@@ -467,7 +459,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="gimnasio" data-on-label="Si" data-off-label="No">Gimnasio</label><br>
 				<input id="gimnasio" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->gimnasio === 1) checked @endif switch="none">
+				@if(old('gimnasio', isset($FichaTecnica) && $FichaTecnica->gimnasio === 1)) checked @endif switch="none">
 				@if ($errors->has('gimnasio'))
 				<div class="invalid-feedback">{{ $errors->first('gimnasio') }}</div>
 				@endif
@@ -476,7 +468,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="turco" data-on-label="Si" data-off-label="No">Turco</label><br>
 				<input id="turco" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->turco === 1) checked @endif switch="none">
+				@if(old('turco', isset($FichaTecnica) && $FichaTecnica->turco === 1)) checked @endif switch="none">
 				@if ($errors->has('turco'))
 				<div class="invalid-feedback">{{ $errors->first('turco') }}</div>
 				@endif
@@ -485,7 +477,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="biblioteca" data-on-label="Si" data-off-label="No">Biblioteca</label><br>
 				<input id="biblioteca" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->biblioteca === 1) checked @endif switch="none">
+				@if(old('biblioteca', isset($FichaTecnica) && $FichaTecnica->biblioteca === 1)) checked @endif switch="none">
 				@if ($errors->has('biblioteca'))
 				<div class="invalid-feedback">{{ $errors->first('biblioteca') }}</div>
 				@endif
@@ -494,7 +486,7 @@
 			<div class="col-md-2">
 				<label class="form-label" for="circuito_cerrado" data-on-label="Si" data-off-label="No">Circuito Cerrado</label><br>
 				<input id="circuito_cerrado" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
-				@if(isset($FichaTecnica) && $FichaTecnica->circuito_cerrado === 1) checked @endif switch="none">
+				@if(old('circuito_cerrado', isset($FichaTecnica) && $FichaTecnica->circuito_cerrado === 1)) checked @endif switch="none">
 				@if ($errors->has('circuito_cerrado'))
 				<div class="invalid-feedback">{{ $errors->first('circuito_cerrado') }}</div>
 				@endif
