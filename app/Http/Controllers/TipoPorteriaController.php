@@ -11,7 +11,7 @@ class TipoPorteriaController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-        
+
         return view('tipoporterias.index',[
 
             'tipoporterias' => TipoPorteria::with('user')->orderBy('id', 'DESC')->get()
@@ -24,7 +24,7 @@ class TipoPorteriaController extends Controller
      */
     public function create(){
 
-                return view('tipoporterias.new');
+        return view('tipoporterias.new');
 
     }
 
@@ -32,24 +32,21 @@ class TipoPorteriaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request){
-        
+
         $request->validate([
             'nombre' => 'required'
         ]);
 
-        TipoPorteria::create([
+        $tipoporteria = TipoPorteria::create([
             'nombre' => $request->get('nombre'),
             'user_id' => auth()->id(),
         ]);
 
-
-
-        return to_route('tipoporterias.index')->with('status',
-            [
-                'type' => 'success',
-                'message' => 'Guardado con exito',
-                'title' => 'Registro'
-            ]);
+        if ($tipoporteria) {
+            return to_route('tipoporterias.index')->with('status', 1);
+        } else {
+            return to_route('tipoporterias.index')->with('status', 2);
+        }
     }
 
     /**
@@ -75,7 +72,7 @@ class TipoPorteriaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, TipoPorteria $tipoporteria){
-        
+
         $request->validate([
             'nombre' => 'required'
         ]);
@@ -87,26 +84,24 @@ class TipoPorteriaController extends Controller
 
 
 
-        return to_route('tipoporterias.index')->with('status',
-            [
-                'type' => 'success',
-                'message' => 'Actualizado con exito',
-                'title' => 'Registro'
-            ]);
-
+        if ($tipoporteria) {
+            return to_route('tipoporterias.index')->with('status', 3);
+        } else {
+            return to_route('tipoporterias.index')->with('status', 4);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(TipoPorteria $tipoporteria){
-        
+
         $tipoporteria->delete();
 
-        return to_route('tipoporterias.index')->with('status', [
-            'type' => 'success',
-            'message' => 'Eliminado con exito',
-            'title' => 'Registro'
-        ]);
+        if ($tipoporteria) {
+            return to_route('tipoporterias.index')->with('status', 5);
+        } else {
+            return to_route('tipoporterias.index')->with('status', 6);
+        }
     }
 }

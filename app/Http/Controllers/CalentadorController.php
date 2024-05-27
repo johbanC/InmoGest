@@ -99,9 +99,9 @@ class CalentadorController extends Controller
         $calentador->delete();
 
         if ($calentador) {
-            return to_route('tiposinmuebles.index')->with('status', 5);
+            return to_route('calentadors.index')->with('status', 5);
         } else {
-            return to_route('tiposinmuebles.index')->with('status', 6);
+            return to_route('calentadors.index')->with('status', 6);
         }
    }
 }

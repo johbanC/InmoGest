@@ -1,36 +1,32 @@
-
-<!-- Agrega la ventana modal aquí, fuera del bloque PHP -->
-<div class="modal fade" id="modalEditar{{$tipococina->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form action="{{ route('tipococinas.update', $tipococina) }}" method="POST">
+<!-- Modal content for the above example -->
+<div class="modal fade modalEditar{{$tipococina->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form id="formularioTipococina" method="POST" action="{{ route('tipococinas.update', $tipococina) }}">
             @csrf
             @method('PUT')
+
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detalle de la Cocina {{$tipococina->nombre}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Edita el tipo de cocina </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   
-                    <section>
-                        <div class="row">
-                            <x-adminlte-input name="nombre" label="Nombre" placeholder="Nombre" fgroup-class="col-md-12"
-                            type="text" class="{{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre', isset($tipococina) ? $tipococina->nombre : '') }}" id="input-nombre" autofocus/>
-                            @if ($errors->has('nombre'))
-                            <div class="invalid-feedback">{{ $errors->first('nombre') }}</div>
-                            @endif
-                        </div>
-                    </section>
-
-
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre', isset($tipococina) ? $tipococina->nombre : '') }}" id="input-nombre" autofocus required="" placeholder="Nombre de la cocina" data-parsley-id="5">
+                        @if ($errors->has('nombre'))
+                        <div class="invalid-feedback">{{ $errors->first('nombre') }}</div>
+                        @endif
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <x-adminlte-button class="btn-flat" type="submit" label="Actualizar" theme="success" icon="fas fa-lg fa-update" style="border-radius: 10px;" />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success waves-effect waves-light">Guardar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light">Cerrar</button>
                 </div>
             </div>
         </form>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->

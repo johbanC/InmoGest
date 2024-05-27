@@ -39,19 +39,18 @@ class TipoCocinaController extends Controller
             'nombre' => 'required'
         ]);
 
-        TipoCocina::create([
+        $tipococina = TipoCocina::create([
             'nombre' => $request->get('nombre'),
             'user_id' => auth()->id(),
         ]);
 
 
 
-        return to_route('tipococinas.index')->with('status',
-            [
-                'type' => 'success',
-                'message' => 'Guardado con exito',
-                'title' => 'Registro'
-            ]);
+        if ($tipococina) {
+            return to_route('tipococinas.index')->with('status', 1);
+        } else {
+            return to_route('tipococinas.index')->with('status', 2);
+        }
     }
 
     
@@ -91,12 +90,11 @@ class TipoCocinaController extends Controller
 
 
 
-        return to_route('tipococinas.index')->with('status',
-            [
-                'type' => 'success',
-                'message' => 'Guardado con exito',
-                'title' => 'Registro'
-            ]);
+        if ($tipococina) {
+            return to_route('tipococinas.index')->with('status', 3);
+        } else {
+            return to_route('tipococinas.index')->with('status', 4);
+        }
     
         
 
@@ -109,12 +107,11 @@ class TipoCocinaController extends Controller
         
         $tipococina->delete();
 
-        return to_route('tipococinas.index')->with('status', [
-            'type' => 'success',
-            'message' => 'Eliminado con exito',
-            'title' => 'Registro'
-        ]);
-    
+        if ($tipococina) {
+            return to_route('tipococinas.index')->with('status', 5);
+        } else {
+            return to_route('tipococinas.index')->with('status', 6);
+        }
 
     }
 }

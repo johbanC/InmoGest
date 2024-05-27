@@ -10,6 +10,7 @@ use App\Http\Controllers\TipoPorteriaController;
 use App\Http\Controllers\TipoCocinaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ReparacionController;
+use App\Http\Controllers\HomeController;
 use PHPUnit\Framework\Reorderable;
 
 
