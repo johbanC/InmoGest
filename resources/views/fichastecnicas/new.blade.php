@@ -26,7 +26,7 @@
     @endcomponent
 
     @include('layouts.notificaciones')
-
+<!-- @dump($errors->all()) -->
 
     <div class="row">
         <div class="col-12">

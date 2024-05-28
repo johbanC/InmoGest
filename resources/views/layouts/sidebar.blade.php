@@ -37,7 +37,7 @@
 
 
                 <li>
-                    <a href="fichastecnicas" class=" waves-effect">
+                    <a href="/fichastecnicas" class=" waves-effect">
                         <i class="ti-receipt"></i>
                         <span>Ficha Tecnica</span>
                     </a>

@@ -30,11 +30,11 @@
                     <div class="d-flex justify-content-end align-items-center">
                         <div class="card-tools">
                             <a href="{{ route('fichastecnicas.new') }}">
-                            <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear Nuevo</button>
-                            
+                                <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear Nuevo</button>
+
                             </a>
 
-                           
+
 
                         </div>
                     </div>
@@ -60,7 +60,13 @@
                                 <td>{{ number_format($fichatecnica->valor, 2, ',', '.') }}</td>
                                 <td>{{ $fichatecnica->user->name }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow" data-bs-toggle="modal" data-bs-target=".modalEditar{{ $fichatecnica->id }}"><i class="fa fa-lg fa-fw fa-pen"></i></button>
+                                    <!-- <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow" data-bs-toggle="modal" data-bs-target=".modalEditar{{ $fichatecnica->id }}"><i class="fa fa-lg fa-fw fa-pen"></i></button> -->
+
+                                    <a href="{{ route('fichastecnicas.edit', $fichatecnica->id) }}">
+                                        <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-pen"></i></button>
+
+                                    </a>
+                                    
                                     <form id="formDelete{{ $fichatecnica->id }}" method="POST" action="{{ route('fichastecnicas.destroy', $fichatecnica->id) }}" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
@@ -68,6 +74,7 @@
                                             <i class="fa fa-lg fa-fw fa-trash"></i>
                                         </button>
                                     </form>
+
                                 </td>
                             </tr>
                             @endforeach
