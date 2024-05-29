@@ -127,7 +127,7 @@ class FichaTecnicaController extends Controller
          $cedula = 0;
      }
 
-     FichaTecnica::create([
+     $FichaTecnica = FichaTecnica::create([
         'cedula' => $cedula,
         'nom_propietario' => $request->get('nom_propietario'),
         'telefono' => $request->get('telefono'),
@@ -179,11 +179,12 @@ class FichaTecnicaController extends Controller
 
              //Con esta nueva opcion se va enviar el status con las diferentes opciones para poder visualizar las diferentes notificaciones.
 
-     return to_route('fichastecnicas.index')->with('status', [
-        'type' => 'success',
-        'message' => 'Guardado con exito',
-        'title' => 'Registro'
-    ]);
+
+     if ($FichaTecnica) {
+            return to_route('fichastecnicas.index')->with('status', 1);
+        } else {
+            return to_route('fichastecnicas.index')->with('status', 2);
+        }
 
 
 
@@ -317,11 +318,12 @@ class FichaTecnicaController extends Controller
     ]);
 
     //Con esta nueva opcion se va enviar el status con las diferentes opciones para poder visualizar las diferentes notificaciones.
-        return to_route('fichastecnicas.index')->with('status', [
-            'type' => 'success',
-            'message' => 'Editado con exito',
-            'title' => 'Registro'
-        ]);
+       if ($fichatecnica) {
+            return to_route('fichastecnicas.index')->with('status', 3);
+        } else {
+            return to_route('fichastecnicas.index')->with('status', 4);
+        }
+
 
     }
 
@@ -331,11 +333,12 @@ class FichaTecnicaController extends Controller
     public function destroy(FichaTecnica $fichatecnica){
         $fichatecnica->delete();
 
-        return to_route('fichastecnicas.index')->with('status', [
-            'type' => 'success',
-            'message' => 'Eliminado con exito',
-            'title' => 'Registro'
-        ]);
+        if ($fichatecnica) {
+            return to_route('fichastecnicas.index')->with('status', 5);
+        } else {
+            return to_route('fichastecnicas.index')->with('status', 6);
+        }
+
 
     }
 

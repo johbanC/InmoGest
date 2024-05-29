@@ -75,6 +75,12 @@
                                         </button>
                                     </form>
 
+                                    <a href="{{ route('fichastecnicas.pdf', $fichatecnica) }}" target="_black">
+                                        <button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                                            <i class="fa fa-lg fa-fw fa-file-pdf"></i>
+                                        </button>
+                                    </a>
+
                                 </td>
                             </tr>
                             @endforeach

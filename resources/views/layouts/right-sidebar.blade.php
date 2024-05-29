@@ -5,12 +5,12 @@
             <a href="#" class="right-bar-toggle float-end">
                 <i class="mdi mdi-close noti-icon"></i>
             </a>
-            <h5 class="m-0">Settings</h5>
+            <h5 class="m-0">Estilo</h5>
         </div>
 
         <!-- Settings -->
         <hr class="mt-0" />
-        <h6 class="text-center">Choose Layouts</h6>
+        <h6 class="text-center">Elegir diseños</h6>
 
         <div class="p-4">
             <div class="mb-2">
@@ -30,7 +30,7 @@
                 <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
             </div>
     
-            <div class="mb-2">
+            <!-- <div class="mb-2">
                 <img src="{{URL::asset('assets/images/layouts/layout-3.jpg')}}" class="img-fluid img-thumbnail" alt="">
             </div>
             <div class="form-check form-switch mb-5">
@@ -39,7 +39,7 @@
             </div>
             <div class="d-grid">
                 <a href="https://1.envato.market/grNDB" class="btn btn-primary mt-3" target="_blank"><i class="mdi mdi-cart me-1"></i> Purchase Now</a>
-            </div>
+            </div> -->
         </div>
 
     </div> <!-- end slimscroll-menu-->

@@ -23,7 +23,7 @@
 
     @section('content')
     @component('components.breadcrumb')
-    @slot('page_title') Nueva Ficha Tecnica @endslot
+    @slot('page_title') Actualizando Ficha Tecnica @endslot
     @slot('subtitle') @endslot
     @endcomponent
 
@@ -35,23 +35,15 @@
         <div class="col-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Ficha Tecnica</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
+                    
                 </div>
 
                 <div class="card-body" style="display: block;">
-                    <form action="{{ route('fichastecnicas.update', $fichatecnica) }}" method="POST" id="formularioFichaTecnica">
-                        @csrf
-                        @method('PUT')
+                    
                         
                         @include('fichastecnicas.form._fichatecnica-edit')
                         
-                        <button type="submit" id="botonGuardar" class="btn btn-primary">Guardar</button>
-                    </form>
+                        
                 </div>
             </div>
         </div>
@@ -61,24 +53,25 @@
 
    
     @section('scripts')
+    <!-- App js -->
+    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
-    <!-- App js -->
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+    
 
     <script>
         $(document).ready(function() {
             var formulario = document.getElementById("formularioFichaTecnica");
-            var botonGuardar = document.getElementById("botonGuardar");
+            var botonActualizar = document.getElementById("botonActualizar");
 
             if (formulario) {
                 formulario.addEventListener("submit", function() {
                     // Deshabilitar el botón después de enviar el formulario
-                    botonGuardar.disabled = true;
+                    botonActualizar.disabled = true;
                     // Cambiar el texto del botón a "Guardando..."
-                    botonGuardar.innerHTML = 'Guardando...';
+                    botonActualizar.innerHTML = 'Actualizando...';
                 });
             }
         });

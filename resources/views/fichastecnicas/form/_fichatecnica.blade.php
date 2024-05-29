@@ -327,6 +327,15 @@
 				<div class="invalid-feedback">{{ $errors->first('parqueadero_visitantes') }}</div>
 				@endif
 			</div>
+
+			<div class="col-md-2 col-xs-4">
+				<label class="form-label" for="juegos_infantiles" data-on-label="Si" data-off-label="No">Juegos Infantiles</label><br>
+				<input id="juegos_infantiles" name="juegos_infantiles" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"
+				@if(old('juegos_infantiles', isset($FichaTecnica) && $FichaTecnica->juegos_infantiles === 1)) checked @endif switch="none">
+				@if ($errors->has('juegos_infantiles'))
+				<div class="invalid-feedback">{{ $errors->first('juegos_infantiles') }}</div>
+				@endif
+			</div>
 		</div>
 
 		<hr style="border: 0.5px solid; opacity: 10%;">
@@ -339,7 +348,7 @@
 				@if ($errors->has('salon_social'))
 				<div class="invalid-feedback">{{ $errors->first('salon_social') }}</div>
 				@endif
-			</div>
+			</div>			
 
 			<div class="col-md-2">
 				<label class="form-label" for="propiedad_horizontal" data-on-label="Si" data-off-label="No">Propiedad Horizontal</label><br>
@@ -390,6 +399,7 @@
 		<hr style="border: 0.5px solid; opacity: 10%;">
 
 		<div class="row">
+
 			<div class="col-md-2">
 				<label class="form-label" for="gimnasio" data-on-label="Si" data-off-label="No">Gimnasio</label><br>
 				<input id="gimnasio" name="gimnasio" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="success" data-offstyle="danger"

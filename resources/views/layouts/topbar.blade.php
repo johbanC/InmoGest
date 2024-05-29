@@ -44,15 +44,15 @@
         </div>
 
         <div class="d-flex">
-            <!-- App Search-->
+            <!-- App Search
             <form class="app-search d-none d-lg-block">
                 <div class="position-relative">
                     <input type="text" class="form-control" placeholder="Search...">
                     <span class="fa fa-search"></span>
                 </div>
-            </form>
+            </form>-->
 
-            <div class="dropdown d-inline-block d-lg-none ms-2">
+           <!--  <div class="dropdown d-inline-block d-lg-none ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="notification icon">
                     <i class="mdi mdi-magnify"></i>
                 </button>
@@ -69,40 +69,40 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="dropdown d-none d-md-block ms-2">
+           <!--  <div class="dropdown d-none d-md-block ms-2">
                 <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="language button">
                     <img class="me-2" src="{{URL::asset('assets/images/flags/us_flag.jpg')}}" alt="Header Language" height="16"> English <span class="mdi mdi-chevron-down"></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
 
-                    <!-- item-->
+                
                     <a href="#" class="dropdown-item notify-item">
                         <img src="{{URL::asset('assets/images/flags/germany_flag.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle"> German </span>
                     </a>
 
-                    <!-- item-->
+                    
                     <a href="#" class="dropdown-item notify-item">
                         <img src="{{URL::asset('assets/images/flags/italy_flag.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle"> Italian </span>
                     </a>
 
-                    <!-- item-->
+                   
                     <a href="#" class="dropdown-item notify-item">
                         <img src="{{URL::asset('assets/images/flags/french_flag.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle"> French </span>
                     </a>
 
-                    <!-- item-->
+                   
                     <a href="#" class="dropdown-item notify-item">
                         <img src="{{URL::asset('assets/images/flags/spain_flag.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle"> Spanish </span>
                     </a>
 
-                    <!-- item-->
+                   
                     <a href="#" class="dropdown-item notify-item">
                         <img src="{{URL::asset('assets/images/flags/russia_flag.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle"> Russian </span>
                     </a>
                 </div>
-            </div>
+            </div> -->
 
             <div class="dropdown d-none d-lg-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen" aria-label="fullscreen button">
@@ -110,7 +110,7 @@
                 </button>
             </div>
 
-            <div class="dropdown d-inline-block">
+           <!--  <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="notification icon">
                     <i class="mdi mdi-bell-outline"></i>
                     <span class="badge bg-danger rounded-pill">3</span>
@@ -222,7 +222,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="user dropdown">
