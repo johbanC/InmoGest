@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre') }}" required placeholder="Nombre" id="input-nombre" autofocus>
+                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre') }}" required placeholder="Calentador" id="input-nombre" autofocus>
                         @if ($errors->has('nombre'))
                         <div class="invalid-feedback">{{ $errors->first('nombre') }}</div>
                         @endif

@@ -14,8 +14,8 @@
                     <div class="card overflow-hidden">
                         <div class="bg-primary">
                             <div class="text-primary text-center p-4">
-                                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50">Sign in to continue to Veltrix.</p>
+                                <h5 class="text-white font-size-20">Bienvenido de nuevo !</h5>
+                                <p class="text-white-50">Inicia sesión para continuar en InmoGest.</p>
                                 <a href="index" class="logo logo-admin">
                                     <img src="{{URL::asset('assets/images/logo-sm.png')}}" height="24" alt="logo">
                                 </a>
@@ -83,18 +83,18 @@
                     </div>
 
                     <div class="mt-5 text-center">
-                        <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary"> Signup now </a> </p>
+                        <!-- <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary"> Signup now </a> </p> -->
                         <p class="mb-0">© <script>
                                 document.write(new Date().getFullYear())
 
-                            </script> Veltrix. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                            </script> InmoGest. - Fabricado con <i class="mdi mdi-heart text-danger"></i> por <a href="https://endigitalweb.com/">EnDigitalWeb.</a></p>
                     </div>
 
 
                 </div>
             </div>
         </div>
-    </div>
+    </div>- Fabricado con
 
     @endsection
     @section('scripts')

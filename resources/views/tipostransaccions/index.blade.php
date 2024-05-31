@@ -18,7 +18,7 @@
 
     @section('content')
     @component('components.breadcrumb')
-    @slot('page_title') Tipo de imnuebles @endslot
+    @slot('page_title') Tipo de transacción @endslot
     @slot('subtitle') Tables @endslot
     @endcomponent
 

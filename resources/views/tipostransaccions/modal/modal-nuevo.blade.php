@@ -12,7 +12,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre') }}" required="" placeholder="Nombre" data-parsley-id="5" id="input-nombre" autofocus >
+                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre') }}" required="" placeholder="Tipo de transacción
+" data-parsley-id="5" id="input-nombre" autofocus >
                         @if ($errors->has('nombre'))
                         <div class="invalid-feedback">{{ $errors->first('nombre') }}</div>
                         @endif
