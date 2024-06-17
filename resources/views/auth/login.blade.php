@@ -17,7 +17,7 @@
                                 <h5 class="text-white font-size-20">Bienvenido de nuevo !</h5>
                                 <p class="text-white-50">Inicia sesión para continuar en InmoGest.</p>
                                 <a href="index" class="logo logo-admin">
-                                    <img src="{{URL::asset('assets/images/logo-sm.png')}}" height="24" alt="logo">
+                                    <img src="{{URL::asset('assets/images/logo-sm-dark.png')}}" height="45" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -94,8 +94,8 @@
                 </div>
             </div>
         </div>
-    </div>- Fabricado con
-
+    </div>
+    
     @endsection
     @section('scripts')
     
