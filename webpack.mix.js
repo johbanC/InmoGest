@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+
 const lodash = require("lodash");
 const WebpackRTLPlugin = require('webpack-rtl-plugin');
 const folder = {
