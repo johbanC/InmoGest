@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item active">Bienvenido a InmoGest - Panel de control</li>
                 </ol>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="float-end d-none d-md-block">
                     <div class="dropdown">
                         <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,12 +31,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-xl-3 col-md-6">
+        <!-- <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
                     <div class="mb-4">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
@@ -67,23 +67,23 @@
                             <img src="{{URL::asset('assets/images/services-icon/02.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Fichas Tecnicas</h5>
-                        <h4 class="fw-medium font-size-24">52,368 <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
+                        <h4 class="fw-medium font-size-24">{{ $cantidadFichasTecnicas }} <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
                         <div class="mini-stat-label bg-danger">
-                            <p class="mb-0">- 28%</p>
+                            <p class="mb-0">{{ $cantidadFichasTecnicas }}</p>
                         </div>
                     </div>
-                    <div class="pt-2">
+                    <!-- <div class="pt-2">
                         <div class="float-end">
                             <a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                         </div>
 
                         <p class="text-white-50 mb-0 mt-1">Since last month</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-6">
+        <!-- <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
                     <div class="mb-4">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
@@ -612,7 +612,7 @@
     
     @endsection
     @section('scripts')
-
+   
     <!-- Peity chart-->
     <script src="{{URL::asset('assets/libs/peity/peity.min.js')}}"></script>
 

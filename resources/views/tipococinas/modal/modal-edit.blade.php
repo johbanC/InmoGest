@@ -21,7 +21,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success waves-effect waves-light">Guardar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light">Cerrar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
             </div>
         </form>

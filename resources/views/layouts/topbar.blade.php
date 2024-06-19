@@ -26,7 +26,7 @@
                 <i class="mdi mdi-menu"></i>
             </button>
 
-            <div class="d-none d-sm-block">
+            <!-- <div class="d-none d-sm-block">
                 <div class="dropdown pt-3 d-inline-block">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Create <i class="mdi mdi-chevron-down"></i>
@@ -40,7 +40,7 @@
                         <a class="dropdown-item" href="#">Separated link</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="d-flex">

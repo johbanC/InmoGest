@@ -13,7 +13,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre') }}" required="" placeholder="Tipo de propiedad" data-parsley-id="5" id="input-nombre" autofocus >
+                        <input type="text" name="nombre" class="form-control parsley-success {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{ old('nombre') }}" required="" placeholder="Tipo de inmueble" data-parsley-id="5" id="input-nombre" autofocus >
                         @if ($errors->has('nombre'))
                         <div class="invalid-feedback">{{ $errors->first('nombre') }}</div>
                         @endif
@@ -22,7 +22,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="botonGuardar" class="btn btn-success waves-effect waves-light">Guardar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light">Cerrar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
             </div>
         </form>

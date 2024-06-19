@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FichaTecnica;
+
 
 class HomeController extends Controller
 {
@@ -23,12 +25,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
+        $cantidadFichasTecnicas = FichaTecnica::count();
+        return view('index', compact('cantidadFichasTecnicas'));
+
+/*
         if(view()->exists($request->path())){
             return view($request->path());
         }
         return view('errors.404');
 
 
-        /*return view('index');*/
+        return view('index');*/
     }
 }

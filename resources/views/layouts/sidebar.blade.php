@@ -27,14 +27,14 @@
                 <li class="menu-title">PROXIMAMENTE</li>
 
                 <li>
-                    <a href="inventario" class="waves-effect">
+                    <a href="#" class="waves-effect" id="alert-button1">
                         <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
                         <span>Inventario</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="reparaciones" class="waves-effect">
+                    <a href="#" class="waves-effect" id="alert-button2">
                         <i class="fas fa-tools"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
                         <span>Reparaciones</span>
                     </a>
@@ -85,3 +85,21 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    // Seleccionamos los botones por sus id
+    const alertButton1 = document.getElementById('alert-button1');
+    const alertButton2 = document.getElementById('alert-button2');
+
+    // Función para mostrar la alerta
+    function showAlert() {
+      Swal.fire("Disponible muy pronto!");
+  }
+
+    // Agregamos controladores de eventos para el clic en ambos botones
+  alertButton1.addEventListener('click', showAlert);
+  alertButton2.addEventListener('click', showAlert);
+</script>
