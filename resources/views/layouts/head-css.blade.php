@@ -7,4 +7,4 @@
 <!-- App Css-->
 <link href="{{URL::asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
 
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@vite(['resources/scss/app.scss', 'resources/js/app.js'])
