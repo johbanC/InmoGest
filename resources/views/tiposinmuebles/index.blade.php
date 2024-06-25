@@ -4,8 +4,8 @@
 
 @section('css')
 <!-- DataTables CSS -->
-<link href="{{ URL::asset('assets/libs/datatables/dataTables.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/libs/datatables/dataTables.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 <!-- Toastr CSS -->
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 <!-- DataTables Buttons CSS -->
@@ -80,7 +80,7 @@
 
 
     <!-- Required datatable js -->
-    <script src="{{ URL::asset('assets/libs/datatables/dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/dataTables.min.js') }}"></script>
     <!-- DataTables Buttons js -->
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
@@ -89,11 +89,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <!-- Sweet Alerts js -->
-    <script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- Sweet alert init js-->
-    <script src="{{ URL::asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
     <!-- App js -->
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
 
 

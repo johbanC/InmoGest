@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title') Dashboard @endsection
 @section('css')
-<link href="{{URL::asset('assets/libs/chartist/chartist.min.css')}}" rel="stylesheet">
+<link href="{{ asset('assets/libs/chartist/chartist.min.css')}}" rel="stylesheet">
 @endsection
 @section('body') <body data-sidebar="dark"> @endsection
     @section('content')
@@ -41,7 +41,7 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-start mini-stat-img me-4">
-                            <img src="{{URL::asset('assets/images/services-icon/01.png')}}" alt="">
+                            <img src="{{asset('assets/images/services-icon/01.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Reparaciones</h5>
                         <h4 class="fw-medium font-size-24">1,685 <i class="mdi mdi-arrow-up text-success ms-2"></i></h4>
@@ -64,7 +64,7 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-start mini-stat-img me-4">
-                            <img src="{{URL::asset('assets/images/services-icon/02.png')}}" alt="">
+                            <img src="{{asset('assets/images/services-icon/02.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Fichas Tecnicas</h5>
                         <h4 class="fw-medium font-size-24">{{ $cantidadFichasTecnicas }} <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
@@ -88,7 +88,7 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-start mini-stat-img me-4">
-                            <img src="{{URL::asset('assets/images/services-icon/02.png')}}" alt="">
+                            <img src="{{asset('assets/images/services-icon/02.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Inventarios</h5>
                         <h4 class="fw-medium font-size-24">52,368 <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
@@ -111,7 +111,7 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-start mini-stat-img me-4">
-                            <img src="{{URL::asset('assets/images/services-icon/03.png')}}" alt="">
+                            <img src="{{asset('assets/images/services-icon/03.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Average Price</h5>
                         <h4 class="fw-medium font-size-24">15.8 <i class="mdi mdi-arrow-up text-success ms-2"></i></h4>
@@ -134,7 +134,7 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-start mini-stat-img me-4">
-                            <img src="{{URL::asset('assets/images/services-icon/04.png')}}" alt="">
+                            <img src="{{asset('assets/images/services-icon/04.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Product Sold</h5>
                         <h4 class="fw-medium font-size-24">2436 <i class="mdi mdi-arrow-up text-success ms-2"></i></h4>
@@ -387,7 +387,7 @@
                                     <i class="mdi mdi-arrow-right fs-5"></i>
                                 </a>
                             </div>
-                            <h6 class="mb-0"><img src="{{URL::asset('assets/images/users/user-3.jpg')}}" alt="" class="avatar-sm rounded-circle me-2"> James Athey</h6>
+                            <h6 class="mb-0"><img src="{{asset('assets/images/users/user-3.jpg')}}" alt="" class="avatar-sm rounded-circle me-2"> James Athey</h6>
                         </div>
                     </div>
                 </div>
@@ -417,7 +417,7 @@
                                     <th scope="row">#14256</th>
                                     <td>
                                         <div>
-                                            <img src="{{URL::asset('assets/images/users/user-2.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Philip Smead
+                                            <img src="{{asset('assets/images/users/user-2.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Philip Smead
                                         </div>
                                     </td>
                                     <td>15/1/2018</td>
@@ -433,7 +433,7 @@
                                     <th scope="row">#14257</th>
                                     <td>
                                         <div>
-                                            <img src="{{URL::asset('assets/images/users/user-3.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Brent Shipley
+                                            <img src="{{asset('assets/images/users/user-3.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Brent Shipley
                                         </div>
                                     </td>
                                     <td>16/1/2019</td>
@@ -449,7 +449,7 @@
                                     <th scope="row">#14258</th>
                                     <td>
                                         <div>
-                                            <img src="{{URL::asset('assets/images/users/user-4.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Robert Sitton
+                                            <img src="{{asset('assets/images/users/user-4.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Robert Sitton
                                         </div>
                                     </td>
                                     <td>17/1/2019</td>
@@ -465,7 +465,7 @@
                                     <th scope="row">#14259</th>
                                     <td>
                                         <div>
-                                            <img src="{{URL::asset('assets/images/users/user-5.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Alberto Jackson
+                                            <img src="{{asset('assets/images/users/user-5.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Alberto Jackson
                                         </div>
                                     </td>
                                     <td>18/1/2019</td>
@@ -481,7 +481,7 @@
                                     <th scope="row">#14260</th>
                                     <td>
                                         <div>
-                                            <img src="{{URL::asset('assets/images/users/user-6.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> David Sanchez
+                                            <img src="{{asset('assets/images/users/user-6.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> David Sanchez
                                         </div>
                                     </td>
                                     <td>19/1/2019</td>
@@ -497,7 +497,7 @@
                                     <th scope="row">#14261</th>
                                     <td>
                                         <div>
-                                            <img src="{{URL::asset('assets/images/users/user-2.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Philip Smead
+                                            <img src="{{asset('assets/images/users/user-2.jpg')}}" alt="" class="avatar-xs rounded-circle me-2"> Philip Smead
                                         </div>
                                     </td>
                                     <td>15/1/2018</td>
@@ -523,7 +523,7 @@
                         <ul class="conversation-list" data-simplebar style="max-height: 367px;">
                             <li class="clearfix">
                                 <div class="chat-avatar">
-                                    <img src="{{URL::asset('assets/images/users/user-2.jpg')}}" class="avatar-xs rounded-circle" alt="male">
+                                    <img src="{{asset('assets/images/users/user-2.jpg')}}" class="avatar-xs rounded-circle" alt="male">
                                     <span class="time">10:00</span>
                                 </div>
                                 <div class="conversation-text">
@@ -537,7 +537,7 @@
                             </li>
                             <li class="clearfix odd">
                                 <div class="chat-avatar">
-                                    <img src="{{URL::asset('assets/images/users/user-3.jpg')}}" class="avatar-xs rounded-circle" alt="Female">
+                                    <img src="{{asset('assets/images/users/user-3.jpg')}}" class="avatar-xs rounded-circle" alt="Female">
                                     <span class="time">10:01</span>
                                 </div>
                                 <div class="conversation-text">
@@ -551,7 +551,7 @@
                             </li>
                             <li class="clearfix">
                                 <div class="chat-avatar">
-                                    <img src="{{URL::asset('assets/images/users/user-2.jpg')}}" class="avatar-xs rounded-circle" alt="male">
+                                    <img src="{{asset('assets/images/users/user-2.jpg')}}" class="avatar-xs rounded-circle" alt="male">
                                     <span class="time">10:04</span>
                                 </div>
                                 <div class="conversation-text">
@@ -565,7 +565,7 @@
                             </li>
                             <li class="clearfix odd">
                                 <div class="chat-avatar">
-                                    <img src="{{URL::asset('assets/images/users/user-3.jpg')}}" class="avatar-xs rounded-circle" alt="male">
+                                    <img src="{{asset('assets/images/users/user-3.jpg')}}" class="avatar-xs rounded-circle" alt="male">
                                     <span class="time">10:05</span>
                                 </div>
                                 <div class="conversation-text">
@@ -579,15 +579,15 @@
                             </li>
                             <li class="clearfix odd">
                                 <div class="chat-avatar">
-                                    <img src="{{URL::asset('assets/images/users/user-3.jpg')}}" class="avatar-xs rounded-circle" alt="male">
+                                    <img src="{{asset('assets/images/users/user-3.jpg')}}" class="avatar-xs rounded-circle" alt="male">
                                     <span class="time">10:08</span>
                                 </div>
                                 <div class="conversation-text">
                                     <div class="ctext-wrap">
                                         <span class="user-name mb-2">Smith</span>
 
-                                        <img src="{{URL::asset('assets/images/small/img-1.jpg')}}" alt="" height="48" class="rounded me-2">
-                                        <img src="{{URL::asset('assets/images/small/img-2.jpg')}}" alt="" height="48" class="rounded">
+                                        <img src="{{asset('assets/images/small/img-1.jpg')}}" alt="" height="48" class="rounded me-2">
+                                        <img src="{{asset('assets/images/small/img-2.jpg')}}" alt="" height="48" class="rounded">
                                     </div>
                                 </div>
                             </li>
@@ -614,14 +614,14 @@
     @section('scripts')
    
     <!-- Peity chart-->
-    <script src="{{URL::asset('assets/libs/peity/peity.min.js')}}"></script>
+    <script src="{{asset('assets/libs/peity/peity.min.js')}}"></script>
 
     <!-- Plugin Js-->
-    <script src="{{URL::asset('assets/libs/chartist/chartist.min.js')}}"></script>
-    <script src="{{URL::asset('assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltips.min.js')}}"></script>
+    <script src="{{asset('assets/libs/chartist/chartist.min.js')}}"></script>
+    <script src="{{asset('assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltips.min.js')}}"></script>
 
-    <script src="{{URL::asset('assets/js/pages/dashboard.init.js')}}"></script>
+    <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
 
-    <script src="{{URL::asset('assets/js/app.js')}}"></script>
+    <script src="{{asset('assets/js/app.js')}}"></script>
 
     @endsection
