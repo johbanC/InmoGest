@@ -10,7 +10,7 @@
     <meta name="keywords" content="veltrix,veltrix laravel,admin template,new admin panel,laravel 10">
     <meta content="Themesbrand" name="author">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     @include('layouts.head-css')
 </head>
