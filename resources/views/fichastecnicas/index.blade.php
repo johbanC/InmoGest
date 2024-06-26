@@ -5,8 +5,8 @@
 @section('css')
 <!-- Toastr CSS -->
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-<!-- DataTables CSS -->
-<link href="{{ asset('assets/libs/datatables/dataTables.min.css') }}" rel="stylesheet" type="text/css">
+<!-- DataTables CSS 
+<link href="{{ asset('assets/libs/datatables/dataTables.min.css') }}" rel="stylesheet" type="text/css">-->
 <!-- SweetAlert2 CSS -->
 <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 
@@ -104,8 +104,8 @@
     <!-- Toastr JS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!-- Required datatable js -->
-    <script src="{{ asset('assets/libs/datatables/dataTables.min.js') }}"></script>
+    <!-- Required datatable js 
+    <script src="{{ asset('assets/libs/datatables/dataTables.min.js') }}"></script>-->
     <!-- DataTables Buttons js -->
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
