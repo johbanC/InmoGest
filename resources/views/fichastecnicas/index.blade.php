@@ -9,6 +9,11 @@
 <link href="{{ asset('assets/libs/datatables/dataTables.min.css') }}" rel="stylesheet" type="text/css">
 <!-- SweetAlert2 CSS -->
 <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+
+
+
 @endsection 
 
 @section('body')
@@ -93,6 +98,8 @@
     @endsection
 
     @section('scripts')
+
+    <script type="text/javascript" src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 
     <!-- Toastr JS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
