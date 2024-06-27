@@ -253,3 +253,24 @@
         </div>
     </div>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userDropdownButton = document.getElementById('page-header-user-dropdown');
+        const userDropdownMenu = userDropdownButton.nextElementSibling;
+
+        userDropdownButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            const isExpanded = userDropdownButton.getAttribute('aria-expanded') === 'true';
+            userDropdownButton.setAttribute('aria-expanded', !isExpanded);
+            userDropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!userDropdownButton.contains(event.target) && !userDropdownMenu.contains(event.target)) {
+                userDropdownButton.setAttribute('aria-expanded', 'false');
+                userDropdownMenu.classList.remove('show');
+            }
+        });
+    });
+</script>

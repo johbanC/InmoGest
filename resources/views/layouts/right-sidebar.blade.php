@@ -48,3 +48,21 @@
 
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
+
+<script>
+    function p() {
+        $(".right-bar-toggle").on("click", function(event) {
+            $("body").toggleClass("right-bar-enabled");
+        });
+
+        $(document).on("click", "body", function(event) {
+            if ($(event.target).closest(".right-bar-toggle, .right-bar").length === 0) {
+                $("body").removeClass("right-bar-enabled");
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        p();
+    });
+</script>

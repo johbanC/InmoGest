@@ -9,8 +9,14 @@
 <!-- SweetAlert2 CSS -->
 <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+<!-- CSS de Bootstrap -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 
+<!-- CSS de DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+
+<!-- CSS de DataTables Buttons -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
 
 
 @endsection 
@@ -98,18 +104,27 @@
 
     @section('scripts')
 
-    <script type="text/javascript" src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
-
     <!-- Toastr JS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-  
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+    
+    <!-- DataTables Buttons -->
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
+
+
     <!-- Sweet Alerts js -->
     <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- Sweet alert init js-->
@@ -136,31 +151,35 @@
         }
 
         $(document).ready(function() {
-        // Verificar si la tabla ya está inicializada y destruirla si es necesario
-            if ($.fn.dataTable.isDataTable('#datatable-buttons')) {
-                $('#datatable-buttons').DataTable().destroy();
-            }
+    // Verificar si la tabla ya está inicializada y destruirla si es necesario
+    if ($.fn.dataTable.isDataTable('#datatable-buttons')) {
+        $('#datatable-buttons').DataTable().destroy();
+    }
 
-        // Inicializar la tabla
-            $('#datatable-buttons').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-            });
+    // Inicializar la tabla con opciones de idioma y botones
+    var table = new DataTable('#datatable-buttons', {
+        language: {
+            url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json'
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
 
-            var formulario = document.getElementById("formulariotipococina");
-            var botonGuardar = document.getElementById("botonGuardar");
+    var formulario = document.getElementById("formulariotipococina");
+    var botonGuardar = document.getElementById("botonGuardar");
 
-            if (formulario) {
-                formulario.addEventListener("submit", function() {
-                // Deshabilitar el botón después de enviar el formulario
-                    botonGuardar.disabled = true;
-                // Cambiar el texto del botón a "Guardando..."
-                    botonGuardar.innerHTML = 'Guardando...';
-                });
-            }
+    if (formulario) {
+        formulario.addEventListener("submit", function() {
+            // Deshabilitar el botón después de enviar el formulario
+            botonGuardar.disabled = true;
+            // Cambiar el texto del botón a "Guardando..."
+            botonGuardar.innerHTML = 'Guardando...';
         });
+    }
+});
+
     </script>
 
     <script>

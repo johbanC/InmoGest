@@ -86,6 +86,26 @@
 </div>
 <!-- Left Sidebar End -->
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#side-menu").metisMenu();
+            
+            $("#vertical-menu-btn").on("click", function(event) {
+                event.preventDefault();
+                $("body").toggleClass("sidebar-enable");
+                if ($(window).width() >= 992) {
+                    $("body").toggleClass("vertical-collpsed");
+                } else {
+                    $("body").removeClass("vertical-collpsed");
+                }
+            });
+        });
+    </script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
