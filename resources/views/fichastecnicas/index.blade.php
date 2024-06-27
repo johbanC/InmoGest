@@ -15,11 +15,15 @@
 <!-- CSS de DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
 
+<!-- CSS de DataTables Responsive -->
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
+
 <!-- CSS de DataTables Buttons -->
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@endsection
 
-@endsection 
 
 @section('body')
 <body data-sidebar="dark">
@@ -104,93 +108,90 @@
 
     @section('scripts')
 
-    <!-- Toastr JS -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- Toastr JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- DataTables -->
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
-    
-    <!-- DataTables Buttons -->
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+
+<!-- DataTables Responsive JS -->
+<script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.dataTables.js"></script>
 
 
-    <!-- Sweet Alerts js -->
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-    <!-- Sweet alert init js-->
-    <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
-    <!-- App js -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+<!-- DataTables Buttons -->
+<script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
 
-    <script>
-        function eliminar(id) {
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminarlo!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById("formDelete" + id).submit();
-                }
-            });
-        }
+<!-- Sweet Alerts js -->
+<script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- Sweet alert init js -->
+<script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
+<!-- App js -->
+<script src="{{ asset('assets/js/app.js') }}"></script>
 
-        $(document).ready(function() {
-    // Verificar si la tabla ya está inicializada y destruirla si es necesario
-    if ($.fn.dataTable.isDataTable('#datatable-buttons')) {
-        $('#datatable-buttons').DataTable().destroy();
-    }
-
-    // Inicializar la tabla con opciones de idioma y botones
-    var table = new DataTable('#datatable-buttons', {
-        language: {
-            url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json'
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-
-    var formulario = document.getElementById("formulariotipococina");
-    var botonGuardar = document.getElementById("botonGuardar");
-
-    if (formulario) {
-        formulario.addEventListener("submit", function() {
-            // Deshabilitar el botón después de enviar el formulario
-            botonGuardar.disabled = true;
-            // Cambiar el texto del botón a "Guardando..."
-            botonGuardar.innerHTML = 'Guardando...';
+<script>
+    function eliminar(id) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("formDelete" + id).submit();
+            }
         });
     }
-});
 
-    </script>
+    $(document).ready(function() {
+        // Inicializar la tabla con opciones de idioma y botones
+        var table = $('#datatable-buttons').DataTable({
+            responsive: true,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json'
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
 
-    <script>
-    // Configurar un temporizador para ocultar la alerta después de 5 segundos (5000 milisegundos)
-        setTimeout(function() {
-            var alert = document.querySelector('.alert');
-            if (alert) {
+        var formulario = document.getElementById("formulariotipococina");
+        var botonGuardar = document.getElementById("botonGuardar");
+
+        if (formulario) {
+            formulario.addEventListener("submit", function() {
+                // Deshabilitar el botón después de enviar el formulario
+                botonGuardar.disabled = true;
+                // Cambiar el texto del botón a "Guardando..."
+                botonGuardar.innerHTML = 'Guardando...';
+            });
+        }
+    });
+
+    // Configurar un temporizador para ocultar la alerta después de 3 segundos (3000 milisegundos)
+    setTimeout(function() {
+        var alert = document.querySelector('.alert');
+        if (alert) {
             // Usar el método de Bootstrap para cerrar la alerta
-                var alertInstance = bootstrap.Alert.getOrCreateInstance(alert);
-                alertInstance.close();
-            }
-        }, 3000);
-    </script>
-    @endsection
+            var alertInstance = bootstrap.Alert.getOrCreateInstance(alert);
+            alertInstance.close();
+        }
+    }, 3000);
+</script>
+@endsection
