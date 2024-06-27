@@ -255,21 +255,21 @@
 </header>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const userDropdownButton = document.getElementById('page-header-user-dropdown');
-        const userDropdownMenu = userDropdownButton.nextElementSibling;
+    $(document).ready(function() {
+        const userDropdownButton = $('#page-header-user-dropdown');
+        const userDropdownMenu = userDropdownButton.next('.dropdown-menu');
 
-        userDropdownButton.addEventListener('click', function(event) {
+        userDropdownButton.on('click', function(event) {
             event.preventDefault();
-            const isExpanded = userDropdownButton.getAttribute('aria-expanded') === 'true';
-            userDropdownButton.setAttribute('aria-expanded', !isExpanded);
-            userDropdownMenu.classList.toggle('show');
+            userDropdownMenu.toggleClass('show');
+            const isExpanded = userDropdownButton.attr('aria-expanded') === 'true';
+            userDropdownButton.attr('aria-expanded', !isExpanded);
         });
 
-        document.addEventListener('click', function(event) {
-            if (!userDropdownButton.contains(event.target) && !userDropdownMenu.contains(event.target)) {
-                userDropdownButton.setAttribute('aria-expanded', 'false');
-                userDropdownMenu.classList.remove('show');
+        $(document).on('click', function(event) {
+            if (!userDropdownButton.is(event.target) && !userDropdownMenu.is(event.target) && userDropdownMenu.has(event.target).length === 0) {
+                userDropdownMenu.removeClass('show');
+                userDropdownButton.attr('aria-expanded', 'false');
             }
         });
     });
