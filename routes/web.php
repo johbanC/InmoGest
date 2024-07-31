@@ -238,6 +238,8 @@ Route::post('/file/addImages/{fichaTecnicaId}/{fichaTecnicaCarpeta}', [FileContr
     Route::delete('/inventarios/{inventario}', [InventarioController::class, 'destroy'])
     ->name('inventarios.destroy');
 
+    Route::get('inventarios', 'InventarioController@index')->name('inventarios.index');
+
 
    //Imagenes
     Route::delete('/eliminar-imagen/{id}', [FileController::class, 'eliminarImagen']);

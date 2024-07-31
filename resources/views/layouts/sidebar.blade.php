@@ -10,7 +10,7 @@
                 <li class="menu-title">Main</li>
 
                 <li>
-                    <a href="{{ route('index.index') }}" class="waves-effect">
+                    <a href="/index" class="waves-effect">
                         <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">1</span>
                         <span>Dashboard</span>
                     </a>
@@ -27,7 +27,7 @@
                 <li class="menu-title">PROXIMAMENTE</li>
 
                 <li>
-                    <a href="{{ route('inventarios.index') }}" class="waves-effect" >
+                    <a href="#" class="waves-effect" >
                         <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
                         <span>Inventario</span>
                     </a>
