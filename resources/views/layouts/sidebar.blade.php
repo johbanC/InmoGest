@@ -10,14 +10,14 @@
                 <li class="menu-title">Main</li>
 
                 <li>
-                    <a href="index" class="waves-effect">
+                    <a href="{{ route('index.index') }}" class="waves-effect">
                         <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">1</span>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/fichastecnicas" class=" waves-effect">
+                    <a href="{{ route('fichastecnicas.index') }}" class=" waves-effect">
                         <i class="ti-receipt"></i>
                         <span>Ficha Tecnica</span>
                     </a>
@@ -27,7 +27,7 @@
                 <li class="menu-title">PROXIMAMENTE</li>
 
                 <li>
-                    <a href="#" class="waves-effect" id="alert-button1">
+                    <a href="{{ route('inventarios.index') }}" class="waves-effect" >
                         <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
                         <span>Inventario</span>
                     </a>

@@ -11,6 +11,10 @@
 <!-- App Css-->
 <link href="{{URL::asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
 
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+
 
 
 @endsection 
@@ -26,32 +30,71 @@
     @endcomponent
 
     @include('layouts.notificaciones')
-    <!-- Para poder verificar que error tengo
- @dump($errors->all())
- -->
+    <!-- @dump($errors->all()) -->
+
+
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
+        <div class="col-md-2">
+            <a class="btn btn-primary btn-lg waves-effect waves-light" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Datos del inmueble</a>
+        </div>
 
+        <div class="col-md-2">
+            <a class="btn btn-primary btn-lg waves-effect waves-light" data-bs-toggle="collapse" href="#sala" role="button" aria-expanded="false" aria-controls="sala">Sala</a>
+        </div>
 
-                    @include('fichastecnicas.form._fichatecnica')
+        <div class="col-md-2">
+            <a class="btn btn-primary btn-lg waves-effect waves-light" data-bs-toggle="collapse" href="#comedor" role="button" aria-expanded="false" aria-controls="comedor">Comedor</a>
+        </div>
 
-
-                </div>
+        <div class="col-md-2">
+            <div id="">
+                <button  class="btn btn-primary btn-lg waves-effect waves-light" type="button" id="agregarTabla">Agregar Habitación</button>
             </div>
         </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+        </div>
+
+
+        
     </div>
+
+
+
+    <div id="">
+        <button  class="btn btn-primary btn-lg waves-effect waves-light" type="button" id="agregarTabla">Agregar Habitación</button>
+    </div>
+
+
+    <br>
+
+    <!-- <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body"> -->
+
+
+                    @include('inventarios.form._inventario')
+                    @include('inventarios.form._sala')
+                    @include('inventarios.form._comedor')
+
+
+               <!--  </div>
+            </div>
+        </div>
+    </div> -->
     @endsection
 
     @section('scripts')
-     <!-- App js -->
+    <!-- App js -->
     <script src="{{ URL::asset('assets/js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
-   
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+<link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
 
 
     <script>

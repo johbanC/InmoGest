@@ -6,6 +6,12 @@
 	/*.row>* {
     width: auto !important;
 }*/
+
+
+button#botonActualizar {
+	width: -webkit-fill-available;
+	margin-top: 15px;
+}
 </style>
 <form action="{{ route('fichastecnicas.update', $fichatecnica) }}" method="POST" id="formularioFichaTecnica">
 	@csrf
@@ -449,12 +455,207 @@
 				@endif
 			</div>
 		</div>
+    
 
-	</section>
+    <!-- Contenedor para previsualización de imágenes -->
+    <div class="row mt-3" id="preview"></div>
 
-	<button type="submit" id="botonActualizar" class="btn btn-success waves-effect waves-light">Actualizar</button>
-
-
+    <button type="submit" id="botonActualizar" class="btn btn-warning waves-effect waves-light">Actualizar</button>
 </form>
 
 
+<hr style="border: 0.5px solid; opacity: 10%;">
+<h3>Imágenes Actuales</h3>
+
+<!-- Contenedor para mostrar las imágenes actuales -->
+<div class="row">
+    @foreach($imagenes as $image)
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ asset('/' . $image->url) }}" class="card-img-top img-fluid img-thumbnail" alt="Imagen" onclick="openModal(this)">
+                <div class="card-body text-center">
+                    <button class="btn btn-danger" onclick="eliminarImagen({{ $image->id }})">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+<!-- Modal para mostrar la imagen en tamaño grande -->
+<div id="imageModal" class="modal fade" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Imagen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid" id="modalImage" alt="Imagen">
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr style="border: 0.5px solid; opacity: 10%;">
+
+<!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-primary w-100 waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addImagesModal">
+  Agregar Imágenes
+</button>
+
+<!-- Modal para agregar imágenes -->
+<div class="modal fade" id="addImagesModal" tabindex="-1" aria-labelledby="addImagesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> <!-- Agregué la clase modal-lg aquí -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addImagesModalLabel">Agregar Imágenes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('file.addImages', [$fichatecnica->id, $image->carpeta]) }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="mb-3">
+            <label for="imagenes" class="form-label">Seleccionar Imágenes</label>
+            <input type="hidden" name="" value="{{ $fichatecnica->id }}">
+            <input type="hidden" name="" value="{{ $image->carpeta }}">
+            <input type="file" name="imagenes[]" id="imagenes" class="form-control" multiple>
+            <div id="preview-container"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Imágenes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #preview-container img {
+    margin: 10px;
+    height: 200px;
+  }
+
+  #preview-container .remove-button {
+    font-size: 12px;
+    color: #red;
+    cursor: pointer;
+  }
+</style>
+
+<!--... resto del código... -->
+
+<div id="preview-container"></div>
+
+<script>
+  const input = document.getElementById('imagenes');
+  const previewContainer = document.getElementById('preview-container');
+
+  input.addEventListener('change', (e) => {
+    const files = input.files;
+    previewContainer.innerHTML = '';
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.height = 200;
+
+        const removeButton = document.createElement('button');
+        removeButton.className = 'remove-button btn btn-danger';
+        removeButton.textContent = 'Remover';
+
+        removeButton.addEventListener('click', () => {
+          // Eliminar la imagen correspondiente
+          img.remove();
+          removeButton.remove();
+        });
+
+        const imageContainer = document.createElement('div');
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(removeButton);
+
+        previewContainer.appendChild(imageContainer);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
+
+
+
+
+<!-- Scripts de Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function previewImages(event) {
+        var files = event.target.files;
+        var previewContainer = document.getElementById('preview');
+        previewContainer.innerHTML = ''; // Limpiar cualquier previsualización existente
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+
+            if (file.type.match('image.*')) {
+                var reader = new FileReader();
+
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        var colDiv = document.createElement('div');
+                        colDiv.className = 'col-md-3 mb-4';
+                        colDiv.innerHTML = '<div class="card">' +
+                            '<img src="' + e.target.result + '" class="card-img-top img-fluid img-thumbnail" alt="Previsualización" onclick="openModal(this)">' +
+                            '<div class="card-body text-center">' +
+                            '<button type="button" class="btn btn-danger" onclick="removeImage(this)">Eliminar</button>' +
+                            '</div>' +
+                            '</div>';
+                        previewContainer.appendChild(colDiv);
+                    };
+                })(file);
+
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+    function removeImage(button) {
+        var imageContainer = button.closest('.card');
+        imageContainer.parentElement.remove();
+    }
+
+    function openModal(imgElement) {
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = imgElement.src;
+        modal.show();
+    }
+
+    function eliminarImagen(imageId) {
+        if (confirm('¿Estás seguro de que quieres eliminar esta imagen?')) {
+            // Realizar la petición para eliminar la imagen
+            fetch(`/eliminar-imagen/${imageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('Error al eliminar la imagen.');
+                }
+            });
+        }
+    }
+</script>

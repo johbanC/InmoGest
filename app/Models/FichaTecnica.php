@@ -75,12 +75,20 @@ class FichaTecnica extends Model
         return $this->belongsTo(Calentador::class, 'calentador_id');
     }
 
-     public function tipo_porteria(): BelongsTo{
+    public function tipo_porteria(): BelongsTo{
         return $this->belongsTo(TipoPorteria::class, 'tipo_porterias_id');
     }
 
     public function tipo_cocina(): BelongsTo{
         return $this->belongsTo(TipoCocina::class, 'tipo_cocinas_id');
+    }
+
+    public function files(){
+        return $this->hasMany(File::class, 'ficha_tecnicas_id');
+    }
+
+   public function images(){
+        return $this->hasMany(File::class, 'ficha_tecnicas_id');
     }
 
     

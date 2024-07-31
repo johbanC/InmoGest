@@ -11,6 +11,7 @@ use App\Http\Controllers\TipoCocinaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FileController;
 use PHPUnit\Framework\Reorderable;
 
 
@@ -36,7 +37,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     /*Route::get('{any}',[HomeController::class,'index']);*/
 
-    Route::get('/index',[HomeController::class,'index']);
+    Route::get('/index',[HomeController::class,'index'])->name('index.index');
 
 
      Route::get('/fichastecnicas', [FichaTecnicaController::class, 'index'])
@@ -59,6 +60,23 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/fichastecnicas/{fichatecnica}/pdf', [FichaTecnicaController::class, 'pdf'])
     ->name('fichastecnicas.pdf');
+
+    Route::get('/fichastecnicas/{fichatecnica}', [FichaTecnicaController::class, 'show'])
+    ->name('fichastecnicas.show');
+
+    Route::get('/descargar-imagenes/{id}', [FichaTecnicaController::class, 'descargarImagenes'])
+    ->name('descargar.imagenes');
+
+
+    Route::post('/fichastecnicas/{fichaTecnicaId}/add-images/{fichaTecnicaCarpeta}', [FichaTecnicaController::class, 'addImages'])->name('fichastecnicas.addImages');
+
+
+
+
+Route::post('/file/addImages/{fichaTecnicaId}/{fichaTecnicaCarpeta}', [FileController::class, 'addImages'])->name('file.addImages');
+
+
+
 
 
     // Tipo de Inmuebles
@@ -199,6 +217,30 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::delete('/reparaciones/{reparacion}', [ReparacionController::class, 'destroy'])
     ->name('reparaciones.destroy');
+
+
+    //Listado de Inventario
+    Route::get('/inventarios', [InventarioController::class, 'index'])
+    ->name('inventarios.index');
+
+    Route::get('/inventarios/new', [InventarioController::class , 'create'])
+    ->name('inventarios.new');
+
+    Route::post('inventarios/new', [InventarioController::class, 'store'])
+    ->name('inventarios.store');
+
+    Route::get('inventarios/{reparacion}/edit', [InventarioController::class, 'edit'])
+    ->name('inventarios.edit');
+
+    Route::put('/inventarios/{inventario}', [InventarioController::class, 'update'])
+    ->name('inventarios.update');
+
+    Route::delete('/inventarios/{inventario}', [InventarioController::class, 'destroy'])
+    ->name('inventarios.destroy');
+
+
+   //Imagenes
+    Route::delete('/eliminar-imagen/{id}', [FileController::class, 'eliminarImagen']);
 
 
 
