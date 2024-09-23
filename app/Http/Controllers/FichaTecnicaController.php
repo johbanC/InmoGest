@@ -112,6 +112,8 @@ class FichaTecnicaController extends Controller
      */
     public function store(Request $request){
 
+         dd($request->all());
+
      $request->validate([
 
         'tipo_transaccions_id' => ['required'],
@@ -128,9 +130,11 @@ class FichaTecnicaController extends Controller
         'barrio' => ['required', 'min:5'],
         'direccion' => ['required', 'min:5'],
 
-         'imagenes' => ['required', 'array'], // Validar que sea un array
+       //  'imagenes' => ['required', 'array'], // Validar que sea un array
 
      ]);
+
+
 
      $vestier = $request->filled('vestier');
        // $cocina = $request->filled('cocina');

@@ -28,7 +28,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="email">{{ __('Email Address') }} <span class="text-danger">*</span></label>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="admin@themesbrand.com" required autocomplete="email" value="admin@themesbrand.com" autofocus placeholder="Enter Email">
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email"  autofocus placeholder="Introducir Email">
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
 
                                     <div class="mb-3">
                                         <label class="form-label" for="userpassword">{{ __('Password') }} <span class="text-danger">*</span></label>
-                                        <input id="password" type="password" value="12345678" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter password">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Introducir Contraseña">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
