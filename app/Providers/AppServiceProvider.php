@@ -17,8 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        // Configurar el controlador a usar
-        Image::configure(['driver' => 'imagick']);
+     
     }
 
     /**
