@@ -156,7 +156,7 @@
 
 
             <div class="col-md-6">
-                <label for="tipo_inmuebles_id" class="form-label">Tipo de Inmueble <a href="{{ route('tiposinmuebles.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a></label><br>
+                <label for="tipo_inmuebles_id" class="form-label">Tipo de Inmueble </label><br>
                 <select name="tipo_inmuebles_id" id="tipo_inmuebles_id" class="form-select {{ $errors->has('tipo_inmuebles_id') ? 'is-invalid' : '' }}">
                     <option value="">Seleccione una opción...</option>
                     @foreach ($tipoinmuebles as $id => $nombre)
