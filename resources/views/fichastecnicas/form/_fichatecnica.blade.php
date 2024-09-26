@@ -130,7 +130,7 @@
 
             <div class="col-md-6">
                 <label for="input-administracion" class="form-label">Administración</label>
-                <i class="ti-info-alt" data-toggle="tooltip" title="Aqui agregas el costo de la administracion de la propiedad en dado casod de tener costo"></i>
+                <i class="ti-info-alt" data-toggle="tooltip" title="Costo de la administracion de la propiedad en dado casod de tenerla"></i>
                 <br>
                 <input type="text" name="administracion" class="form-control {{ $errors->has('administracion') ? 'is-invalid' : '' }}" id="input-administracion" placeholder="Administración" value="{{ old('administracion') }}">
                 @if ($errors->has('administracion'))
@@ -140,7 +140,7 @@
 
             <div class="col-md-6">
                 <label for="input-valor" class="form-label">Valor</label> 
-                <i class="ti-info-alt" data-toggle="tooltip" title="Aquí agregas el costo de arriendo o venta de la propiedad."></i>
+                <i class="ti-info-alt" data-toggle="tooltip" title="Costo del arriendo o venta de la propiedad."></i>
                 <br>
                 <input type="text" name="valor" class="form-control {{ $errors->has('valor') ? 'is-invalid' : '' }}" id="input-valor" placeholder="Valor" value="{{ old('valor') }}">
                 @if ($errors->has('valor'))
@@ -173,7 +173,7 @@
 
 
             <div class="col-md-6">
-                <label for="tipo_transaccions_id" class="form-label">Tipo de Transacción <a href="{{ route('tipostransaccions.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a></label><br>
+                <label for="tipo_transaccions_id" class="form-label">Tipo de Transacción <!--<a href="{{ route('tipostransaccions.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a>--></label><br>
                 <select name="tipo_transaccions_id" id="tipo_transaccions_id" class="form-select {{ $errors->has('tipo_transaccions_id') ? 'is-invalid' : '' }}">
                     <option value="">Seleccione una opción...</option>
                     @foreach ($transacciones as $id => $nombre)
@@ -241,7 +241,9 @@
 
             
                 <div class="col-md-6">
-                    <label for="calentadors_id" class="form-label">Tipo de Calentador <a href="{{ route('calentadors.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a></label><br>
+                    <label for="calentadors_id" class="form-label">Tipo de Calentador 
+                        <!-- <a href="{{ route('calentadors.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a> -->
+                    </label><br>
                     <select name="calentadors_id" id="calentadors_id" class="form-select {{ $errors->has('calentadors_id') ? 'is-invalid' : '' }}">
                         <option value="">Seleccione una opción...</option>
                         @foreach ($calentador as $id => $nombre)
@@ -259,7 +261,9 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="tipo_porterias_id" class="form-label">Tipo de Portería <a href="{{ route('tipoporterias.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a></label><br>
+                    <label for="tipo_porterias_id" class="form-label">Tipo de Portería 
+                        <!-- <a href="{{ route('tipoporterias.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a> -->
+                    </label><br>
                     <select name="tipo_porterias_id" id="tipo_porterias_id" class="form-select {{ $errors->has('tipo_porterias_id') ? 'is-invalid' : '' }}">
                         <option value="">Seleccione una opción...</option>
                         @foreach ($tipoporterias as $id => $nombre)
@@ -274,7 +278,9 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="tipo_cocinas_id" class="form-label">Tipo de Cocina <a href="{{ route('tipococinas.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a></label><br>
+                    <label for="tipo_cocinas_id" class="form-label">Tipo de Cocina 
+                        <!-- <a href="{{ route('tipococinas.new') }}" target="_black"><i class="fas fa-plus-square text-success" title="Agregar nuevo"></i></a> -->
+                    </label><br>
                     <select name="tipo_cocinas_id" id="tipo_cocinas_id" class="form-select {{ $errors->has('tipo_cocinas_id') ? 'is-invalid' : '' }}">
                         <option value="">Seleccione una opción...</option>
                         @foreach ($tipococinas as $id => $nombre)
