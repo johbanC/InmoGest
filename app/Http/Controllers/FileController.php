@@ -74,8 +74,7 @@ class FileController extends Controller
 
     public function updateImages(Request $request, $fichaTecnicaId, $fichaTecnicaCarpeta)
     {
-
-
+        
     // Verificar si hay archivos de imágenes en la solicitud
         if ($request->hasFile('imagenes')) {
             foreach ($request->file('imagenes') as $image) {

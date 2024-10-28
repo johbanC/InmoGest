@@ -132,7 +132,7 @@ class FichaTecnicaController extends Controller
 
        'imagenes' => ['required', 'array'], // Validar que sea un array
 
-     ]);
+   ]);
 
 
 
@@ -320,6 +320,7 @@ class FichaTecnicaController extends Controller
 //      */
 public function update(Request $request, FichaTecnica $fichatecnica){
 
+         //dd($request->all());
 
 
     $request->validate([
@@ -329,7 +330,6 @@ public function update(Request $request, FichaTecnica $fichatecnica){
         'nom_propiedad' => ['required', 'min:5'],
         'barrio' => ['required', 'min:5'],
         'direccion' => ['required', 'min:5'],
-        'imagenes' => ['required'],
     ]);
 
     $vestier = $request->filled('vestier');
@@ -408,8 +408,9 @@ public function update(Request $request, FichaTecnica $fichatecnica){
         'user_id' => auth()->id(),
     ]);
 
-    //Con esta nueva opcion se va enviar el status con las diferentes opciones para poder visualizar las diferentes notificaciones.
 
+
+    //Con esta nueva opcion se va enviar el status con las diferentes opciones para poder visualizar las diferentes notificaciones.
 
     if ($fichatecnica) {
         $fileController = new FileController();
@@ -419,11 +420,7 @@ public function update(Request $request, FichaTecnica $fichatecnica){
         return to_route('fichastecnicas.index')->with('status', 4);
     }
 
-    /*if ($fichatecnica) {
-        return to_route('fichastecnicas.index')->with('status', 3);
-    } else {
-        return to_route('fichastecnicas.index')->with('status', 4);
-    }*/
+
 
 
 }
