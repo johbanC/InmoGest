@@ -112,7 +112,7 @@ class FichaTecnicaController extends Controller
      */
     public function store(Request $request){
 
-         dd($request->all());
+        // dd($request->all());
 
      $request->validate([
 
@@ -130,7 +130,7 @@ class FichaTecnicaController extends Controller
         'barrio' => ['required', 'min:5'],
         'direccion' => ['required', 'min:5'],
 
-       //  'imagenes' => ['required', 'array'], // Validar que sea un array
+       'imagenes' => ['required', 'array'], // Validar que sea un array
 
      ]);
 
