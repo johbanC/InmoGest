@@ -66,6 +66,7 @@
                         <thead>
                             <tr>
                                 <th>Nro</th>
+                                <th>ID</th>
                                 <th>Nombre del propietario</th>
                                 <th>Nombre de la propiedad</th>
                                 <th>Barrio</th>
@@ -78,6 +79,7 @@
                             @foreach($fichastecnicas as $index => $fichatecnica)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>{{ $fichatecnica->id }}</td>
                                 <td>{{ $fichatecnica->nom_propietario }}</td>
                                 <td>{{ $fichatecnica->nom_propiedad }}</td>
                                 <td>{{ $fichatecnica->barrio }}</td>
