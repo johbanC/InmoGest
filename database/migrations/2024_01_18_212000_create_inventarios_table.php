@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
             $table->timestamps(); // Cambiado esta línea
+            $table->date('fecha');
             $table->string('direccion');
-            $table->string('tipo_inmueble');
+            $table->foreignId('tipo_inmuebles_id')->constrained();            
             $table->string('arrendador');
             $table->string('inquilino');
             $table->string('propietario');
             $table->string('nro_llaves');
+            $table->text('descripcion')->nullable();
             $table->foreignId('user_id')->constrained();
         });
     }

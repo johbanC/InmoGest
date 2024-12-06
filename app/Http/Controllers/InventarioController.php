@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Inventario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\TipoInmueble;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InventarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(){
 
-        return view('inventarios.index');
+        return view('inventarios.index',[
+
+            'inventarios' => Inventario::with('user')->orderBy('id', 'DESC')->get()
+
+        ]);
+
+
     }
 
     /**
