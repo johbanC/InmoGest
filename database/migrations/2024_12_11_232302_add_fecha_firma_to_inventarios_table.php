@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('inventarios', function (Blueprint $table) {
-             $table->date('fecha')->nullable()->after('updated_at');
+        Schema::table('inventarios', function (Blueprint $table) {             
              $table->string('firma_recibe');
              $table->string('foto_recibe');
              $table->string('foto_entrega');

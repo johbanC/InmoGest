@@ -31,46 +31,43 @@ class FileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $fichaTecnicaId){
-    // ...
-
+    public function store(Request $request, $fichaTecnicaId)
+    {
         if ($request->hasFile('imagenes')) {
-        // Generar un nombre único para la carpeta que almacenará las imágenes
+            // Generar un nombre único para la carpeta que almacenará las imágenes
             $folderName = $fichaTecnicaId . '_' . Str::random(10);
-
-        // Definir el path de la carpeta donde se almacenarán las imágenes
+    
+            // Definir el path de la carpeta donde se almacenarán las imágenes
             $folderPath = storage_path('app/public/images/' . $folderName);
-
-        // Verificar si la carpeta ya existe antes de crearla
-            if (!File::exists($folderPath)) {
-            // Crear la carpeta con permisos 0777 y recursividad true
-                File::makeDirectory($folderPath, 0777, true);
+    
+            // Verificar si la carpeta ya existe antes de crearla
+            if (!FileSystem::exists($folderPath)) {
+                // Crear la carpeta con permisos 0777 y recursividad true
+                FileSystem::makeDirectory($folderPath, 0777, true);
             }
-
-        // Recorrer cada imagen enviada en la solicitud
+    
+            // Recorrer cada imagen enviada en la solicitud
             foreach ($request->file('imagenes') as $image) {
-            // Generar un nombre único para la imagen
+                // Generar un nombre único para la imagen
                 $fileName = time() . '_' . $image->getClientOriginalName();
-
-            // Definir el path completo de la imagen
-                $filePath = $folderPath . '/' . $fileName;
-
-            // Almacenar la imagen en la carpeta correspondiente
+    
+                // Almacenar la imagen en la carpeta correspondiente
                 $image->storeAs('images/' . $folderName, $fileName, 'public');
-
-            // Crear un registro en la base de datos para la imagen
+    
+                // Crear un registro en la base de datos para la imagen
                 File::create([
-                'url' => 'storage/images/' . $folderName . '/' . $fileName, // URL de la imagen
-                'tipo' => 'ficha tecnica', // Tipo de archivo
-                'carpeta' => $folderName, // Carpeta donde se almacena la imagen
-                'user_id' => auth()->id(), // ID del usuario que subió la imagen
-                'ficha_tecnicas_id' => $fichaTecnicaId, // ID de la ficha técnica relacionada
-            ]);
+                    'url' => 'storage/images/' . $folderName . '/' . $fileName, // URL de la imagen
+                    'tipo' => 'ficha tecnica', // Tipo de archivo
+                    'carpeta' => $folderName, // Carpeta donde se almacena la imagen
+                    'user_id' => auth()->id(), // ID del usuario que subió la imagen
+                    'ficha_tecnicas_id' => $fichaTecnicaId, // ID de la ficha técnica relacionada
+                ]);
             }
         }
-
+    
         return response()->json(['message' => 'Imágenes guardadas con éxito'], 200);
     }
+    
 
     public function updateImages(Request $request, $fichaTecnicaId, $fichaTecnicaCarpeta)
     {
