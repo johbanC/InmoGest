@@ -62,7 +62,7 @@
 
                         </div>
                     </div>
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>Nro</th>
@@ -217,5 +217,33 @@
                 alertInstance.close();
             }
         }, 3000);
+
+
+        $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#datatable-buttons tfoot th').each( function () {
+        var title = $('#datatable-buttons thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#datatable-buttons').DataTable();
+ 
+    // Apply the search
+    table.columns().eq( 0 ).each( function ( colIdx ) {
+        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+            table
+                .column( colIdx )
+                .search( this.value )
+                .draw();
+        } );
+    } );
+} );
+
+
+
+
+
+
     </script>
     @endsection
