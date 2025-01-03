@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps(); // Cambiado esta línea
             $table->date('fecha');
             $table->string('direccion');
-            $table->foreignId('tipo_inmuebles_id')->constrained();            
             $table->string('arrendador');
             $table->string('inquilino');
             $table->string('propietario');

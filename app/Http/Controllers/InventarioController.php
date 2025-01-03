@@ -27,9 +27,10 @@ class InventarioController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create(){
+
+        $tipoinmuebles = TipoInmueble::all()->pluck('nombre', 'id');
+        return view('inventarios.new', compact('tipoinmuebles'));
     }
 
     /**

@@ -66,12 +66,11 @@
                         <thead>
                             <tr>
                                 <th>Nro</th>
-                                <th>ID</th>
+                                <th>Codigo</th>
                                 <th>Fecha</th>
                                 <th>Nombre de la propiedad</th>
                                 <th>Nombre del inquilino</th>
                                 <th>Tipo de Propiedad</th>
-                                <th>Valor</th>
                                 <th>Realizado por</th>
                                 <th>Acciones</th> 
                             </tr>
@@ -80,12 +79,11 @@
                             @foreach($inventarios as $index => $inventario)
                             <tr>
                                 <td>{{ $index + 1 }}</td>                                
-                                <td>{{ $inventario->id }}</td>
+                                <td>{{ $inventario->codigo }}</td>
                                 <td>{{ date('d/m/Y', strtotime($inventario->fecha)) }}</td>
                                 <td>{{ $inventario->nombre_propiedad }}</td>
                                 <td>{{ $inventario->inquilino }}</td>
                                 <td>{{ $inventario->tipo_inmueble->nombre }}</td>
-                                <td>$ {{ number_format($inventario->valor, 2, ',', '.') }}</td>
                                 <td>{{ $inventario->user->name }}</td>
                                 <td>
 

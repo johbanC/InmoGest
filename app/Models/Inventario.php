@@ -11,6 +11,7 @@ class Inventario extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigo',
         'direccion',
         'tipo_inmuebles_id',
         'arrendador',
@@ -19,6 +20,20 @@ class Inventario extends Model
         'nro_llaves',
         'user_id',
     ];
+
+    protected static function booted(){
+        static::creating(function ($inventario) {
+            // Generar el código de inventario con el formato deseado
+            if (empty($inventario->codigo)) {
+                $ultimoCodigo = self::latest('id')->first(); // Obtener el último registro insertado
+                $ultimoNumero = $ultimoCodigo ? (int) substr($ultimoCodigo->codigo, 7) : 0; // Extraer el número del código
+                $nuevoNumero = $ultimoNumero + 1; // Incrementar el número
+
+                // Formatear el nuevo código con 4 dígitos
+                $inventario->codigo = 'DH-INV-' . str_pad($nuevoNumero, 4, '0', STR_PAD_LEFT);
+            }
+        });
+    }
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
