@@ -1,235 +1,293 @@
-<style type="text/css">
-	.row{
-		padding-bottom: 15px;
-	}
-
-	/*.row>* {
-    width: auto !important;
-}*/
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-
-
-
-<div id="inventario">
-	
-</div>
-
-
-
-
-
-<script>
-	$(document).ready(function() {
-		let contador = 1;
-
-		$('#agregarTabla').click(function() {
-			var tablaHTML = `
-			<div class="habitacion">
-			<button type="button" class="toggleTabla">Mostrar/Ocultar Habitación ${contador}</button>
-			<button type="button" class="borrarTabla">Borrar Habitación ${contador}</button>
-			<table class="tablaHabitacion" style="display: none;">
-			<tr>
-			<td>Nombre de la Habitación: <input type="text" name="nombreHabitacion[]"></td>
-			</tr>
-			<tr>
-			<td>Área: <input type="text" name="area[]"></td>
-			</tr>
-			<tr>
-			<td>Descripción: <textarea name="descripcion[]"></textarea></td>
-			</tr>
-			</table>
-			</div>
-			`;
-			$('#inventario').append(tablaHTML);
-			contador++;
-		});
-
-		$(document).on('click', '.toggleTabla', function() {
-			$(this).nextAll('.tablaHabitacion').first().toggle();
-		});
-
-		$(document).on('click', '.borrarTabla', function() {
-			$(this).parent().remove();
-		});
-	});
-</script>
-
-
-
-
-
-
-
-
-<p class="d-inline-flex gap-1">
-	
-
-	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-
-	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
-</p>
-
-
-
-
-
 <div class="row">
-	<div class="col-md-12">
-		<div class="collapse multi-collapse" id="sala">
-			<div class="card card-body">
-				<form id="formularioFichaTecnica" method="POST" action="{{ route('fichastecnicas.store') }}" class="row g-3 needs-validation" novalidate>
-					<section>
-						@csrf
-						<div class="row">
-							<div class="col-md-2">
-								<label for="input-fecha" class="form-label">Fecha</label><br>
-								<input type="text" name="fecha" class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}" id="input-fecha" placeholder="Fecha" value="{{ old('fecha') }}" required autofocus>
-								@if ($errors->has('fecha'))
-								<div class="invalid-feedback">{{ $errors->first('fecha') }}</div>
-								@endif
-							</div>						
-							
-						</div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Crear inventario de la propiedad</h4>
+
+                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                    <h3>Datos Principales</h3>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtNombreInquilino" class="col-lg-3 col-form-label">Nombre del
+                                        inquilino</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtNombreInquilino" name="txtNombreInquilino" type="text"
+                                            class="form-control" placeholder="Nombre del inquilino">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtNombrePropiedad" class="col-lg-3 col-form-label">Nombre de la
+                                        propiedad</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtNombrePropiedad" name="txtNombrePropiedad" type="text"
+                                            class="form-control" placeholder="Nombre de la propiedad">
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtNumeroInquilino" class="col-lg-3 col-form-label">Número del
+                                        inquilino</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtNumeroInquilino" name="txtNumeroInquilino" type="text"
+                                            class="form-control" placeholder="Número del inquilino">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtEmailInquilino" class="col-lg-3 col-form-label">Email del
+                                        inquilino</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtEmailInquilino" name="txtEmailInquilino" type="email"
+                                            class="form-control" placeholder="Email del inquilino">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtDireccionPropiedad" class="col-lg-3 col-form-label">Dirección de la
+                                        propiedad</label>
+                                    <div class="col-lg-9">
+                                        <textarea id="txtDireccionPropiedad" name="txtDireccionPropiedad" rows="4" class="form-control"
+                                            placeholder="Dirección de la propiedad"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtObservacion" class="col-lg-3 col-form-label">Observación</label>
+                                    <div class="col-lg-9">
+                                        <textarea id="txtObservacion" name="txtObservacion" rows="4" class="form-control" placeholder="Observación"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="tipo_inmuebles_id" class="col-lg-3 col-form-label">Tipo de Inmueble
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <select name="tipo_inmuebles_id" id="tipo_inmuebles_id"
+                                            class="form-select {{ $errors->has('tipo_inmuebles_id') ? 'is-invalid' : '' }}">
+                                            <option value="">Seleccione una opción...</option>
+                                            @foreach ($tipoinmuebles as $id => $nombre)
+                                                <option value="{{ $id }}"
+                                                    {{ old('tipo_inmuebles_id') == $id ? 'selected' : '' }}>
+                                                    {{ $nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('tipo_inmuebles_id'))
+                                            <div class="invalid-feedback">{{ $errors->first('tipo_inmuebles_id') }}
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtNumeroLlaves" class="col-lg-3 col-form-label">Número de
+                                        llaves</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtNumeroLlaves" name="txtNumeroLlaves" type="text"
+                                            class="form-control" placeholder="Número de llaves">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
 
 
-						
+                    <h3>Company Document</h3>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtFirstNameShipping" class="col-lg-3 col-form-label">PAN Card</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtFirstNameShipping" name="txtFirstNameShipping" type="text"
+                                            class="form-control" placeholder="Enter pancard number">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtLastNameShipping" class="col-lg-3 col-form-label">VAT/TIN
+                                        No.</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtLastNameShipping" name="txtLastNameShipping" type="text"
+                                            class="form-control" placeholder="Enter tin number">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtCompanyShipping" class="col-lg-3 col-form-label">CST No.</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtCompanyShipping" name="txtCompanyShipping" type="text"
+                                            class="form-control" placeholder="Enter csr number">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtEmailAddressShipping" class="col-lg-3 col-form-label">Service Tax
+                                        No.</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtEmailAddressShipping" name="txtEmailAddressShipping"
+                                            type="text" class="form-control" placeholder="Service tax number">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtCityShipping" class="col-lg-3 col-form-label">Company UIN</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtCityShipping" name="txtCityShipping" type="text"
+                                            class="form-control" placeholder="Enter uin pin">
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtStateProvinceShipping"
+                                        class="col-lg-3 col-form-label">Declaration</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtStateProvinceShipping" name="txtStateProvinceShipping"
+                                            type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </fieldset>
+                    <h3>Bank Details</h3>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtNameCard" class="col-lg-3 col-form-label">Name on Card</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtNameCard" name="txtNameCard" type="text"
+                                            class="form-control" placeholder="Enter card name">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="ddlCreditCardType" class="col-lg-3 col-form-label">Credit Card
+                                        Type</label>
+                                    <div class="col-lg-9">
+                                        <select id="ddlCreditCardType" name="ddlCreditCardType" class="form-select">
+                                            <option value="">--Please Select--</option>
+                                            <option value="AE">American Express</option>
+                                            <option value="VI">Visa</option>
+                                            <option value="MC">MasterCard</option>
+                                            <option value="DI">Discover</option>
+                                        </select>
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtCreditCardNumber" class="col-lg-3 col-form-label">Credit Card
+                                        Number</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtCreditCardNumber" name="txtCreditCardNumber" type="text"
+                                            class="form-control" placeholder="Enter credit card number">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtCardVerificationNumber" class="col-lg-3 col-form-label">Card
+                                        Verification Number</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtCardVerificationNumber" name="txtCardVerificationNumber"
+                                            type="text" class="form-control"
+                                            placeholder="Enter verification number">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <label for="txtExpirationDate" class="col-lg-3 col-form-label">Expiration
+                                        Date</label>
+                                    <div class="col-lg-9">
+                                        <input id="txtExpirationDate" name="txtExpirationDate" type="text"
+                                            class="form-control" placeholder="DD /MM /YYYY">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </fieldset>
+                    <h3>Confirm Detail</h3>
+                    <fieldset>
+                        <div class="p-3">
+                            <div class="">
+                                <input type="checkbox" class="form-check-input me-2" id="customCheck1">
+                                <label class="form-label" for="customCheck1">I agree with the Terms and
+                                    Conditions.</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <!-- end form -->
+            </div>
+        </div>
+    </div>
+</div> <!-- row end -->
 
-						<hr style="border: 0.5px solid; opacity: 10%;">
-
-					</section>
-
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 
 
+@section('scripts')
+    <!-- form wizard -->
+    <script src="{{ URL::asset('assets/libs/jquery-steps//jquery-steps.min.js') }}"></script>
 
+    <!-- form wizard init -->
+    <script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
 
--->
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="collapse multi-collapse" id="multiCollapseExample1">
-			<div class="card card-body">
-				<form id="formularioFichaTecnica" method="POST" action="{{ route('fichastecnicas.store') }}" class="row g-3 needs-validation" novalidate>
-					<section>
-						@csrf
-						<div class="row">
-							<div class="col-md-2">
-								<label for="input-fecha" class="form-label">Fecha</label><br>
-								<input type="text" name="fecha" class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}" id="input-fecha" placeholder="Fecha" value="{{ date('d - m - Y') }}" required autofocus disabled>
-								@if ($errors->has('fecha'))
-								<div class="invalid-feedback">{{ $errors->first('fecha') }}</div>
-								@endif
-							</div>						
-
-							<div class="col-md-4">
-								<label for="input-tipo-inmueble" class="form-label">Tipo de Inmueble</label><br>
-								<input type="text" name="tipo_inmueble" class="form-control {{ $errors->has('tipo_inmueble') ? 'is-invalid' : '' }}" id="input-tipo-inmueble" placeholder="Tipo de Inmueble" value="{{ old('tipo_inmueble') }}">
-								@if ($errors->has('tipo_inmueble'))
-								<div class="invalid-feedback">{{ $errors->first('tipo_inmueble') }}</div>
-								@endif
-							</div>
-
-							<div class="col-md-6">
-								<label for="input-direccion" class="form-label">Dirección</label><br>
-								<input type="text" name="direccion" class="form-control {{ $errors->has('direccion') ? 'is-invalid' : '' }}" id="input-direccion" placeholder="Dirección" value="{{ old('direccion') }}">
-								@if ($errors->has('direccion'))
-								<div class="invalid-feedback">{{ $errors->first('direccion') }}</div>
-								@endif
-							</div>
-
-							<div class="col-md-4">
-								<label for="input-arrendador" class="form-label">Arrendador</label><br>
-								<input type="text" name="arrendador" class="form-control {{ $errors->has('arrendador') ? 'is-invalid' : '' }}" id="input-arrendador" placeholder="Arrendador" value="{{ old('arrendador') }}">
-								@if ($errors->has('arrendador'))
-								<div class="invalid-feedback">{{ $errors->first('arrendador') }}</div>
-								@endif
-							</div>
-
-							<div class="col-md-4">
-								<label for="input-inquilino" class="form-label">Inquilino</label><br>
-								<input type="text" name="inquilino" class="form-control {{ $errors->has('inquilino') ? 'is-invalid' : '' }}" id="input-inquilino" placeholder="Inquilino" value="{{ old('inquilino') }}">
-								@if ($errors->has('inquilino'))
-								<div class="invalid-feedback">{{ $errors->first('inquilino') }}</div>
-								@endif
-							</div>
-
-							<div class="col-md-4">
-								<label for="input-propietario" class="form-label">Propietario</label><br>
-								<input type="text" name="propietario" class="form-control {{ $errors->has('propietario') ? 'is-invalid' : '' }}" id="input-propietario" placeholder="Propietario" value="{{ old('propietario') }}">
-								@if ($errors->has('propietario'))
-								<div class="invalid-feedback">{{ $errors->first('propietario') }}</div>
-								@endif
-							</div>
-
-							<div class="col-md-4">
-								<label for="input-numero-llaves" class="form-label">Número de Llaves</label><br>
-								<input type="number" name="numero_llaves" class="form-control {{ $errors->has('numero_llaves') ? 'is-invalid' : '' }}" id="input-numero-llaves" placeholder="Número de Llaves" value="{{ old('numero_llaves') }}">
-								@if ($errors->has('numero_llaves'))
-								<div class="invalid-feedback">{{ $errors->first('numero_llaves') }}</div>
-								@endif
-							</div>
-						</div>
-
-
-						
-
-						<hr style="border: 0.5px solid; opacity: 10%;">
-
-					</section>
-
-					<button type="submit" id="botonGuardar" class="btn btn-success waves-effect waves-light">Guardar</button>
-					<button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cerrar</button>
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="col">
-		<div class="collapse multi-collapse" id="multiCollapseExample2">
-			<div class="card card-body">
-				Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-			</div>
-		</div>
-	</div>
-
-
-</div>
-
- 
+    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+@endsection

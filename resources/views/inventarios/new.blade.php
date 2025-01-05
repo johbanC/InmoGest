@@ -58,7 +58,7 @@
 
 
         $(document).ready(function() {
-            var formulario = document.getElementById("formulariotipococina");
+            var formulario = document.getElementById("formularioinventario");
             var botonGuardar = document.getElementById("botonGuardar");
 
             if (formulario) {
