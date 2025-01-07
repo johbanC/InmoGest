@@ -6,7 +6,7 @@
                 <h4 class="card-title">Crear inventario de la propiedad</h4>
 
 
-                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper" action="{{ route('inventarios.store') }}" novalidate enctype="multipart/form-data">
+                <form id="form-horizontal" method="POST" class="form-horizontal form-wizard-wrapper" action="{{ route('inventarios.store') }}" novalidate enctype="multipart/form-data">
                     @csrf
                     <h3>Datos Principales</h3>
                     <fieldset>
