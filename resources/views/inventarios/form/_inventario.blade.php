@@ -5,7 +5,9 @@
 
                 <h4 class="card-title">Crear inventario de la propiedad</h4>
 
-                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+
+                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper" action="{{ route('inventarios.store') }}" novalidate enctype="multipart/form-data">
+                    @csrf
                     <h3>Datos Principales</h3>
                     <fieldset>
                         <div class="row">
@@ -133,7 +135,8 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarComedor()">Agregar Comedor</button>
+                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        onclick="agregarComedor()">Agregar Comedor</button>
 
                                 </div>
                             </div>
@@ -173,7 +176,7 @@
 
                         <div id="comedor-container">
                             <!-- Aquí se agregarán los nuevos comedores -->
-                            
+
                         </div>
 
 
@@ -278,6 +281,8 @@
 
 
 @section('scripts')
+
+
     <!-- form wizard -->
     <script src="{{ URL::asset('assets/libs/jquery-steps/jquery-steps.min.js') }}"></script>
 
@@ -286,5 +291,13 @@
 
     <script src="{{ URL::asset('assets/js/app.js') }}"></script>
 
+
+
     @include('inventarios.form._comedor')
+
+
+       
 @endsection
+
+
+

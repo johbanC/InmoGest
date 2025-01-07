@@ -1,1 +1,1 @@
-$((function(){$("#form-horizontal").steps({headerTag:"h3",bodyTag:"fieldset",transitionEffect:"slide"})}));
+$(function(){$("#form-horizontal").steps({headerTag:"h3",bodyTag:"fieldset",transitionEffect:"slide",labels:{finish:"Guardar",next:"Siguiente",previous:"Anterior"},onFinished:function(event,currentIndex){$("#form-horizontal").submit()}})});

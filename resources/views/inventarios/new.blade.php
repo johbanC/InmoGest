@@ -44,6 +44,8 @@
     </div>
     @endsection
 
+   
+
     @section('scripts')
      <!-- App js -->
     <script src="{{ URL::asset('assets/js/app.js') }}"></script>
@@ -142,4 +144,7 @@
         mask: '(000) 000-0000'
     });
 </script>
+
+
+
 @endsection

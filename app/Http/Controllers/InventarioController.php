@@ -39,6 +39,8 @@ class InventarioController extends Controller
     public function store(Request $request)
     {
 
+        dd($request->all());
+
         $request->validate([
             'fecha' => 'required',
             'direccion' => ['required', 'min:3'],
