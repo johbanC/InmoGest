@@ -15,7 +15,7 @@
                                         inquilino</label>
                                     <div class="col-lg-9">
                                         <input id="txtNombreInquilino" name="txtNombreInquilino" type="text"
-                                            class="form-control" placeholder="Nombre del inquilino">
+                                            class="form-control" placeholder="Nombre del inquilino" required>
                                     </div>
                                 </div>
                             </div>
@@ -113,83 +113,78 @@
                     </fieldset>
 
 
-                    <h3>Company Document</h3>
+                    <h3>Inventario</h3>
                     <fieldset>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label for="txtFirstNameShipping" class="col-lg-3 col-form-label">PAN Card</label>
-                                    <div class="col-lg-9">
-                                        <input id="txtFirstNameShipping" name="txtFirstNameShipping" type="text"
-                                            class="form-control" placeholder="Enter pancard number">
-                                    </div>
+                        <section>
+                            <div class="row" style="padding-bottom: 10px">
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Dormitorio</button>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Baño</button>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Sala</button>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarComedor()">Agregar Comedor</button>
+
                                 </div>
                             </div>
-                            <!-- end col -->
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label for="txtLastNameShipping" class="col-lg-3 col-form-label">VAT/TIN
-                                        No.</label>
-                                    <div class="col-lg-9">
-                                        <input id="txtLastNameShipping" name="txtLastNameShipping" type="text"
-                                            class="form-control" placeholder="Enter tin number">
-                                    </div>
+
+                            <div class="row" style="padding-bottom: 10px">
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Cocina</button>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Hall O Pasillo</button>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Patio o Zona de ropa</button>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Garaja o Cuarto Util</button>
                                 </div>
                             </div>
-                            <!-- end col -->
+
+                            <div class="row" style="padding-bottom: 10px">
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                        Otros</button>
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <hr>
+
+                        <div id="comedor-container">
+                            <!-- Aquí se agregarán los nuevos comedores -->
+                            
                         </div>
-                        <!-- end row -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label for="txtCompanyShipping" class="col-lg-3 col-form-label">CST No.</label>
-                                    <div class="col-lg-9">
-                                        <input id="txtCompanyShipping" name="txtCompanyShipping" type="text"
-                                            class="form-control" placeholder="Enter csr number">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end col -->
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label for="txtEmailAddressShipping" class="col-lg-3 col-form-label">Service Tax
-                                        No.</label>
-                                    <div class="col-lg-9">
-                                        <input id="txtEmailAddressShipping" name="txtEmailAddressShipping"
-                                            type="text" class="form-control" placeholder="Service tax number">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label for="txtCityShipping" class="col-lg-3 col-form-label">Company UIN</label>
-                                    <div class="col-lg-9">
-                                        <input id="txtCityShipping" name="txtCityShipping" type="text"
-                                            class="form-control" placeholder="Enter uin pin">
-                                    </div>
-                                </div>
-                                <!-- end row -->
-                            </div>
-                            <!-- end col -->
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label for="txtStateProvinceShipping"
-                                        class="col-lg-3 col-form-label">Declaration</label>
-                                    <div class="col-lg-9">
-                                        <input id="txtStateProvinceShipping" name="txtStateProvinceShipping"
-                                            type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <!-- end row -->
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
+
+
+
+
+
+
+
                     </fieldset>
+
+
                     <h3>Bank Details</h3>
                     <fieldset>
                         <div class="row">
@@ -284,10 +279,12 @@
 
 @section('scripts')
     <!-- form wizard -->
-    <script src="{{ URL::asset('assets/libs/jquery-steps//jquery-steps.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/libs/jquery-steps/jquery-steps.min.js') }}"></script>
 
     <!-- form wizard init -->
     <script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
 
     <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+
+    @include('inventarios.form._comedor')
 @endsection
