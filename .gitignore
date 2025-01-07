@@ -2,6 +2,7 @@
 /storage/debugbar
 /public/hot
 /public/storage
+public/build
 /storage/*.key
 /vendor
 .env
