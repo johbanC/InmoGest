@@ -3,9 +3,9 @@
 
     function generarFilas() {
         const items = [
-            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA', 
-            'CORTINA VERTICAL', 'LAMPARA', 'PLAFONES', 'TOMAS ELECTRICOS', 
-            'SUICHES', 'TOMA TELEFONO', 'TOMA PARABOLICA', 'ESTANTERIA', 
+            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA',
+            'CORTINA VERTICAL', 'LAMPARA', 'PLAFONES', 'TOMAS ELECTRICOS',
+            'SUICHES', 'TOMA TELEFONO', 'TOMA PARABOLICA', 'ESTANTERIA',
             'PISO', 'PARED', 'ZOCALO', 'PINTURA'
         ];
 
@@ -13,13 +13,13 @@
             <tr>
                 <th scope="row">${item}</th>
                 <td>
-                    <input type="text" name="cant" class="form-control" placeholder="CANT" required>
+                    <input type="text" name="cant[]" class="form-control" placeholder="CANT" required>
                 </td>
                 <td>
-                    <input type="text" name="material" class="form-control" placeholder="Material" required>
+                    <input type="text" name="material[]" class="form-control" placeholder="Material" required>
                 </td>
                 <td>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="estado[]" aria-label="Default select example">
                         <option selected="">Estado</option>
                         <option value="1">Bueno</option>
                         <option value="2">Malo</option>
@@ -27,7 +27,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="text" name="observaciones" class="form-control" placeholder="Observaciones" required>
+                    <input type="text" name="observaciones[]" class="form-control" placeholder="Observaciones" required>
                 </td>
             </tr>
         `).join('');
@@ -39,6 +39,8 @@
 
         // Creamos un nuevo comedor
         var nuevoComedor = `
+
+        <input type="comedor ${numeroComedor}" name="nombre_area" class="form-control" >   
             <div class="accordion" id="accordionExample${numeroComedor}">
                 <div class="accordion-item border rounded">
                     <h2 class="accordion-header" id="heading${numeroComedor}">
@@ -59,11 +61,11 @@
                                                     <table class="table table-sm m-0">
                                                         <thead>
                                                             <tr>
-                                                                <th>DESCRIPCION</th>
-                                                                <th>CANT</th>
-                                                                <th>MATERIAL</th>
-                                                                <th>ESTADO</th>
-                                                                <th>OBSERVACIONES</th>
+                                                                 <th scope="col">Item</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Material</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Observaciones</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
