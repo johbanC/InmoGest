@@ -53,6 +53,7 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
+
    
 
 
@@ -60,7 +61,7 @@
 
 
         $(document).ready(function() {
-            var formulario = document.getElementById("formularioinventario");
+            var formulario = document.getElementById("form-horizontal");
             var botonGuardar = document.getElementById("botonGuardar");
 
             if (formulario) {

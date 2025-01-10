@@ -1,3 +1,6 @@
+@dump($errors->all())
+
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -13,10 +16,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtNombreInquilino" class="col-lg-3 col-form-label">Nombre del
+                                    <label for="inquilino" class="col-lg-3 col-form-label">Nombre del
                                         inquilino</label>
                                     <div class="col-lg-9">
-                                        <input id="txtNombreInquilino" name="txtNombreInquilino" type="text"
+                                        <input id="inquilino" name="inquilino" type="text"
                                             class="form-control" placeholder="Nombre del inquilino" required>
                                     </div>
                                 </div>
@@ -24,10 +27,10 @@
                             <!-- end col -->
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtNombrePropiedad" class="col-lg-3 col-form-label">Nombre de la
+                                    <label for="nombre_propiedad" class="col-lg-3 col-form-label">Nombre de la
                                         propiedad</label>
                                     <div class="col-lg-9">
-                                        <input id="txtNombrePropiedad" name="txtNombrePropiedad" type="text"
+                                        <input id="nombre_propiedad" name="nombre_propiedad" type="text"
                                             class="form-control" placeholder="Nombre de la propiedad">
                                     </div>
                                 </div>
@@ -38,11 +41,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtNumeroInquilino" class="col-lg-3 col-form-label">Número del
+                                    <label for="input-telefono" class="col-lg-3 col-form-label">Número del
                                         inquilino</label>
                                     <div class="col-lg-9">
-                                        <input id="txtNumeroInquilino" name="txtNumeroInquilino" type="text"
-                                            class="form-control" placeholder="Número del inquilino">
+                                        <input type="text" id="input-telefono" name="numero_inquilino" class="form-control" placeholder="(000) 000-0000">
+
                                     </div>
                                 </div>
                             </div>
@@ -60,19 +63,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtDireccionPropiedad" class="col-lg-3 col-form-label">Dirección de la
+                                    <label for="direccion" class="col-lg-3 col-form-label">Dirección de la
                                         propiedad</label>
                                     <div class="col-lg-9">
-                                        <textarea id="txtDireccionPropiedad" name="txtDireccionPropiedad" rows="4" class="form-control"
+                                        <textarea id="direccion" name="direccion" rows="4" class="form-control"
                                             placeholder="Dirección de la propiedad"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtObservacion" class="col-lg-3 col-form-label">Observación</label>
+                                    <label for="descripcion" class="col-lg-3 col-form-label">Observación</label>
                                     <div class="col-lg-9">
-                                        <textarea id="txtObservacion" name="txtObservacion" rows="4" class="form-control" placeholder="Observación"></textarea>
+                                        <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Observación"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -103,10 +106,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtNumeroLlaves" class="col-lg-3 col-form-label">Número de
+                                    <label for="nro_llaves" class="col-lg-3 col-form-label">Número de
                                         llaves</label>
                                     <div class="col-lg-9">
-                                        <input id="txtNumeroLlaves" name="txtNumeroLlaves" type="text"
+                                        <input id="nro_llaves" name="nro_llaves" type="text"
                                             class="form-control" placeholder="Número de llaves">
                                     </div>
                                 </div>
@@ -181,11 +184,8 @@
 
 
 
-
-
-
-
                     </fieldset>
+                    
 
 
                     
@@ -199,8 +199,6 @@
 
 
 @section('scripts')
-
-
     <!-- form wizard -->
     <script src="{{ URL::asset('assets/libs/jquery-steps/jquery-steps.min.js') }}"></script>
 
@@ -208,13 +206,21 @@
     <script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
 
     <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
     @include('inventarios.form._comedor')
 
-
-       
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crea una instancia de InputMask y aplica la máscara al campo de teléfono
+            var telefonoInput = document.getElementById('input-telefono');
+            if (telefonoInput) {
+                var telefonoMask = IMask(telefonoInput, {
+                    mask: '(000) 000-0000'
+                });
+            }
+        });
+    </script>
 @endsection
 
 

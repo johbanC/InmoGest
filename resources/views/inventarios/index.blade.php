@@ -81,7 +81,7 @@
                                 <td>{{ $index + 1 }}</td>                                
                                 <td>{{ $inventario->codigo }}</td>
                                 <td>{{ date('d/m/Y', strtotime($inventario->fecha)) }}</td>
-                                <td>{{ $inventario->nombre_propiedad }}</td>
+                                <td>{{ $inventario->nombre_propiedad}}</td>
                                 <td>{{ $inventario->inquilino }}</td>
                                 <td>{{ $inventario->tipo_inmueble->nombre }}</td>
                                 <td>{{ $inventario->user->name }}</td>

@@ -13,21 +13,21 @@ class InventarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(){
+    public function index()
+    {
 
-        return view('inventarios.index',[
+        return view('inventarios.index', [
 
             'inventarios' => Inventario::with('user')->orderBy('id', 'DESC')->get()
 
         ]);
-
-
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(){
+    public function create()
+    {
 
         $tipoinmuebles = TipoInmueble::all()->pluck('nombre', 'id');
         return view('inventarios.new', compact('tipoinmuebles'));
@@ -39,8 +39,8 @@ class InventarioController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
-
+        //dd($request->all());
+        /*
         $request->validate([
             'fecha' => 'required',
             'direccion' => ['required', 'min:3'],
@@ -50,10 +50,17 @@ class InventarioController extends Controller
             'propietario' => ['required', 'min:3'],
             'nro_llaves' => ['required', 'min:1']
         ]);
+        */
 
-        Inventario::create([
+        $fecha = now()->format('Y-m-d'); // Formatear la fecha al formato adecuado para la base de datos
+
+        $inventario = Inventario::create([
+            'nombre_propiedad' => $request->get('nombre_propiedad'),
+            'numero_inquilino' => $request->get('numero_inquilino'),
+            'email_inquilino' => $request->get('email_inquilino'),
+            'fecha' => $fecha,
             'direccion' => $request->get('direccion'),
-            'tipo_inmueble' => $request->get('tipo_inmueble'),
+            'tipo_inmuebles_id' => $request->get('tipo_inmuebles_id'),
             'arrendador' => $request->get('arrendador'),
             'inquilino' => $request->get('inquilino'),
             'propietario' => $request->get('propietario'),
@@ -61,12 +68,18 @@ class InventarioController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        //Con esta nueva opcion se va enviar el status con las diferentes opciones para poder visualizar las diferentes notificaciones.
-        return to_route('inventarios.index')->with('status', [
-            'type' => 'success',
-            'message' => 'Guardado con éxito',
-            'title' => 'Registro'
-        ]);
+
+        //dd($request->all());
+
+
+
+        if ($inventario) {
+            // $FileController = new FileController();
+            // $FileController->store($request, $FichaTecnica->id);
+            return to_route('inventarios.index')->with('status', 1);
+        } else {
+            return to_route('inventarios.index')->with('status', 2);
+        }
     }
 
     /**

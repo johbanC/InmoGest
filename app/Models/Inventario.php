@@ -11,6 +11,10 @@ class Inventario extends Model
     use HasFactory;
 
     protected $fillable = [
+        'nombre_propiedad',
+        'numero_inquilino',
+        'email_inquilino',
+        'fecha',
         'codigo',
         'direccion',
         'tipo_inmuebles_id',

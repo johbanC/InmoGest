@@ -40,7 +40,7 @@
         // Creamos un nuevo comedor
         var nuevoComedor = `
 
-        <input type="comedor ${numeroComedor}" name="nombre_area" class="form-control" >   
+         
             <div class="accordion" id="accordionExample${numeroComedor}">
                 <div class="accordion-item border rounded">
                     <h2 class="accordion-header" id="heading${numeroComedor}">
@@ -56,6 +56,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h3 class="card-title">Comedor #${numeroComedor}</h3>
+                                                <input type="text" name="nombre_area[]" value="comedor ${numeroComedor}" class="form-control" >  
                                                 <p class="card-title-desc">Carga toda la información de la sala del inmueble</p>
                                                 <div class="table-responsive">
                                                     <table class="table table-sm m-0">
