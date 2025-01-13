@@ -21,7 +21,7 @@ class ModifyInventariosTable extends Migration
             // Hacer que ciertas columnas puedan ser null
             $table->string('arrendador')->nullable()->change();
             $table->string('propietario')->nullable()->change();
-            $table->text('descripcion')->nullable()->change();
+            //$table->text('descripcion')->nullable()->change();
             $table->string('firma_recibe')->nullable()->change();
             $table->string('foto_recibe')->nullable()->change();
             $table->string('foto_entrega')->nullable()->change();

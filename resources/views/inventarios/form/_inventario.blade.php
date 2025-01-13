@@ -109,7 +109,7 @@
                                     <label for="nro_llaves" class="col-lg-3 col-form-label">Número de
                                         llaves</label>
                                     <div class="col-lg-9">
-                                        <input id="nro_llaves" name="nro_llaves" type="text"
+                                        <input id="nro_llaves" name="nro_llaves" type="number"
                                             class="form-control" placeholder="Número de llaves">
                                     </div>
                                 </div>
