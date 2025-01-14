@@ -53,7 +53,7 @@ class InventarioController extends Controller
         ]);
         */
 
-        //dd($request->all());
+        dd($request->all());
 
         $fecha = now()->format('Y-m-d'); // Formatear la fecha al formato adecuado para la base de datos
 

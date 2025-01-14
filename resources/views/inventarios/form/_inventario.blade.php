@@ -123,7 +123,7 @@
                         <section>
                             <div class="row" style="padding-bottom: 10px">
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarDormitorio()">Agregar
                                         Dormitorio</button>
                                 </div>
 
@@ -182,6 +182,11 @@
 
                         </div>
 
+                        <div id="Dormitorio-container">
+                            <!-- Aquí se agregarán los nuevos dormitorios -->
+
+                        </div>
+
 
 
                     </fieldset>
@@ -209,6 +214,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
     @include('inventarios.form._comedor')
+    @include('inventarios.form._dormitorio')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

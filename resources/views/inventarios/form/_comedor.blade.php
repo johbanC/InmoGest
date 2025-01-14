@@ -37,21 +37,21 @@
         var numeroComedor = contadorComedores++;
 
         var nuevoComedor = `
-        <div class="accordion" id="accordionExample${numeroComedor}">
+        <div class="accordion" id="accordionComedor${numeroComedor}">
             <div class="accordion-item border rounded">
                 <h2 class="accordion-header" id="heading${numeroComedor}">
-                    <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${numeroComedor}" aria-expanded="false" aria-controls="collapse${numeroComedor}">
+                    <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComedor${numeroComedor}" aria-expanded="false" aria-controls="collapseComedor${numeroComedor}">
                         Comedor #${numeroComedor}
                     </button>
                 </h2>
-                <div id="collapse${numeroComedor}" class="accordion-collapse collapse" aria-labelledby="heading${numeroComedor}" data-bs-parent="#accordionExample${numeroComedor}">
+                <div id="collapseComedor${numeroComedor}" class="accordion-collapse collapse" aria-labelledby="headingComedor${numeroComedor}" data-bs-parent="#accordionComedor${numeroComedor}">
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h3 class="card-title">Comedor #${numeroComedor}</h3>
-                                        <input type="text" name="nombre_area[]" value="comedor ${numeroComedor}" class="form-control">  
+                                        <input type="hidden" name="nombre_area[]" value="comedor ${numeroComedor}" class="form-control">  
                                         <p class="card-title-desc">Carga toda la información de la sala del inmueble</p>
                                         <div class="table-responsive">
                                             <table class="table table-sm m-0">
@@ -82,6 +82,7 @@
             
                                                         </td>
                                                     </tr>
+                                                    </tfoot>
                                             </table>
                                         </div>
                                         <button type="button" class="btn btn-danger mt-3" onclick="eliminarComedor(${numeroComedor})">Eliminar Comedor</button>
@@ -98,6 +99,6 @@
     }
 
     function eliminarComedor(numeroComedor) {
-        $(`#accordionExample${numeroComedor}`).remove();
+        $(`#accordionComedor${numeroComedor}`).remove();
     }
 </script>
