@@ -46,4 +46,11 @@ class Inventario extends Model
     public function tipo_inmueble(): BelongsTo{
         return $this->belongsTo(TipoInmueble::class, 'tipo_inmuebles_id');
     }
+
+    public function areas()
+{
+    return $this->hasMany(Area::class, 'inventarios_id');
+}
+
+
 }

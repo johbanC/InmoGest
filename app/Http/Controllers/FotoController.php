@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\area;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class FotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,14 +25,15 @@ class AreaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request){
-        
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(area $area)
+    public function show(string $id)
     {
         //
     }
@@ -41,7 +41,7 @@ class AreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(area $area)
+    public function edit(string $id)
     {
         //
     }
@@ -49,7 +49,7 @@ class AreaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, area $area)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -57,7 +57,7 @@ class AreaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(area $area)
+    public function destroy(string $id)
     {
         //
     }
