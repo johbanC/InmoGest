@@ -69,7 +69,7 @@ class InventarioController extends Controller
         ]);
 
 
-        //dd($request->all());
+        dd($request->all());
 
 
 
