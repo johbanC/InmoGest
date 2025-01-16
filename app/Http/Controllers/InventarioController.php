@@ -38,7 +38,8 @@ class InventarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request){
+    public function storeee(Request $request)
+    {
 
         //dd($request->all());
         /*
@@ -53,7 +54,7 @@ class InventarioController extends Controller
         ]);
         */
 
-        dd($request->all());
+        //        dd($request->all());
 
         $fecha = now()->format('Y-m-d'); // Formatear la fecha al formato adecuado para la base de datos
 
@@ -71,81 +72,84 @@ class InventarioController extends Controller
             'user_id' => auth()->id(),
         ]);
 
+
         // Verificar que se haya enviado el array de áreas
-    if ($request->has('nombre_area') && is_array($request->nombre_area)) {
-        $areas = $request->nombre_area;
+        if ($request->has('nombre_area') && is_array($request->nombre_area)) {
+            $areas = $request->nombre_area;
 
-        foreach ($areas as $index => $nombre_area) {
-            // Crear el área y asociarla con el inventario
-            $area = $inventario->areas()->create([
-                'nombre_area' => $nombre_area,
-                'inventarios_id' => $inventario->id,
-            ]);
+            foreach ($areas as $index => $nombre_area) {
+                // Crear el área y asociarla con el inventario
+                $area = $inventario->areas()->create([
+                    'nombre_area' => $nombre_area,
+                    'inventarios_id' => $inventario->id,
+                ]);
 
-            // Verificar que se haya enviado el array de cantidades
-            if (isset($request->cant[$index]) && is_array($request->cant[$index])) {
-                foreach ($request->cant[$index] as $itemIndex => $cantidad) {
-                    // Asegúrate de que los otros campos también existan y sean arrays
-                    if (isset($request->material[$index][$itemIndex]) &&
-                        isset($request->estado[$index][$itemIndex]) &&
-                        isset($request->observaciones[$index][$itemIndex])) {
-                        
-                        // Crear los ítems relacionados con el área usando el ID del área
-                        $area->items()->create([
-                            'nombre_item' => $request->nombre_item[$index][$itemIndex] ?? 'Item ' . ($itemIndex + 1), // Asignar un nombre por defecto si no se proporciona
-                            'cantidad' => $cantidad,
-                            'material' => $request->material[$index][$itemIndex],
-                            'estado' => $request->estado[$index][$itemIndex],
-                            'observacion' => $request->observaciones[$index][$itemIndex],
-                        ]);
-                    } else {
-                        // Manejo del error si falta algún campo
-                        dd("Error: faltan datos para el ítem en el área $index, ítem $itemIndex.");
+                // Verificar que se haya enviado el array de cantidades
+                if (isset($request->cant[$index]) && is_array($request->cant[$index])) {
+                    foreach ($request->cant[$index] as $itemIndex => $cantidad) {
+                        // Asegúrate de que los otros campos también existan y sean arrays
+                        if (
+                            isset($request->material[$index][$itemIndex]) &&
+                            isset($request->estado[$index][$itemIndex]) &&
+                            isset($request->observaciones[$index][$itemIndex])
+                        ) {
+
+                            // Crear los ítems relacionados con el área usando el ID del área
+                            $area->items()->create([
+                                'nombre_item' => $request->nombre_item[$index][$itemIndex] ?? 'Item ' . ($itemIndex + 1), // Asignar un nombre por defecto si no se proporciona
+                                'cantidad' => $cantidad,
+                                'material' => $request->material[$index][$itemIndex],
+                                'estado' => $request->estado[$index][$itemIndex],
+                                'observacion' => $request->observaciones[$index][$itemIndex],
+                            ]);
+                        } else {
+                            // Manejo del error si falta algún campo
+                            dd("Error: faltan datos para el ítem en el área $index, ítem $itemIndex.");
+                        }
                     }
+                } else {
+                    // Manejo del error si no es un array
+                    dd("Error: no se ha enviado un array válido para 'cant[$index]'.");
                 }
-            } else {
-                // Manejo del error si no es un array
-                dd("Error: no se ha enviado un array válido para 'cant[$index]'.");
-            }
 
-            // Guardar las fotos del área usando el ID del área
-            if (isset($request->fotos[$index])) {
-                // Generar un nombre único para la carpeta que almacenará las fotos
-                $folderName = $inventario->codigo . '_' . Str::random(10);
-                
-                // Definir el path de la carpeta donde se almacenarán las fotos
-                $folderPath = storage_path('app/public/images/' . $folderName);
-                
-                // Verificar si la carpeta ya existe antes de crearla
-                if (!FileSystem::exists($folderPath)) {
-                    // Crear la carpeta con permisos 0777 y recursividad true
-                    FileSystem::makeDirectory($folderPath, 0777, true);
-                }
-            
-                // Recorrer cada foto enviada en la solicitud
-                foreach ($request->fotos as $foto) {
-                    // Generar un nombre único para la foto
-                    $fileName = time() . '_' . $foto->getClientOriginalName();
-                    
-                    // Almacenar la foto en la carpeta correspondiente
-                    $foto->storeAs('images/' . $folderName, $fileName, 'public');
-            
-                    // Crear un registro en la base de datos para la foto
-                    $area->fotos()->create([
-                        'ruta_foto' => 'storage/images/' . $folderName . '/' . $fileName, // URL de la foto
-                        'area_id' => $area->id, // ID del área
-                        'codigo' => $inventario->codigo, // Código del inventario
-                        'carpeta' => $folderName, // Carpeta donde se almacena la foto
-                        'tipo' => 'Inventario', // Tipo de archivo
-                    ]);
+                // Guardar las fotos del área usando el ID del área
+                if (isset($request->fotos[$index])) {
+                    // Generar un nombre único para la carpeta que almacenará las fotos
+                    $folderName = $inventario->codigo . '_' . Str::random(10);
+
+                    // Definir el path de la carpeta donde se almacenarán las fotos
+                    $folderPath = storage_path('app/public/images/' . $folderName);
+
+                    // Verificar si la carpeta ya existe antes de crearla
+                    if (!FileSystem::exists($folderPath)) {
+                        // Crear la carpeta con permisos 0777 y recursividad true
+                        FileSystem::makeDirectory($folderPath, 0777, true);
+                    }
+
+                    // Recorrer cada foto enviada en la solicitud
+                    foreach ($request->fotos as $foto) {
+                        // Generar un nombre único para la foto
+                        $fileName = time() . '_' . $foto->getClientOriginalName();
+
+                        // Almacenar la foto en la carpeta correspondiente
+                        $foto->storeAs('images/' . $folderName, $fileName, 'public');
+
+                        // Crear un registro en la base de datos para la foto
+                        $area->fotos()->create([
+                            'ruta_foto' => 'storage/images/' . $folderName . '/' . $fileName, // URL de la foto
+                            'area_id' => $area->id, // ID del área
+                            'codigo' => $inventario->codigo, // Código del inventario
+                            'carpeta' => $folderName, // Carpeta donde se almacena la foto
+                            'tipo' => 'Inventario', // Tipo de archivo
+                        ]);
+                    }
                 }
             }
         }
-    }
-        
 
 
-        //dd($request->all());
+
+        dd($request->all());
 
 
 
@@ -157,6 +161,58 @@ class InventarioController extends Controller
             return to_route('inventarios.index')->with('status', 2);
         }
     }
+
+    public function store(Request $request)
+{
+    // Verificar los datos recibidos
+    //dd($request->all());
+
+    // Procesar los datos
+    foreach ($request->nombre_area as $areaIndex => $areaName) {
+        // Crear el área
+        $area = Area::create([
+            'nombre' => $areaName,
+            'inventario_id' => $request->inventario_id, // Asegúrate de tener el ID del inventario
+        ]);
+
+        // Verificar si existen items para el área actual
+        if (isset($request->nombre_item[$areaIndex])) {
+            // Procesar los items del área
+            foreach ($request->nombre_item[$areaIndex] as $itemIndex => $itemName) {
+                $item = $area->items()->create([
+                    'nombre_item' => $itemName,
+                    'cantidad' => $request->cant[$areaIndex][$itemIndex] ?? null,
+                    'material' => $request->material[$areaIndex][$itemIndex] ?? null,
+                    'estado' => $request->estado[$areaIndex][$itemIndex] ?? null,
+                    'observacion' => $request->observaciones[$areaIndex][$itemIndex] ?? null,
+                ]);
+
+                // Procesar las fotos del item
+                if ($request->hasFile("fotos.{$areaIndex}.{$itemIndex}")) {
+                    foreach ($request->file("fotos.{$areaIndex}.{$itemIndex}") as $foto) {
+                        // Generar un nombre único para la foto
+                        $fileName = time() . '_' . $foto->getClientOriginalName();
+
+                        // Almacenar la foto en la carpeta correspondiente
+                        $folderName = 'comedor_' . $areaIndex;
+                        $foto->storeAs('images/' . $folderName, $fileName, 'public');
+
+                        // Crear un registro en la base de datos para la foto
+                        $item->fotos()->create([
+                            'ruta_foto' => 'storage/images/' . $folderName . '/' . $fileName, // URL de la foto
+                            'codigo' => $request->codigo, // Código del inventario
+                            'carpeta' => $folderName, // Carpeta donde se almacena la foto
+                            'tipo' => 'Inventario', // Tipo de archivo
+                        ]);
+                    }
+                }
+            }
+        }
+    }
+dd($request->all());
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('inventarios.index')->with('status', 1);
+}
 
     /**
      * Display the specified resource.
