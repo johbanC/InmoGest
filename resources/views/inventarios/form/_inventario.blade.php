@@ -1,5 +1,8 @@
 @dump($errors->all())
 
+<script>
+    var areaIndex = 0;
+</script>
 
 <div class="row">
     <div class="col-sm-12">
@@ -182,7 +185,7 @@
 
                         </div>
 
-                        <div id="Dormitorio-container">
+                        <div id="dormitorio-container">
                             <!-- Aquí se agregarán los nuevos dormitorios -->
 
                         </div>

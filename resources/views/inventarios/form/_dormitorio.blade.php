@@ -1,7 +1,7 @@
 <script>
-    var contadorDormitorios = 1; // Variable global para contar los Dormitorios
+    var contadorDormitorios = 0; // Variable global para contar los Dormitorios
 
-    // Generar filas para los items de cada área (en este caso, dormitorios)
+    // Generar filas para los items de cada área (dormitorio)
     function generarFilas(areaIndex) {
         const items = [
             'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA',
@@ -10,7 +10,7 @@
             'PISO', 'PARED', 'ZOCALO', 'PINTURA'
         ];
 
-        return items.map((item, itemIndex) => `
+        return items.map((item) => `
             <tr>
                 <th scope="row">
                     <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" placeholder="Material" readonly>
@@ -38,25 +38,24 @@
 
     // Agregar un nuevo dormitorio
     function agregarDormitorio() {
-        var numeroDormitorio = contadorDormitorios++;
-
+        contadorDormitorios++; // Incrementar el contador global
         var nuevoDormitorio = `
-            <div class="accordion" id="accordionExample${numeroDormitorio}">
+            <div class="accordion" id="accordionDormitorio${areaIndex}">
                 <div class="accordion-item border rounded">
-                    <h2 class="accordion-header" id="heading${numeroDormitorio}">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDormitorio${numeroDormitorio}" aria-expanded="false" aria-controls="collapseDormitorio${numeroDormitorio}">
-                            Dormitorio #${numeroDormitorio}
+                    <h2 class="accordion-header" id="headingDormitorio${areaIndex}">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDormitorio${areaIndex}" aria-expanded="false" aria-controls="collapseDormitorio${areaIndex}">
+                            Dormitorio #${contadorDormitorios}
                         </button>
                     </h2>
-                    <div id="collapseDormitorio${numeroDormitorio}" class="accordion-collapse collapse" aria-labelledby="headingDormitorio${numeroDormitorio}" data-bs-parent="#accordionDormitorio${numeroDormitorio}">
+                    <div id="collapseDormitorio${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingDormitorio${areaIndex}" data-bs-parent="#accordionDormitorio${areaIndex}">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">Dormitorio #${numeroDormitorio}</h3>
-                                            <input type="hidden" name="nombre_area[]" value="Dormitorio ${numeroDormitorio}" class="form-control">
-                                            <p class="card-title-desc">Carga toda la información de la sala del inmueble</p>
+                                            <h3 class="card-title">Dormitorio #${contadorDormitorios}</h3>
+                                            <input type="hidden" name="nombre_area[]" value="Dormitorio ${areaIndex + 1}" class="form-control">
+                                            <p class="card-title-desc">Carga toda la información del dormitorio del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">
                                                     <thead>
@@ -69,19 +68,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(numeroDormitorio - 1)} <!-- Pasar el índice del área -->
+                                                        ${generarFilas(areaIndex, 'dormitorio')}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
                                                                 <label for="fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
+                                                                <input type="file" name="fotos[${areaIndex}][]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
                                                             </td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarDormitorio(${numeroDormitorio})">Eliminar Dormitorio</button>
+                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarDormitorio(${areaIndex})">Eliminar Dormitorio</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,11 +91,11 @@
             </div>
         `;
 
-        $('#Dormitorio-container').append(nuevoDormitorio);
+        $('#dormitorio-container').append(nuevoDormitorio);
+        areaIndex++; // Incrementar el contador global
     }
 
-    // Eliminar un dormitorio
-    function eliminarDormitorio(numeroDormitorio) {
-        $(`#accordionDormitorio${numeroDormitorio}`).remove();
+    function eliminarDormitorio(index) {
+        $(`#accordionDormitorio${index}`).remove();
     }
 </script>
