@@ -238,7 +238,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/inventarios/{inventario}', [InventarioController::class, 'destroy'])
         ->name('inventarios.destroy');
 
-  
+    route::get('/inventarios/{inventario}', [InventarioController::class, 'show'])
+        ->name('inventarios.show');
 
 
     //Imagenes

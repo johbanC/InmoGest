@@ -87,9 +87,9 @@
                                 <td>{{ $inventario->user->name }}</td>
                                 <td>
 
-                                  <!--  <a href="{{ route('inventarios.index', $inventario->id) }}"> EN INDEX ESTABA ERA SHOW
+                                    <a href="{{ route('inventarios.show', $inventario->id) }}">
                                         <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-eye"></i></button>
-                                    </a> -->
+                                    </a>
 
                                     <a href="{{ route('inventarios.edit', $inventario->id) }}">
                                         <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-pen"></i></button>
