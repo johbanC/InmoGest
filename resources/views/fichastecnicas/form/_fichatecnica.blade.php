@@ -191,7 +191,7 @@
         <div class="row">
             <div class="col-md-3">
                 <label for="input-alcobas" class="form-label">Alcobas</label><br>
-                <input type="text" name="alcobas" class="form-control {{ $errors->has('alcobas') ? 'is-invalid' : '' }}" id="input-alcobas" placeholder="Alcobas" value="{{ old('alcobas') }}">
+                <input type="number" name="alcobas" class="form-control {{ $errors->has('alcobas') ? 'is-invalid' : '' }}" id="input-alcobas" placeholder="Alcobas" value="{{ old('alcobas') }}">
                 @if ($errors->has('alcobas'))
                 <div class="invalid-feedback">{{ $errors->first('alcobas') }}</div>
                 @endif

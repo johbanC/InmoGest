@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('inventarios', function (Blueprint $table) {             
-           //  $table->string('firma_recibe');
-           //  $table->string('foto_recibe');
-           // $table->string('foto_entrega');
-           //  $table->string('firma_entrega');
+             $table->string('firma_recibe');
+             $table->string('foto_recibe');
+            $table->string('foto_entrega');
+             $table->string('firma_entrega');
              
         });
     }
