@@ -11,7 +11,12 @@
 <!-- App Css-->
 <link href="{{URL::asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
 
-
+<style>
+    .required:after {
+        content: " *";
+        color: red;
+    }
+</style>
 
 @endsection 
 

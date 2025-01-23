@@ -48,6 +48,12 @@ class InventarioController extends Controller
     {
         // Validar los datos recibidos
         $request->validate([
+            'inquilino' => 'required|string',
+            'numero_inquilino' => 'required|string',
+            'direccion' => 'required|string',
+            'tipo_inmuebles_id' => 'required|exists:tipo_inmuebles,id',
+            'nombre_propiedad' => 'required|string',
+            'email_inquilino' => 'required|email',
             'nombre_area' => 'required|array',
             'nombre_item' => 'required|array',
             'cant' => 'required|array',

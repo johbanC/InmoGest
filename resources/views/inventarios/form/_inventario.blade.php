@@ -10,6 +10,7 @@
             <div class="card-body">
 
                 <h4 class="card-title">Crear inventario de la propiedad</h4>
+                <p>Los campos que contengan <strong class="required"></strong> son <strong>obligatorios</strong></p>
 
 
                 <form id="form-horizontal" method="POST" class="form-horizontal form-wizard-wrapper" action="{{ route('inventarios.store') }}" novalidate enctype="multipart/form-data">
@@ -19,22 +20,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="inquilino" class="col-lg-3 col-form-label">Nombre del
-                                        inquilino</label>
+                                    <label for="inquilino" class="col-lg-3 col-form-label">Nombre del inquilino <strong class="required"></strong></label>
                                     <div class="col-lg-9">
                                         <input id="inquilino" name="inquilino" type="text"
-                                            class="form-control" placeholder="Nombre del inquilino" required>
+                                            class="form-control {{ $errors->has('inquilino') ? 'is-invalid' : '' }}" 
+                                            placeholder="Nombre del inquilino" value="{{ old('inquilino') }}">
+                                        @if ($errors->has('inquilino'))
+                                            <div class="invalid-feedback">{{ $errors->first('inquilino') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="nombre_propiedad" class="col-lg-3 col-form-label">Nombre de la
-                                        propiedad</label>
+                                    <label for="nombre_propiedad" class="col-lg-3 col-form-label">Nombre de la propiedad <strong class="required"></strong></label>
                                     <div class="col-lg-9">
                                         <input id="nombre_propiedad" name="nombre_propiedad" type="text"
-                                            class="form-control" placeholder="Nombre de la propiedad">
+                                            class="form-control {{ $errors->has('nombre_propiedad') ? 'is-invalid' : '' }}" 
+                                            placeholder="Nombre de la propiedad" value="{{ old('nombre_propiedad') }}">
+                                        @if ($errors->has('nombre_propiedad'))
+                                            <div class="invalid-feedback">{{ $errors->first('nombre_propiedad') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- end row -->
@@ -44,21 +51,27 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="input-telefono" class="col-lg-3 col-form-label">Número del
-                                        inquilino</label>
+                                    <label for="input-telefono" class="col-lg-3 col-form-label">Número del inquilino <strong class="required"></strong></label>
                                     <div class="col-lg-9">
-                                        <input type="text" id="input-telefono" name="numero_inquilino" class="form-control" placeholder="(000) 000-0000">
-
+                                        <input type="text" id="input-telefono" name="numero_inquilino" 
+                                            class="form-control {{ $errors->has('numero_inquilino') ? 'is-invalid' : '' }}" 
+                                            placeholder="(000) 000-0000" value="{{ old('numero_inquilino') }}">
+                                        @if ($errors->has('numero_inquilino'))
+                                            <div class="invalid-feedback">{{ $errors->first('numero_inquilino') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="txtEmailInquilino" class="col-lg-3 col-form-label">Email del
-                                        inquilino</label>
+                                    <label for="txtEmailInquilino" class="col-lg-3 col-form-label">Email del inquilino <strong class="required"></strong></label>
                                     <div class="col-lg-9">
-                                        <input id="txtEmailInquilino" name="txtEmailInquilino" type="email"
-                                            class="form-control" placeholder="Email del inquilino">
+                                        <input id="email_inquilino" name="email_inquilino" type="email"
+                                            class="form-control {{ $errors->has('email_inquilino') ? 'is-invalid' : '' }}" 
+                                            placeholder="Email del inquilino" value="{{ old('email_inquilino') }}">
+                                        @if ($errors->has('email_inquilino'))
+                                            <div class="invalid-feedback">{{ $errors->first('email_inquilino') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -66,11 +79,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="direccion" class="col-lg-3 col-form-label">Dirección de la
-                                        propiedad</label>
+                                    <label for="direccion" class="col-lg-3 col-form-label">Dirección de la propiedad <strong class="required"></strong></label>
                                     <div class="col-lg-9">
-                                        <textarea id="direccion" name="direccion" rows="4" class="form-control"
-                                            placeholder="Dirección de la propiedad"></textarea>
+                                        <textarea id="direccion" name="direccion" rows="4" 
+                                            class="form-control {{ $errors->has('direccion') ? 'is-invalid' : '' }}" 
+                                            placeholder="Dirección de la propiedad">{{ old('direccion') }}</textarea>
+                                        @if ($errors->has('direccion'))
+                                            <div class="invalid-feedback">{{ $errors->first('direccion') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +94,12 @@
                                 <div class="row mb-3">
                                     <label for="descripcion" class="col-lg-3 col-form-label">Observación</label>
                                     <div class="col-lg-9">
-                                        <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Observación"></textarea>
+                                        <textarea id="descripcion" name="descripcion" rows="4" 
+                                            class="form-control {{ $errors->has('descripcion') ? 'is-invalid' : '' }}" 
+                                            placeholder="Observación">{{ old('descripcion') }}</textarea>
+                                        @if ($errors->has('descripcion'))
+                                            <div class="invalid-feedback">{{ $errors->first('descripcion') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -86,8 +107,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="tipo_inmuebles_id" class="col-lg-3 col-form-label">Tipo de Inmueble
-                                    </label>
+                                    <label for="tipo_inmuebles_id" class="col-lg-3 col-form-label">Tipo de Inmueble <strong class="required"></strong></label>
                                     <div class="col-lg-9">
                                         <select name="tipo_inmuebles_id" id="tipo_inmuebles_id"
                                             class="form-select {{ $errors->has('tipo_inmuebles_id') ? 'is-invalid' : '' }}">
@@ -100,20 +120,21 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('tipo_inmuebles_id'))
-                                            <div class="invalid-feedback">{{ $errors->first('tipo_inmuebles_id') }}
-                                            </div>
+                                            <div class="invalid-feedback">{{ $errors->first('tipo_inmuebles_id') }}</div>
                                         @endif
                                     </div>
-
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-3">
-                                    <label for="nro_llaves" class="col-lg-3 col-form-label">Número de
-                                        llaves</label>
+                                    <label for="nro_llaves" class="col-lg-3 col-form-label">Número de llaves</label>
                                     <div class="col-lg-9">
                                         <input id="nro_llaves" name="nro_llaves" type="number"
-                                            class="form-control" placeholder="Número de llaves">
+                                            class="form-control {{ $errors->has('nro_llaves') ? 'is-invalid' : '' }}" 
+                                            placeholder="Número de llaves" value="{{ old('nro_llaves') }}">
+                                        @if ($errors->has('nro_llaves'))
+                                            <div class="invalid-feedback">{{ $errors->first('nro_llaves') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +152,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarBano()">Agregar
                                         Baño</button>
                                 </div>
 
@@ -190,6 +211,11 @@
 
                         </div>
 
+                        <div id="bano-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
 
 
                     </fieldset>
@@ -218,6 +244,7 @@
 
     @include('inventarios.form._comedor')
     @include('inventarios.form._dormitorio')
+    @include('inventarios.form._bano')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

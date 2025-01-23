@@ -20,7 +20,7 @@
                             <div class="invoice-title">
                                 <h4 class="float-end font-size-16"><strong>Inventario # {{ $inventario->codigo }}</strong></h4>
                                 <h3>
-                                    <img src="{{URL::asset('assets/images/logo-sm.png')}}" alt="logo" height="24" /> <!-- aqui deberia de ir el logo de la empresa -->
+                                    <img src="{{URL::asset('assets/images/empresa/Logos_Dream_House_Horizontal_Color_JPG-removebg-preview.png')}}" alt="logo" height="80" /> <!-- aqui deberia de ir el logo de la empresa -->
                                 </h3>
                             </div>
                             <hr>
@@ -33,6 +33,7 @@
                                         Numero: {{ $inventario->numero_inquilino}} <br>
                                         Email: {{ $inventario->email_inquilino}} <br>
                                         Direccion: {{ $inventario->direccion}} <br>
+                                        Tipo de inmueble: {{ $inventario->tipo_inmueble->nombre}} <br>
                                         
                                     </address>
                                 </div>
@@ -56,8 +57,8 @@
                                 </div>
                                 <div class="col-6 mt-4 text-end">
                                     <address>
-                                        <strong>Order Date:</strong><br>
-                                        January 16, 2019<br><br>
+                                        <strong>Fecha del inventario</strong><br>
+                                        {{ $inventario->fecha}}<br><br>
                                     </address>
                                 </div>
                             </div>

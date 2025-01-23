@@ -23,16 +23,17 @@
                     </a>
                 </li>
 
-
-                <li class="menu-title">PROXIMAMENTE</li>
-
                 <li>
                     <a href="{{ route('inventarios.index')}}" class="waves-effect" >
                         <i class="ti-home"></i>
-                        <span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
+                        <span class="badge rounded-pill bg-primary float-end">Beta</span>
                         <span>Inventario</span>
                     </a>
                 </li>
+
+
+                <li class="menu-title">PROXIMAMENTE</li>
+                
 
                 <li>
                     <a href="#" class="waves-effect" id="alert-button2">
