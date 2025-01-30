@@ -1,13 +1,12 @@
 <script>
-    var contadorComedores = 0; // Variable global para contar los Comedores
+    var contadorHall_Pasillo = 0; // Variable global para contar los Hall_Pasillo
 
-    // Generar filas para los items de cada área (comedor)
-    function generarFilas() {
+    // Generar filas para los items de cada área (Hall_Pasillo)
+    function generarFilas(areaIndex) {
         const items = [
-            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA',
-            'CORTINA VERTICAL', 'LAMPARA', 'PLAFONES', 'TOMAS ELECTRICOS',
-            'SUICHES', 'TOMA TELEFONO', 'TOMA PARABOLICA', 'ESTANTERIA',
-            'PISO', 'PARED', 'ZOCALO', 'PINTURA'
+            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA', 'CORTINA VERTICAL', 'LÁMPARA', 
+            'PLAFONES', 'TOMAS ELÉCTRICOS', 'SUICHES', 'TOMA PARABÓLICA', 'ESTANTERÍA', 'PISO', 
+            'ZÓCALO', 'PINTURA', 'TECHO'
         ];
 
         return items.map((item) => `
@@ -36,26 +35,26 @@
         `).join('');
     }
 
-    // Agregar un nuevo comedor
-    function agregarComedor() {
-        contadorComedores++; // Incrementar el contador global
-        var nuevoComedor = `
-            <div class="accordion" id="accordionComedor${areaIndex}">
+    // Agregar un nuevo Hall_Pasillo
+    function agregarHall_Pasillo() {
+        contadorHall_Pasillo++; // Incrementar el contador global
+        var nuevoHall_Pasillo = `
+            <div class="accordion" id="accordionHall_Pasillo${areaIndex}">
                 <div class="accordion-item border rounded">
-                    <h2 class="accordion-header" id="headingComedor${areaIndex}">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComedor${areaIndex}" aria-expanded="false" aria-controls="collapseComedor${areaIndex}">
-                            Comedor #${contadorComedores}
+                    <h2 class="accordion-header" id="headingHall_Pasillo${areaIndex}">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHall_Pasillo${areaIndex}" aria-expanded="false" aria-controls="collapseHall_Pasillo${areaIndex}">
+                            Hall_Pasillo #${contadorHall_Pasillo}
                         </button>
                     </h2>
-                    <div id="collapseComedor${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingComedor${areaIndex}" data-bs-parent="#accordionComedor${areaIndex}">
+                    <div id="collapseHall_Pasillo${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingHall_Pasillo${areaIndex}" data-bs-parent="#accordionHall_Pasillo${areaIndex}">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">Comedor #${contadorComedores}</h3>
+                                            <h3 class="card-title">Hall_Pasillo #${contadorHall_Pasillo}</h3>
                                             <input type="text" name="nombre_area[]"  placeholder="Ingrese el nombre del area" class="form-control" required>
-                                            <p class="card-title-desc">Carga toda la información del comedor del inmueble</p>
+                                            <p class="card-title-desc">Carga toda la información del Hall_Pasillo del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">
                                                     <thead>
@@ -68,7 +67,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(areaIndex, 'comedor')}
+                                                        ${generarFilas(areaIndex, 'Hall_Pasillo')}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
@@ -80,7 +79,7 @@
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarComedor(${areaIndex})">Eliminar Comedor</button>
+                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarHall_Pasillo(${areaIndex})">Eliminar Hall_Pasillo</button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,11 +90,11 @@
             </div>
         `;
 
-        $('#comedor-container').append(nuevoComedor);
+        $('#Hall_Pasillo-container').append(nuevoHall_Pasillo);
         areaIndex++; // Incrementar el contador global
     }
 
-    function eliminarComedor(index) {
-        $(`#accordionComedor${index}`).remove();
+    function eliminarHall_Pasillo(index) {
+        $(`#accordionHall_Pasillo${index}`).remove();
     }
 </script>

@@ -157,7 +157,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarSala()">Agregar
                                         Sala</button>
                                 </div>
 
@@ -170,29 +170,29 @@
 
                             <div class="row" style="padding-bottom: 10px">
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarCocina()">Agregar
                                         Cocina</button>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarHall_Pasillo()">Agregar
                                         Hall O Pasillo</button>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarPatio()">Agregar
                                         Patio o Zona de ropa</button>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
-                                        Garaja o Cuarto Util</button>
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarGaraje()">Agregar
+                                        Garaje o Cuarto Util</button>
                                 </div>
                             </div>
 
                             <div class="row" style="padding-bottom: 10px">
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Agregar
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="agregarOtro()">Agregar
                                         Otros</button>
                                 </div>
                             </div>
@@ -212,6 +212,36 @@
                         </div>
 
                         <div id="bano-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
+                        <div id="sala-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
+                        <div id="Cocina-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
+                        <div id="Hall_Pasillo-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
+                        <div id="Patio-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
+                        <div id="Garaje-container">
+                            <!-- Aquí se agregarán los nuevos Baño -->
+
+                        </div>
+
+                        <div id="Otro-container">
                             <!-- Aquí se agregarán los nuevos Baño -->
 
                         </div>
@@ -245,6 +275,12 @@
     @include('inventarios.form._comedor')
     @include('inventarios.form._dormitorio')
     @include('inventarios.form._bano')
+    @include('inventarios.form._sala')
+    @include('inventarios.form._cocina')
+    @include('inventarios.form._hall_pasillo')
+    @include('inventarios.form._patio')
+    @include('inventarios.form._garaje')
+    @include('inventarios.form._otro')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
