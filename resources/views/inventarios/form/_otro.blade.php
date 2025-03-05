@@ -1,40 +1,10 @@
 <script>
-    var contadorOtros = 0; // Contador global para Otros
+    var contadorOtros = 0; // Contador global para "Otros"
+    var areaIndex = 0; // Índice de áreas
 
-    // Generar una fila vacía para ingresar manualmente los datos
-    function generarFila(areaIndex) {
-        return `
-            <tr id="fila-${areaIndex}-${Date.now()}">
-                <th scope="row">
-                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" placeholder="Ingrese el ítem">
-                </th>
-                <td>
-                    <input type="number" name="cant[${areaIndex}][]" class="form-control" placeholder="Cantidad" required>
-                </td>
-                <td>
-                    <input type="text" name="material[${areaIndex}][]" class="form-control" placeholder="Material" required>
-                </td>
-                <td>
-                    <select class="form-select" name="estado[${areaIndex}][]" aria-label="Estado">
-                        <option selected>Estado</option>
-                        <option value="1">Bueno</option>
-                        <option value="2">Malo</option>
-                        <option value="3">Regular</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" name="observaciones[${areaIndex}][]" class="form-control" placeholder="Observaciones" required>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">🗑</button>
-                </td>
-            </tr>
-        `;
-    }
-
-    // Agregar una nueva Otro
+    // Agregar un nuevo "Otro"
     function agregarOtro() {
-        contadorOtros++; // Incrementar contador
+        contadorOtros++; // Incrementar el contador global de "Otros"
         var nuevoOtro = `
             <div class="accordion" id="accordionOtro${contadorOtros}">
                 <div class="accordion-item border rounded">
@@ -51,37 +21,29 @@
                                         <div class="card-body">
                                             <h3 class="card-title">Otro #${contadorOtros}</h3>
                                             <input type="text" name="nombre_area[]" placeholder="Ingrese el nombre del área" class="form-control" required>
-                                            <p class="card-title-desc">Carga toda la información de la Otro del inmueble</p>
+                                            <p class="card-title-desc">Carga toda la información del Otro del inmueble</p>
+                                            
                                             <div class="table-responsive">
-                                                <table class="table table-sm m-0">
+                                                <table class="table table-sm m-0" id="tablaOtro${contadorOtros}">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col" style="width: 180px;">Item</th>
-                                                            <th scope="col" style="width: 90px;">Cantidad</th>
+                                                            <th scope="col">Item</th>
+                                                            <th scope="col">Cantidad</th>
                                                             <th scope="col">Material</th>
                                                             <th scope="col">Estado</th>
                                                             <th scope="col">Observaciones</th>
                                                             <th scope="col">Acción</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tablaOtro${contadorOtros}">
-                                                        ${generarFila(contadorOtros)}
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="6">
-                                                                <button type="button" class="btn btn-primary btn-sm" onclick="agregarFila(${contadorOtros})">Agregar Fila</button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="6">
-                                                                <label for="fotosOtro${contadorOtros}" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${contadorOtros}][]" id="fotosOtro${contadorOtros}" accept="image/*" class="form-control" multiple>
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
+                                                    <tbody></tbody>
                                                 </table>
                                             </div>
+
+                                            <button type="button" class="btn btn-primary mt-3" onclick="agregarFila(${contadorOtros})">Agregar Ítem</button>
+
+                                            <label for="fotos" class="form-label mt-3">Cargar Imágenes</label>
+                                            <input type="file" name="fotos[${contadorOtros}][]" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
+
                                             <button type="button" class="btn btn-danger mt-3" onclick="eliminarOtro(${contadorOtros})">Eliminar Otro</button>
                                         </div>
                                     </div>
@@ -96,17 +58,45 @@
         $('#Otro-container').append(nuevoOtro);
     }
 
-    // Agregar una fila vacía a la tabla de una Otro específica
-    function agregarFila(index) {
-        $(`#tablaOtro${index}`).append(generarFila(index));
+    // Agregar una fila a la tabla específica de "Otro"
+    function agregarFila(otroIndex) {
+        var nuevaFila = `
+            <tr id="filaOtro${otroIndex}-${Date.now()}">
+                <td>
+                    <input type="text" name="nombre_item[${otroIndex}][]" class="form-control" placeholder="Nombre del Ítem" required>
+                </td>
+                <td>
+                    <input type="number" name="cant[${otroIndex}][]" class="form-control" placeholder="Cantidad" required>
+                </td>
+                <td>
+                    <input type="text" name="material[${otroIndex}][]" class="form-control" placeholder="Material" required>
+                </td>
+                <td>
+                    <select class="form-select" name="estado[${otroIndex}][]" aria-label="Estado">
+                        <option selected>Estado</option>
+                        <option value="1">Bueno</option>
+                        <option value="2">Malo</option>
+                        <option value="3">Regular</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="observaciones[${otroIndex}][]" class="form-control" placeholder="Observaciones" required>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">X</button>
+                </td>
+            </tr>
+        `;
+
+        $(`#tablaOtro${otroIndex} tbody`).append(nuevaFila);
     }
 
     // Eliminar una fila específica
-    function eliminarFila(boton) {
-        $(boton).closest("tr").remove();
+    function eliminarFila(button) {
+        $(button).closest('tr').remove();
     }
 
-    // Eliminar una Otro
+    // Eliminar una sección completa de "Otro"
     function eliminarOtro(index) {
         $(`#accordionOtro${index}`).remove();
     }

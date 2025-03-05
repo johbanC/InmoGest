@@ -61,7 +61,7 @@ class InventarioController extends Controller
             'estado' => 'required|array',
             'observaciones' => 'required|array',
             'fotos' => 'nullable|array',
-            'fotos.*.*' => 'nullable|image|max:2048', // Validar que cada archivo sea una imagen
+            'fotos.*.*' => 'nullable|image|max:5120', // Validar que cada archivo sea una imagen
         ]);
 
         // Crear el inventario

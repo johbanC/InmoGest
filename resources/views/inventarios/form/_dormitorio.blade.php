@@ -73,7 +73,7 @@
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label for="fotos" class="form-label">Cargar Imágenes</label><br>
+                                                                <label for="areaIndex" class="form-label">Cargar Imágenes</label><br>
                                                                 <input type="file" name="fotos[${areaIndex}][]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
                                                             </td>
                                                         </tr>

@@ -1,12 +1,13 @@
 <script>
-    var contadorPatio = 0; // Variable global para contar los Patio
+    var contadorPatios = 0; // Variable global para contar los Patios
 
     // Generar filas para los items de cada área (Patio)
     function generarFilas(areaIndex) {
         const items = [
-            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'LÁMPARA', 'PLAFONES', 'LAVADERO', 
-            'INSTALACIÓN LAVADORA', 'TOMAS ELÉCTRICOS', 'SUICHES', 'ESTANTERÍA', 'PISO', 
-            'PARED', 'ZÓCALO', 'PINTURA', 'TECHO', 'CALENTADOR', 'SERIE', 'MARCA'
+            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA',
+            'CORTINA VERTICAL', 'LAMPARA', 'PLAFONES', 'TOMAS ELECTRICOS',
+            'SUICHES', 'TOMA TELEFONO', 'TOMA PARABOLICA', 'ESTANTERIA',
+            'PISO', 'PARED', 'ZOCALO', 'PINTURA'
         ];
 
         return items.map((item) => `
@@ -37,13 +38,13 @@
 
     // Agregar un nuevo Patio
     function agregarPatio() {
-        contadorPatio++; // Incrementar el contador global
+        contadorPatios++; // Incrementar el contador global
         var nuevoPatio = `
             <div class="accordion" id="accordionPatio${areaIndex}">
                 <div class="accordion-item border rounded">
                     <h2 class="accordion-header" id="headingPatio${areaIndex}">
                         <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePatio${areaIndex}" aria-expanded="false" aria-controls="collapsePatio${areaIndex}">
-                            Patio #${contadorPatio}
+                            Patio #${contadorPatios}
                         </button>
                     </h2>
                     <div id="collapsePatio${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingPatio${areaIndex}" data-bs-parent="#accordionPatio${areaIndex}">
@@ -52,7 +53,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">Patio #${contadorPatio}</h3>
+                                            <h3 class="card-title">Patio #${contadorPatios}</h3>
                                             <input type="text" name="nombre_area[]"  placeholder="Ingrese el nombre del area" class="form-control" required>
                                             <p class="card-title-desc">Carga toda la información del Patio del inmueble</p>
                                             <div class="table-responsive">
