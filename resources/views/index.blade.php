@@ -83,6 +83,30 @@
             </div>
         </div>
 
+        <div class="col-xl-3 col-md-6">
+            <div class="card mini-stat bg-primary text-white">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <div class="float-start mini-stat-img me-4">
+                            <img src="{{asset('assets/images/services-icon/02.png')}}" alt="">
+                        </div>
+                        <h5 class="font-size-16 text-uppercase text-white-50">Inventarios</h5>
+                        <h4 class="fw-medium font-size-24">{{ $cantidadFichasTecnicas }} <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
+                        <div class="mini-stat-label bg-danger">
+                            <p class="mb-0">{{ $cantidadFichasTecnicas }}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="pt-2">
+                        <div class="float-end">
+                            <a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5 text-white-50"></i></a>
+                        </div>
+
+                        <p class="text-white-50 mb-0 mt-1">Since last month</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
         <!-- <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">

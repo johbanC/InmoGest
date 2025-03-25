@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     /*Route::get('{any}',[HomeController::class,'index']);*/
 
     Route::get('/index', [HomeController::class, 'index'])->name('index.index');
+    
 
 
     Route::get('/fichastecnicas', [FichaTecnicaController::class, 'index'])
