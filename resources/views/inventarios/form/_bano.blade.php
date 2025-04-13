@@ -100,4 +100,6 @@
     function eliminarBano(index) {
         $(`#accordionBano${index}`).remove();
     }
+
+    //Tambien va a tocar restar para poder que los indices cuadren entre todos
 </script>
