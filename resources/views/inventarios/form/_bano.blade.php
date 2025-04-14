@@ -1,16 +1,17 @@
 <script>
-    var contadorBanos = 0; // Variable global para contar los Banos
+    var nextBanoId = 1; // Para IDs únicos que no cambian
+    var banoCounter = 0; // Para la numeración visible (Baño #1, Baño #2)
+    var banos = []; // Array para registrar todos los baños existentes
 
-    // Generar filas para los items de cada área (Bano)
     function generarFilas(areaIndex) {
         const items = [
-    'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'LAVAMANOS',
-    'GRIFERIA', 'SANITARIO', 'TOALLERO', 'JABONERA',
-    'CEPILLERA', 'PORTA PAPEL', 'DUCHA', 'ESPEJO',
-    'GABINETES', 'CABINA', 'PISO', 'PARED',
-    'ZOCALO', 'TOMAS ELECTRICOS', 'SUCHES', 'LAMPARA',
-    'PLAFONES', 'TECHO', 'PINTURA'
-];
+            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'LAVAMANOS',
+            'GRIFERIA', 'SANITARIO', 'TOALLERO', 'JABONERA',
+            'CEPILLERA', 'PORTA PAPEL', 'DUCHA', 'ESPEJO',
+            'GABINETES', 'CABINA', 'PISO', 'PARED',
+            'ZOCALO', 'TOMAS ELECTRICOS', 'SUCHES', 'LAMPARA',
+            'PLAFONES', 'TECHO', 'PINTURA'
+        ];
 
         return items.map((item) => `
             <tr>
@@ -38,25 +39,31 @@
         `).join('');
     }
 
-    // Agregar un nuevo Bano
     function agregarBano() {
-        contadorBanos++; // Incrementar el contador global
-        var nuevoBano = `
-            <div class="accordion" id="accordionBano${areaIndex}">
+        banoCounter++;
+        const banoId = nextBanoId++;
+        banos.push({id: banoId, counter: banoCounter});
+
+        const nuevoBano = `
+            <div class="accordion" id="accordionBano${banoId}">
                 <div class="accordion-item border rounded">
-                    <h2 class="accordion-header" id="headingBano${areaIndex}">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBano${areaIndex}" aria-expanded="false" aria-controls="collapseBano${areaIndex}">
-                            Baño #${contadorBanos}
+                    <h2 class="accordion-header" id="headingBano${banoId}">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseBano${banoId}" aria-expanded="false" 
+                                aria-controls="collapseBano${banoId}">
+                            Baño #${banoCounter}
                         </button>
                     </h2>
-                    <div id="collapseBano${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingBano${areaIndex}" data-bs-parent="#accordionBano${areaIndex}">
+                    <div id="collapseBano${banoId}" class="accordion-collapse collapse" 
+                         aria-labelledby="headingBano${banoId}" data-bs-parent="#accordionBano${banoId}">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">Baño #${contadorBanos}</h3>
-                                            <input type="text" name="nombre_area[]"  placeholder="Ingrese el nombre del area" class="form-control" required>
+                                            <h3 class="card-title">Baño #${banoCounter}</h3>
+                                            <input type="text" name="nombre_area[${banoId}]" 
+                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
                                             <p class="card-title-desc">Carga toda la información del Bano del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">
@@ -70,19 +77,22 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(areaIndex, 'Bano')}
+                                                        ${generarFilas(banoId)}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
                                                                 <label for="fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${areaIndex}][]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
+                                                                <input type="file" name="fotos[${banoId}][]" id="fotos" 
+                                                                       accept="image/*" class="form-control" multiple 
+                                                                       onchange="previewImages(event)">
                                                             </td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarBano(${areaIndex})">Eliminar Bano</button>
+                                            <button type="button" class="btn btn-danger mt-3" 
+                                                    onclick="eliminarBano(${banoId})">Eliminar Bano</button>
                                         </div>
                                     </div>
                                 </div>
@@ -94,12 +104,23 @@
         `;
 
         $('#bano-container').append(nuevoBano);
-        areaIndex++; // Incrementar el contador global
     }
 
-    function eliminarBano(index) {
-        $(`#accordionBano${index}`).remove();
+    function eliminarBano(banoId) {
+        // Eliminar el baño del DOM
+        $(`#accordionBano${banoId}`).remove();
+        
+        // Eliminar el baño del registro
+        banos = banos.filter(b => b.id !== banoId);
+        
+        // Reenumerar los baños visibles
+        banos.forEach((bano, index) => {
+            bano.counter = index + 1;
+            $(`#accordionBano${bano.id} .accordion-button`).text(`Baño #${bano.counter}`);
+            $(`#accordionBano${bano.id} .card-title`).text(`Baño #${bano.counter}`);
+        });
+        
+        // Actualizar el contador visible
+        banoCounter = banos.length;
     }
-
-    //Tambien va a tocar restar para poder que los indices cuadren entre todos
 </script>
