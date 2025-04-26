@@ -1,9 +1,9 @@
 <script>
-    var nextBanoId = 1; // Para IDs únicos que no cambian
-    var banoCounter = 0; // Para la numeración visible (Baño #1, Baño #2)
-    var banos = []; // Array para registrar todos los baños existentes
+    var nextBanoId = 1;
+    var banoCounter = 0;
+    var banos = [];
 
-    function generarFilas(areaIndex) {
+    function generarFilasBano(areaIndex) {
         const items = [
             'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'LAVAMANOS',
             'GRIFERIA', 'SANITARIO', 'TOALLERO', 'JABONERA',
@@ -16,7 +16,7 @@
         return items.map((item) => `
             <tr>
                 <th scope="row">
-                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" placeholder="Material" readonly>
+                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" readonly>
                 </th>
                 <td>
                     <input type="number" name="cant[${areaIndex}][]" class="form-control" placeholder="Cantidad" required>
@@ -62,6 +62,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h3 class="card-title">Baño #${banoCounter}</h3>
+                                            <input type="hidden" name="tipo_area[${banoId}]" value="bano">
                                             <input type="text" name="nombre_area[${banoId}]" 
                                                    placeholder="Ingrese el nombre del area" class="form-control" required>
                                             <p class="card-title-desc">Carga toda la información del Bano del inmueble</p>
@@ -77,15 +78,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(banoId)}
+                                                        ${generarFilasBano(banoId)}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label for="fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${banoId}][]" id="fotos" 
-                                                                       accept="image/*" class="form-control" multiple 
-                                                                       onchange="previewImages(event)">
+                                                                <label for="bano_fotos" class="form-label">Cargar Imágenes</label><br>
+                                                                <input type="file" name="fotos[${banoId}][]" 
+                                                                       accept="image/*" class="form-control" multiple>
                                                             </td>
                                                         </tr>
                                                     </tfoot>
@@ -107,20 +107,15 @@
     }
 
     function eliminarBano(banoId) {
-        // Eliminar el baño del DOM
         $(`#accordionBano${banoId}`).remove();
-        
-        // Eliminar el baño del registro
         banos = banos.filter(b => b.id !== banoId);
         
-        // Reenumerar los baños visibles
         banos.forEach((bano, index) => {
             bano.counter = index + 1;
             $(`#accordionBano${bano.id} .accordion-button`).text(`Baño #${bano.counter}`);
             $(`#accordionBano${bano.id} .card-title`).text(`Baño #${bano.counter}`);
         });
         
-        // Actualizar el contador visible
         banoCounter = banos.length;
     }
 </script>

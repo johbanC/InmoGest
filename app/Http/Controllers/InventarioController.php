@@ -44,8 +44,7 @@ class InventarioController extends Controller
      */
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         // Validar los datos recibidos
         $request->validate([
             'inquilino' => 'required|string',

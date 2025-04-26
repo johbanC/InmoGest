@@ -1,8 +1,9 @@
 <script>
-    var contadorComedores = 0; // Variable global para contar los Comedores
+    var nextComedorId = 2000; // Empezamos en 2000 para evitar colisiones con otras áreas
+    var comedorCounter = 0;
+    var comedores = [];
 
-    // Generar filas para los items de cada área (comedor)
-    function generarFilas() {
+    function generarFilasComedor(areaIndex) {
         const items = [
             'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA',
             'CORTINA VERTICAL', 'LAMPARA', 'PLAFONES', 'TOMAS ELECTRICOS',
@@ -13,7 +14,7 @@
         return items.map((item) => `
             <tr>
                 <th scope="row">
-                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" placeholder="Material" readonly>
+                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" readonly>
                 </th>
                 <td>
                     <input type="number" name="cant[${areaIndex}][]" class="form-control" placeholder="Cantidad" required>
@@ -36,26 +37,33 @@
         `).join('');
     }
 
-    // Agregar un nuevo comedor
     function agregarComedor() {
-        contadorComedores++; // Incrementar el contador global
-        var nuevoComedor = `
-            <div class="accordion" id="accordionComedor${areaIndex}">
+        comedorCounter++;
+        const comedorId = nextComedorId++;
+        comedores.push({id: comedorId, counter: comedorCounter});
+
+        const nuevoComedor = `
+            <div class="accordion" id="accordionComedor${comedorId}">
                 <div class="accordion-item border rounded">
-                    <h2 class="accordion-header" id="headingComedor${areaIndex}">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComedor${areaIndex}" aria-expanded="false" aria-controls="collapseComedor${areaIndex}">
-                            Comedor #${contadorComedores}
+                    <h2 class="accordion-header" id="headingComedor${comedorId}">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseComedor${comedorId}" aria-expanded="false" 
+                                aria-controls="collapseComedor${comedorId}">
+                            Comedor #${comedorCounter}
                         </button>
                     </h2>
-                    <div id="collapseComedor${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingComedor${areaIndex}" data-bs-parent="#accordionComedor${areaIndex}">
+                    <div id="collapseComedor${comedorId}" class="accordion-collapse collapse" 
+                         aria-labelledby="headingComedor${comedorId}" data-bs-parent="#accordionComedor${comedorId}">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">Comedor #${contadorComedores}</h3>
-                                            <input type="text" name="nombre_area[]"  placeholder="Ingrese el nombre del area" class="form-control" required>
-                                            <p class="card-title-desc">Carga toda la información del comedor del inmueble</p>
+                                            <h3 class="card-title">Comedor #${comedorCounter}</h3>
+                                            <input type="hidden" name="tipo_area[${comedorId}]" value="comedor">
+                                            <input type="text" name="nombre_area[${comedorId}]" 
+                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
+                                            <p class="card-title-desc">Carga toda la información del Comedor del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">
                                                     <thead>
@@ -68,19 +76,21 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(areaIndex, 'comedor')}
+                                                        ${generarFilasComedor(comedorId)}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label for="fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${areaIndex}][]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
+                                                                <label for="comedor_fotos" class="form-label">Cargar Imágenes</label><br>
+                                                                <input type="file" name="fotos[${comedorId}][]" 
+                                                                       accept="image/*" class="form-control" multiple>
                                                             </td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarComedor(${areaIndex})">Eliminar Comedor</button>
+                                            <button type="button" class="btn btn-danger mt-3" 
+                                                    onclick="eliminarComedor(${comedorId})">Eliminar Comedor</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,10 +102,18 @@
         `;
 
         $('#comedor-container').append(nuevoComedor);
-        areaIndex++; // Incrementar el contador global
     }
 
-    function eliminarComedor(index) {
-        $(`#accordionComedor${index}`).remove();
+    function eliminarComedor(comedorId) {
+        $(`#accordionComedor${comedorId}`).remove();
+        comedores = comedores.filter(c => c.id !== comedorId);
+        
+        comedores.forEach((comedor, index) => {
+            comedor.counter = index + 1;
+            $(`#accordionComedor${comedor.id} .accordion-button`).text(`Comedor #${comedor.counter}`);
+            $(`#accordionComedor${comedor.id} .card-title`).text(`Comedor #${comedor.counter}`);
+        });
+        
+        comedorCounter = comedores.length;
     }
 </script>

@@ -19,3 +19,19 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# ==================================================
+# INCREMENTAR LÍMITES PARA FORMULARIOS CON MÚLTIPLES ARCHIVOS
+# ==================================================
+<IfModule mod_php.c>
+    php_value max_input_vars 5000
+    php_value max_multipart_body_parts 5050
+   
+</IfModule>
+
+# Alternativa para PHP 7+ (si la anterior no funciona)
+<IfModule mod_php7.c>
+    php_value max_input_vars 5000
+    php_value max_multipart_body_parts 5050
+   
+</IfModule>
