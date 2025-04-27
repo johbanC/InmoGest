@@ -44,111 +44,120 @@ class InventarioController extends Controller
      */
 
 
-    public function store(Request $request){
-        // Validar los datos recibidos
-        $request->validate([
-            'inquilino' => 'required|string',
-            'numero_inquilino' => 'required|string',
-            'direccion' => 'required|string',
-            'tipo_inmuebles_id' => 'required|exists:tipo_inmuebles,id',
-            'nombre_propiedad' => 'required|string',
-            'email_inquilino' => 'required|email',
-            'nombre_area' => 'required|array',
-            'nombre_item' => 'required|array',
-            'cant' => 'required|array',
-            'material' => 'required|array',
-            'estado' => 'required|array',
-            'observaciones' => 'required|array',
-            'fotos' => 'nullable|array',
-            'fotos.*.*' => 'nullable|image|max:5120', // Validar que cada archivo sea una imagen
-        ]);
-
-        // Crear el inventario
-        $fecha = now()->format('Y-m-d'); // Formatear la fecha
-
-        $inventario = Inventario::create([
-            'nombre_propiedad' => $request->get('nombre_propiedad'),
-            'numero_inquilino' => $request->get('numero_inquilino'),
-            'email_inquilino' => $request->get('email_inquilino'),
-            'fecha' => $fecha,
-            'direccion' => $request->get('direccion'),
-            'tipo_inmuebles_id' => $request->get('tipo_inmuebles_id'),
-            'arrendador' => $request->get('arrendador'),
-            'inquilino' => $request->get('inquilino'),
-            'propietario' => $request->get('propietario'),
-            'nro_llaves' => $request->get('nro_llaves'),
-            'user_id' => auth()->id(),
-        ]);
-
-        // Generar el nombre de la carpeta una sola vez
-        $folderName = $inventario->codigo . '_' . Str::random(10);
-
-        // Crear la carpeta si no existe
-        $folderPath = storage_path('app/public/images/' . $folderName);
-        if (!FileSystem::exists($folderPath)) {
-            FileSystem::makeDirectory($folderPath, 0777, true);
-        }
-
-        // Procesar cada área
-        foreach ($request->nombre_area as $index => $nombreArea) {
-            // Crear el área
-            $area = Area::create([
-                'nombre_area' => $nombreArea,
-                'inventarios_id' => $inventario->id,
-            ]);
-
-            // Procesar los ítems de cada área
-            if (isset($request->nombre_item[$index])) {
-                foreach ($request->nombre_item[$index] as $itemIndex => $nombreItem) {
-                    $area->items()->create([
-                        'nombre_item' => $nombreItem ?? 'Item ' . ($itemIndex + 1),
-                        'cantidad' => $request->cant[$index][$itemIndex],
-                        'material' => $request->material[$index][$itemIndex],
-                        'estado' => $request->estado[$index][$itemIndex],
-                        'observacion' => $request->observaciones[$index][$itemIndex],
-                    ]);
-                }
-            }
-
-            // Guardar las fotos de cada área en su propia carpeta dentro de la carpeta del inventario
-            if (isset($request->fotos[$index])) {
-                $fotos = $request->file("fotos.{$index}");
-
-                if ($fotos && is_array($fotos)) {
-                    foreach ($fotos as $foto) {
-                        if ($foto instanceof \Illuminate\Http\UploadedFile) {
-                            // Generar un nombre único para la foto
-                            $fileName = $inventario->codigo . '_' . time() . '_' . Str::random(5) . '.' . $foto->getClientOriginalExtension();
-
-                            try {
-                                // Crear una subcarpeta para el área dentro de la carpeta del inventario
-                                $areaFolder = $folderName . '/area_' . $area->id;
-
-                                // Almacenar la foto en la subcarpeta del área
-                                Storage::disk('public')->putFileAs('images/' . $areaFolder, $foto, $fileName);
-
-                                // Crear un registro de la foto en la base de datos
-                                $area->fotos()->create([
-                                    'ruta_foto' => 'storage/images/' . $areaFolder . '/' . $fileName, // Ruta de acceso de la foto
-                                    'area_id' => $area->id, // ID del área
-                                    'codigo' => $inventario->codigo, // Código del inventario
-                                    'carpeta' => $folderName, // Carpeta principal del inventario
-                                    'tipo' => 'Inventario', // Tipo de archivo
-                                ]);
-                            } catch (\Exception $e) {
-                                dd('Error al almacenar la foto: ' . $e->getMessage());
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Redirigir con un mensaje de éxito
-        return to_route('inventarios.index')->with('status', 1);
-    }
-
-
+     public function store(Request $request)
+     {
+         // Validar los datos recibidos
+         $request->validate([
+             'inquilino' => 'required|string',
+             'numero_inquilino' => 'required|string',
+             'direccion' => 'required|string',
+             'tipo_inmuebles_id' => 'required|exists:tipo_inmuebles,id',
+             'nombre_propiedad' => 'required|string',
+             'email_inquilino' => 'required|email',
+             'nombre_area' => 'required|array',
+             'nombre_item' => 'required|array',
+             'cant' => 'required|array',
+             'material' => 'required|array',
+             'estado' => 'required|array',
+             'observaciones' => 'required|array',
+             'fotos' => 'nullable|array',
+             'fotos.*' => 'nullable|array', // Validar que cada elemento de fotos es un array
+             'fotos.*.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // Tipos MIME específicos
+         ]);
+     
+         // Crear el inventario
+         $inventario = Inventario::create([
+             'nombre_propiedad' => $request->nombre_propiedad,
+             'numero_inquilino' => $request->numero_inquilino,
+             'email_inquilino' => $request->email_inquilino,
+             'fecha' => now()->format('Y-m-d'),
+             'direccion' => $request->direccion,
+             'tipo_inmuebles_id' => $request->tipo_inmuebles_id,
+             'arrendador' => $request->arrendador,
+             'inquilino' => $request->inquilino,
+             'propietario' => $request->propietario,
+             'nro_llaves' => $request->nro_llaves,
+             'user_id' => auth()->id(),
+         ]);
+     
+         // Generar el nombre de la carpeta principal
+         $folderName = $inventario->codigo . '_' . Str::random(10);
+         $baseStoragePath = 'public/images/inventarios/' . $folderName;
+         $basePublicPath = 'storage/images/inventarios/' . $folderName;
+     
+         // Crear directorio principal si no existe
+         if (!Storage::exists($baseStoragePath)) {
+             Storage::makeDirectory($baseStoragePath, 0755, true);
+         }
+     
+         // Procesar cada área
+         foreach ($request->nombre_area as $index => $nombreArea) {
+             // Crear el área
+             $area = Area::create([
+                 'nombre_area' => $nombreArea,
+                 'inventarios_id' => $inventario->id,
+             ]);
+     
+             // Procesar los ítems de cada área
+             if (isset($request->nombre_item[$index])) {
+                 foreach ($request->nombre_item[$index] as $itemIndex => $nombreItem) {
+                     $area->items()->create([
+                         'nombre_item' => $nombreItem ?? 'Item ' . ($itemIndex + 1),
+                         'cantidad' => $request->cant[$index][$itemIndex],
+                         'material' => $request->material[$index][$itemIndex],
+                         'estado' => $request->estado[$index][$itemIndex],
+                         'observacion' => $request->observaciones[$index][$itemIndex],
+                     ]);
+                 }
+             }
+     
+             // Procesar fotos para el área actual
+             $this->procesarFotosArea($request, $index, $area, $baseStoragePath, $basePublicPath, $inventario->codigo);
+         }
+     
+         return to_route('inventarios.index')->with('status', 'Inventario creado correctamente');
+     }
+     
+     protected function procesarFotosArea($request, $areaIndex, $area, $baseStoragePath, $basePublicPath, $codigoInventario)
+     {
+         // Verificar si hay fotos para esta área
+         if (empty($request->fotos) || !isset($request->fotos[$areaIndex]) || !is_array($request->fotos[$areaIndex])) {
+             return;
+         }
+     
+         // Crear subcarpeta para el área
+         $areaFolderStorage = $baseStoragePath . '/area_' . $area->id;
+         $areaFolderPublic = $basePublicPath . '/area_' . $area->id;
+         
+         if (!Storage::exists($areaFolderStorage)) {
+             Storage::makeDirectory($areaFolderStorage, 0755, true);
+         }
+     
+         // Procesar cada foto
+         foreach ($request->fotos[$areaIndex] as $foto) {
+             if ($foto && $foto->isValid()) {
+                 $extension = $foto->getClientOriginalExtension();
+                 $fileName = $codigoInventario . '_area' . $area->id . '_' . time() . '_' . Str::random(5) . '.' . $extension;
+     
+                 try {
+                     // Almacenar la foto
+                     $foto->storeAs($areaFolderStorage, $fileName);
+     
+                     // Registrar en la base de datos
+                     $area->fotos()->create([
+                         'ruta_foto' => $areaFolderPublic . '/' . $fileName,
+                         'area_id' => $area->id,
+                         'codigo' => $codigoInventario,
+                         'carpeta' => $folderName,
+                         'tipo' => 'Inventario',
+                     ]);
+                 } catch (\Exception $e) {
+                     Log::error("Error al guardar foto para área {$area->id}: " . $e->getMessage());
+                     continue;
+                 }
+             }
+         }
+     }
     /**
      * Display the specified resource.
      */

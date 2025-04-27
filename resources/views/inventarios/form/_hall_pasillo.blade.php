@@ -1,19 +1,20 @@
 <script>
-    var contadorhall_pasillos = 0; // Variable global para contar los hall_pasillos
+    var nextHallPasilloId = 5000; // IDs únicos comenzando en 5000
+    var hallPasilloCounter = 0;
+    var hallPasillos = [];
 
-    // Generar filas para los items de cada área (hall_pasillo)
-    function generarFilas(areaIndex) {
+    function generarFilasHallPasillo(areaIndex) {
         const items = [
             'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'PERSIANA',
             'CORTINA VERTICAL', 'LAMPARA', 'PLAFONES', 'TOMAS ELECTRICOS',
             'SUICHES', 'TOMA TELEFONO', 'TOMA PARABOLICA', 'ESTANTERIA',
-            'PISO', 'PARED', 'ZOCALO', 'PINTURA'
+            'PISO', 'PARED', 'ZOCALO', 'PINTURA', 'CUADROS', 'ESPEJOS'
         ];
 
         return items.map((item) => `
             <tr>
                 <th scope="row">
-                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" placeholder="Material" readonly>
+                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" readonly>
                 </th>
                 <td>
                     <input type="number" name="cant[${areaIndex}][]" class="form-control" placeholder="Cantidad" required>
@@ -36,26 +37,33 @@
         `).join('');
     }
 
-    // Agregar un nuevo hall_pasillo
-    function agregarhall_pasillo() {
-        contadorhall_pasillos++; // Incrementar el contador global
-        var nuevohall_pasillo = `
-            <div class="accordion" id="accordionhall_pasillo${areaIndex}">
+    function agregarHallPasillo() {
+        hallPasilloCounter++;
+        const hallPasilloId = nextHallPasilloId++;
+        hallPasillos.push({id: hallPasilloId, counter: hallPasilloCounter});
+
+        const nuevoHallPasillo = `
+            <div class="accordion" id="accordionHallPasillo${hallPasilloId}">
                 <div class="accordion-item border rounded">
-                    <h2 class="accordion-header" id="headinghall_pasillo${areaIndex}">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapsehall_pasillo${areaIndex}" aria-expanded="false" aria-controls="collapsehall_pasillo${areaIndex}">
-                            hall_pasillo #${contadorhall_pasillos}
+                    <h2 class="accordion-header" id="headingHallPasillo${hallPasilloId}">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseHallPasillo${hallPasilloId}" aria-expanded="false" 
+                                aria-controls="collapseHallPasillo${hallPasilloId}">
+                            Hall/Pasillo #${hallPasilloCounter}
                         </button>
                     </h2>
-                    <div id="collapsehall_pasillo${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headinghall_pasillo${areaIndex}" data-bs-parent="#accordionhall_pasillo${areaIndex}">
+                    <div id="collapseHallPasillo${hallPasilloId}" class="accordion-collapse collapse" 
+                         aria-labelledby="headingHallPasillo${hallPasilloId}" data-bs-parent="#accordionHallPasillo${hallPasilloId}">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">hall_pasillo #${contadorhall_pasillos}</h3>
-                                            <input type="text" name="nombre_area[]"  placeholder="Ingrese el nombre del area" class="form-control" required>
-                                            <p class="card-title-desc">Carga toda la información del hall_pasillo del inmueble</p>
+                                            <h3 class="card-title">Hall/Pasillo #${hallPasilloCounter}</h3>
+                                            <input type="hidden" name="tipo_area[${hallPasilloId}]" value="hall_pasillo">
+                                            <input type="text" name="nombre_area[${hallPasilloId}]" 
+                                                   placeholder="Ingrese el nombre del área" class="form-control" required>
+                                            <p class="card-title-desc">Carga toda la información del Hall/Pasillo del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">
                                                     <thead>
@@ -68,19 +76,21 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(areaIndex, 'hall_pasillo')}
+                                                        ${generarFilasHallPasillo(hallPasilloId)}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label for="fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${areaIndex}][]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
+                                                                <label for="hall_pasillo_fotos" class="form-label">Cargar Imágenes</label><br>
+                                                                <input type="file" name="fotos[${hallPasilloId}][]" 
+                                                                       accept="image/*" class="form-control" multiple>
                                                             </td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarhall_pasillo(${areaIndex})">Eliminar hall_pasillo</button>
+                                            <button type="button" class="btn btn-danger mt-3" 
+                                                    onclick="eliminarHallPasillo(${hallPasilloId})">Eliminar Hall/Pasillo</button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,11 +101,19 @@
             </div>
         `;
 
-        $('#hall_pasillo-container').append(nuevohall_pasillo);
-        areaIndex++; // Incrementar el contador global
+        $('#hall_pasillo-container').append(nuevoHallPasillo);
     }
 
-    function eliminarhall_pasillo(index) {
-        $(`#accordionhall_pasillo${index}`).remove();
+    function eliminarHallPasillo(hallPasilloId) {
+        $(`#accordionHallPasillo${hallPasilloId}`).remove();
+        hallPasillos = hallPasillos.filter(h => h.id !== hallPasilloId);
+        
+        hallPasillos.forEach((hallPasillo, index) => {
+            hallPasillo.counter = index + 1;
+            $(`#accordionHallPasillo${hallPasillo.id} .accordion-button`).text(`Hall/Pasillo #${hallPasillo.counter}`);
+            $(`#accordionHallPasillo${hallPasillo.id} .card-title`).text(`Hall/Pasillo #${hallPasillo.counter}`);
+        });
+        
+        hallPasilloCounter = hallPasillos.length;
     }
 </script>

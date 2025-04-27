@@ -1,21 +1,22 @@
 <script>
-    var contadorGarajes = 0; // Variable global para contar los Garajes
+    var nextGarajeId = 4000; // Empezamos en 4000 para evitar colisiones con otras áreas
+    var garajeCounter = 0;
+    var garajes = [];
 
-    // Generar filas para los items de cada área (Garaje)
-    function generarFilas(areaIndex) {
+    function generarFilasGaraje(areaIndex) {
         const items = [
-    'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'LAVAMANOS',
-    'GRIFERIA', 'SANITARIO', 'TOALLERO', 'JABONERA',
-    'CEPILLERA', 'PORTA PAPEL', 'DUCHA', 'ESPEJO',
-    'GABINETES', 'CABINA', 'PISO', 'PARED',
-    'ZOCALO', 'TOMAS ELECTRICOS', 'SUCHES', 'LAMPARA',
-    'PLAFONES', 'TECHO', 'PINTURA'
-];
+            'PUERTA', 'CHAPA', 'VENTANA', 'VIDRIO', 'LAVAMANOS',
+            'GRIFERIA', 'SANITARIO', 'TOALLERO', 'JABONERA',
+            'CEPILLERA', 'PORTA PAPEL', 'DUCHA', 'ESPEJO',
+            'GABINETES', 'CABINA', 'PISO', 'PARED',
+            'ZOCALO', 'TOMAS ELECTRICOS', 'SUCHES', 'LAMPARA',
+            'PLAFONES', 'TECHO', 'PINTURA'
+        ];
 
         return items.map((item) => `
             <tr>
                 <th scope="row">
-                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" placeholder="Material" readonly>
+                    <input type="text" name="nombre_item[${areaIndex}][]" class="form-control" value="${item}" readonly>
                 </th>
                 <td>
                     <input type="number" name="cant[${areaIndex}][]" class="form-control" placeholder="Cantidad" required>
@@ -38,25 +39,32 @@
         `).join('');
     }
 
-    // Agregar un nuevo Garaje
     function agregarGaraje() {
-        contadorGarajes++; // Incrementar el contador global
-        var nuevoGaraje = `
-            <div class="accordion" id="accordionGaraje${areaIndex}">
+        garajeCounter++;
+        const garajeId = nextGarajeId++;
+        garajes.push({id: garajeId, counter: garajeCounter});
+
+        const nuevoGaraje = `
+            <div class="accordion" id="accordionGaraje${garajeId}">
                 <div class="accordion-item border rounded">
-                    <h2 class="accordion-header" id="headingGaraje${areaIndex}">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGaraje${areaIndex}" aria-expanded="false" aria-controls="collapseGaraje${areaIndex}">
-                            Garaje #${contadorGarajes}
+                    <h2 class="accordion-header" id="headingGaraje${garajeId}">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseGaraje${garajeId}" aria-expanded="false" 
+                                aria-controls="collapseGaraje${garajeId}">
+                            Garaje #${garajeCounter}
                         </button>
                     </h2>
-                    <div id="collapseGaraje${areaIndex}" class="accordion-collapse collapse" aria-labelledby="headingGaraje${areaIndex}" data-bs-parent="#accordionGaraje${areaIndex}">
+                    <div id="collapseGaraje${garajeId}" class="accordion-collapse collapse" 
+                         aria-labelledby="headingGaraje${garajeId}" data-bs-parent="#accordionGaraje${garajeId}">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title">Garaje #${contadorGarajes}</h3>
-                                            <input type="text" name="nombre_area[]"  placeholder="Ingrese el nombre del area" class="form-control" required>
+                                            <h3 class="card-title">Garaje #${garajeCounter}</h3>
+                                            <input type="hidden" name="tipo_area[${garajeId}]" value="garaje">
+                                            <input type="text" name="nombre_area[${garajeId}]" 
+                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
                                             <p class="card-title-desc">Carga toda la información del Garaje del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">
@@ -70,19 +78,21 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        ${generarFilas(areaIndex, 'Garaje')}
+                                                        ${generarFilasGaraje(garajeId)}
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label for="fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${areaIndex}][]" id="fotos" accept="image/*" class="form-control" multiple onchange="previewImages(event)">
+                                                                <label for="garaje_fotos" class="form-label">Cargar Imágenes</label><br>
+                                                                <input type="file" name="fotos[${garajeId}][]" 
+                                                                       accept="image/*" class="form-control" multiple>
                                                             </td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <button type="button" class="btn btn-danger mt-3" onclick="eliminarGaraje(${areaIndex})">Eliminar Garaje</button>
+                                            <button type="button" class="btn btn-danger mt-3" 
+                                                    onclick="eliminarGaraje(${garajeId})">Eliminar Garaje</button>
                                         </div>
                                     </div>
                                 </div>
@@ -94,10 +104,18 @@
         `;
 
         $('#Garaje-container').append(nuevoGaraje);
-        areaIndex++; // Incrementar el contador global
     }
 
-    function eliminarGaraje(index) {
-        $(`#accordionGaraje${index}`).remove();
+    function eliminarGaraje(garajeId) {
+        $(`#accordionGaraje${garajeId}`).remove();
+        garajes = garajes.filter(g => g.id !== garajeId);
+        
+        garajes.forEach((garaje, index) => {
+            garaje.counter = index + 1;
+            $(`#accordionGaraje${garaje.id} .accordion-button`).text(`Garaje #${garaje.counter}`);
+            $(`#accordionGaraje${garaje.id} .card-title`).text(`Garaje #${garaje.counter}`);
+        });
+        
+        garajeCounter = garajes.length;
     }
 </script>
