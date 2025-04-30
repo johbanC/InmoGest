@@ -91,9 +91,9 @@
                             <img src="{{asset('assets/images/services-icon/02.png')}}" alt="">
                         </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Inventarios</h5>
-                        <h4 class="fw-medium font-size-24">{{ $cantidadFichasTecnicas }} <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
+                        <h4 class="fw-medium font-size-24">{{ $CantidadInventarios }} <i class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
                         <div class="mini-stat-label bg-danger">
-                            <p class="mb-0">{{ $cantidadFichasTecnicas }}</p>
+                            <p class="mb-0">{{ $CantidadInventarios }}</p>
                         </div>
                     </div>
                     <!-- <div class="pt-2">

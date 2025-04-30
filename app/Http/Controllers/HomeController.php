@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FichaTecnica;
+use App\Models\Inventario;
 
 
 class HomeController extends Controller
@@ -27,7 +28,11 @@ class HomeController extends Controller
     {
 
         $cantidadFichasTecnicas = FichaTecnica::count();
-        return view('index', compact('cantidadFichasTecnicas'));
+        $CantidadInventarios = Inventario::count();
+        return view('index', compact('cantidadFichasTecnicas', 'CantidadInventarios'));
+
+        
+
 
 /*
         if(view()->exists($request->path())){
