@@ -148,7 +148,7 @@ protected function procesarFotosArea($request, $areaIndex, $area, $baseStoragePa
     $areaFolderPublic = $basePublicPath . '/area_' . $area->id;
     
     if (!Storage::exists($areaFolderStorage)) {
-        Storage::makeDirectory($areaFolderStorage, 0755, true);
+        Storage::makeDirectory($areaFolderStorage, 0777, true);
     }
 
     // Procesar cada foto
