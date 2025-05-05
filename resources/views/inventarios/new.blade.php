@@ -11,6 +11,8 @@
 <!-- App Css-->
 <link href="{{URL::asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
 
+
+
 <style>
     .required:after {
         content: " *";
@@ -52,105 +54,88 @@
    
 
     @section('scripts')
-     <!-- App js -->
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+    <!-- Librerías externas -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('assets/libs/jquery-steps/jquery-steps.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
-
-   
-
+    <!-- Scripts específicos del inventario -->
+    @include('inventarios.form._comedor')
+    @include('inventarios.form._dormitorio')
+    @include('inventarios.form._bano')
+    @include('inventarios.form._sala')
+    @include('inventarios.form._cocina')
+    @include('inventarios.form._hall_pasillo')
+    @include('inventarios.form._patio')
+    @include('inventarios.form._garaje')
+    @include('inventarios.form._otro')
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const botonGuardar = document.getElementById("botonGuardar");
 
+            // Botón de guardar desactivado tras submit
+            const formularios = [
+                document.getElementById("form-horizontal"),
+                document.getElementById("formularioFichaTecnica")
+            ];
 
-        $(document).ready(function() {
-            var formulario = document.getElementById("form-horizontal");
-            var botonGuardar = document.getElementById("botonGuardar");
+            formularios.forEach(form => {
+                if (form) {
+                    form.addEventListener("submit", function () {
+                        botonGuardar.disabled = true;
+                        botonGuardar.innerHTML = 'Guardando...';
+                    });
+                }
+            });
 
-            if (formulario) {
-                formulario.addEventListener("submit", function() {
-                // Deshabilitar el botón después de enviar el formulario
-                    botonGuardar.disabled = true;
-                // Cambiar el texto del botón a "Guardando..."
-                    botonGuardar.innerHTML = 'Guardando...';
+            // Máscara para teléfono
+            const telefonoInput = document.getElementById('input-telefono');
+            if (telefonoInput) {
+                IMask(telefonoInput, {
+                    mask: '(000) 000-0000'
+                });
+            }
+
+            // Máscara para valor
+            const valorInput = document.getElementById('input-valor');
+            if (valorInput) {
+                IMask(valorInput, {
+                    mask: Number,
+                    thousandsSeparator: '.',
+                    radix: ',',
+                    scale: 2,
+                    signed: false
+                });
+            }
+
+            // Máscara para administración
+            const administracionInput = document.getElementById('input-administracion');
+            if (administracionInput) {
+                IMask(administracionInput, {
+                    mask: Number,
+                    thousandsSeparator: '.',
+                    radix: ',',
+                    scale: 2,
+                    signed: false
+                });
+            }
+
+            // Formato para cédula
+            const cedulaInput = document.getElementById('input-cedula');
+            if (cedulaInput) {
+                cedulaInput.addEventListener('input', function (evt) {
+                    let value = evt.target.value.replace(/\D/g, '');
+                    evt.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                 });
             }
         });
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var formulario = document.getElementById("formularioFichaTecnica");
-            var botonGuardar = document.getElementById("botonGuardar");
-
-            formulario.addEventListener("submit", function() {
-            // Deshabilitar el botón después de enviar el formulario
-                botonGuardar.disabled = true;
-            // Cambiar el texto del botón a "Guardando..."
-                botonGuardar.innerHTML = 'Guardando...';
-            });
-        });
-    </script>
-
-
-    <script>
-    // Crea una instancia de InputMask y aplica la máscara al campo de valor y administración
-        var valorInput = document.getElementById('input-valor');
-        var administracionInput = document.getElementById('input-administracion');
-
-        var valorMask = IMask(valorInput, {
-            mask: 'num',
-            blocks: {
-                num: {
-                // Permite hasta 15 dígitos antes del separador decimal
-                    mask: Number,
-                    thousandsSeparator: '.',
-                    radix: ',',
-                scale: 2, // Dos dígitos decimales
-                signed: false // No se permite un signo de negativo
-            }
-        },
-        lazy: false // Muestra el símbolo de la moneda siempre
-    });
-
-        var administracionMask = IMask(administracionInput, {
-            mask: 'num',
-            blocks: {
-                num: {
-                // Permite hasta 15 dígitos antes del separador decimal
-                    mask: Number,
-                    thousandsSeparator: '.',
-                    radix: ',',
-                scale: 2, // Dos dígitos decimales
-                signed: false // No se permite un signo de negativo
-            }
-        },
-        lazy: false // Muestra el símbolo de la moneda siempre
-    });
-</script>
-
-
-<script>
-    // AGREGAR LOS PUNTOS EN EL NÚMERO DE DOCUMENTO Y PERMITIR SOLO NÚMEROS
-    document.getElementById('input-cedula').addEventListener('input', function(evt) {
-        var value = evt.target.value;
-        // Eliminar todos los caracteres que no sean números
-        value = value.replace(/\D/g, '');
-        // Aplicar el formato con puntos
-        evt.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    });
-</script>
-
-<script>
-    // Crea una instancia de InputMask y aplica la máscara al campo de teléfono
-    var telefonoInput = document.getElementById('input-telefono');
-    var telefonoMask = IMask(telefonoInput, {
-        mask: '(000) 000-0000'
-    });
-</script>
-
 
 
 @endsection
+

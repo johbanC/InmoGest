@@ -51,7 +51,7 @@ class InventarioController extends Controller
         // Aumentar límites temporalmente
     ini_set('max_file_uploads', 2000);
         //verifcar que llega el request
-        //dd($request->all());
+        dd($request->all());
 
          // Validar los datos recibidos
          $request->validate([

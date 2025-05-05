@@ -249,6 +249,26 @@
 
 
                     </fieldset>
+
+
+                    <h3>Datos de entrega</h3>
+                    <fieldset>
+                        <section>
+                            <div class="row" style="padding-bottom: 10px">
+
+                                <div class="col-md-6">
+                                   
+                                    @include('inventarios.form._datos_entrega')
+
+                                </div>
+
+                            </div>
+                        </section>
+                                
+
+
+
+                    </fieldset>
                     
 
 
@@ -262,38 +282,6 @@
 
 
 
-@section('scripts')
-    <!-- form wizard -->
-    <script src="{{ URL::asset('assets/libs/jquery-steps/jquery-steps.min.js') }}"></script>
-
-    <!-- form wizard init -->
-    <script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
-
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
-
-    @include('inventarios.form._comedor')
-    @include('inventarios.form._dormitorio')
-    @include('inventarios.form._bano')
-    @include('inventarios.form._sala')
-    @include('inventarios.form._cocina')
-    @include('inventarios.form._hall_pasillo')
-    @include('inventarios.form._patio')
-    @include('inventarios.form._garaje')
-    @include('inventarios.form._otro')
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Crea una instancia de InputMask y aplica la máscara al campo de teléfono
-            var telefonoInput = document.getElementById('input-telefono');
-            if (telefonoInput) {
-                var telefonoMask = IMask(telefonoInput, {
-                    mask: '(000) 000-0000'
-                });
-            }
-        });
-    </script>
-@endsection
 
 
 
