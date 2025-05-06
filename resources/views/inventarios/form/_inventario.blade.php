@@ -254,13 +254,10 @@
                     <h3>Datos de entrega</h3>
                     <fieldset>
                         <section>
-                            <div class="row" style="padding-bottom: 10px">
-
-                                <div class="col-md-6">
+                            <div class="row" style="padding-bottom: 10px">                              
                                    
                                     @include('inventarios.form._datos_entrega')
-
-                                </div>
+                                
 
                             </div>
                         </section>
@@ -283,5 +280,5 @@
 
 
 
-
+  
 

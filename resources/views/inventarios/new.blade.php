@@ -73,6 +73,8 @@
     @include('inventarios.form._garaje')
     @include('inventarios.form._otro')
 
+ 
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const botonGuardar = document.getElementById("botonGuardar");
@@ -137,5 +139,9 @@
 
 
 
+
+
 @endsection
+
+
 
