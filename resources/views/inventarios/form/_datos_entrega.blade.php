@@ -30,6 +30,7 @@
         <button id="clear-entrega" class="btn btn-danger waves-effect waves-light" type="button">Limpiar firma</button>
         <h3>Foto de la persona que entrega</h3>
         <input type="file" id="photo-entrega" accept="image/*" class="form-control" capture="user">
+        <img id="preview-entrega" src="" alt="Previsualización de la foto de quien entrega" style="display: none; margin-top: 10px; max-width: 100%; border: 1px solid #ddd; border-radius: 5px;">
     </div>
 </div>
 
@@ -40,6 +41,7 @@
         <button id="clear-recibe" class="btn btn-danger waves-effect waves-light" type="button">Limpiar firma</button>
         <h3>Foto de la persona que recibe</h3>
         <input type="file" id="photo-recibe" accept="image/*" class="form-control" capture="user">
+        <img id="preview-recibe" src="" alt="Previsualización de la foto de quien recibe" style="display: none; margin-top: 10px; max-width: 100%; border: 1px solid #ddd; border-radius: 5px;">
     </div>
 </div>
 
@@ -72,13 +74,37 @@
 
     // File input for "persona que entrega"
     var photoEntrega = document.getElementById('photo-entrega');
+    var previewEntrega = document.getElementById('preview-entrega');
     photoEntrega.addEventListener('change', function () {
-        console.log('Foto seleccionada para persona que entrega:', photoEntrega.files[0]);
+        var file = photoEntrega.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                previewEntrega.src = e.target.result;
+                previewEntrega.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            previewEntrega.src = '';
+            previewEntrega.style.display = 'none';
+        }
     });
 
     // File input for "persona que recibe"
     var photoRecibe = document.getElementById('photo-recibe');
+    var previewRecibe = document.getElementById('preview-recibe');
     photoRecibe.addEventListener('change', function () {
-        console.log('Foto seleccionada para persona que recibe:', photoRecibe.files[0]);
+        var file = photoRecibe.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                previewRecibe.src = e.target.result;
+                previewRecibe.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            previewRecibe.src = '';
+            previewRecibe.style.display = 'none';
+        }
     });
 </script>
