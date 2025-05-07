@@ -29,7 +29,7 @@
         <canvas id="signature-pad-entrega" class="signature-pad" width="400" height="200"></canvas>
         <button id="clear-entrega" class="btn btn-danger waves-effect waves-light" type="button">Limpiar firma</button>
         <h3>Foto de la persona que entrega</h3>
-        <input type="file" id="photo-entrega" accept="image/*" class="form-control">
+        <input type="file" id="photo-entrega" accept="image/*" class="form-control" capture="user">
     </div>
 </div>
 
@@ -39,7 +39,7 @@
         <canvas id="signature-pad-recibe" class="signature-pad" width="400" height="200"></canvas>
         <button id="clear-recibe" class="btn btn-danger waves-effect waves-light" type="button">Limpiar firma</button>
         <h3>Foto de la persona que recibe</h3>
-        <input type="file" id="photo-recibe" accept="image/*" class="form-control">
+        <input type="file" id="photo-recibe" accept="image/*" class="form-control" capture="user">
     </div>
 </div>
 
