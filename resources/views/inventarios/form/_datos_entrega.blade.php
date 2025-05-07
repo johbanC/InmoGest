@@ -8,6 +8,8 @@
     <style>
         canvas {
             touch-action: none; /* Desactiva el comportamiento táctil predeterminado (scroll/zoom) */
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
     </style>
 </head>
