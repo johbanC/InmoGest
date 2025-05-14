@@ -49,7 +49,7 @@ class FirmaDigitalController extends Controller
         'tipo_documento_firmante' => 'required|string|in:DNI,Pasaporte,Cédula,RUC,Otro',
         'numero_documento_firmante' => 'required|string|max:30',
         'firma_entrega' => 'required|string', // base64
-        'foto_firmante' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // imagen normal
+        'foto_firmante' => 'nullable|image|mimes:jpeg,png,jpg,webp', // imagen normal
         'consentimiento' => 'required|accepted',
         'snapshot_data' => 'nullable|array',
         'dispositivo' => 'nullable|array',
