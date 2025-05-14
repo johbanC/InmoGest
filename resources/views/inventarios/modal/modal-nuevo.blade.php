@@ -13,27 +13,43 @@
                     </div>
                     <div class="signature-controls text-center mt-3">
                         <button id="clear-entrega" class="btn btn-danger waves-effect waves-light" type="button">
-                            Limpiar firma
+                            <i class="fas fa-eraser me-1"></i> Limpiar firma
                         </button>
                     </div>
                 </div>
                 
                 <div class="mt-4">
                     <h3 class="signature-pad-title">Foto de la persona que entrega</h3>
-                    <input type="file" id="photo-entrega" accept="image/*" class="form-control" capture="user">
-                    <img id="preview-entrega" class="photo-preview mt-3" src="" alt="Previsualización de la foto">
+                    <input type="file" id="photo-entrega" accept="image/*" class="form-control d-none" capture="user">
+                    
+                    <div class="photo-controls text-center mb-3">
+                        <button id="take-photo" class="btn btn-primary waves-effect waves-light me-2">
+                            <i class="fas fa-camera me-1"></i> Tomar Foto
+                        </button>
+                        <button id="remove-photo" class="btn btn-danger waves-effect waves-light" disabled>
+                            <i class="fas fa-trash-alt me-1"></i> Eliminar Foto
+                        </button>
+                    </div>
+                    
+                    <div id="photo-preview-container" class="text-center" style="display: none;">
+                        <img id="preview-entrega" class="photo-preview" src="" alt="Previsualización de la foto">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" id="save-signature" class="btn btn-primary waves-effect waves-light">Guardar Firma</button>
+                <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-1"></i> Cerrar
+                </button>
+                <button type="button" id="save-signature" class="btn btn-primary waves-effect waves-light">
+                    <i class="fas fa-save me-1"></i> Guardar Firma
+                </button>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    /* Estilos para el área de firma */
+    /* Estilos mejorados para el área de firma y foto */
     .signature-pad-container {
         width: 100%;
         border: 2px dashed #ccc;
@@ -63,19 +79,26 @@
         width: 100% !important;
         height: 200px;
         display: block;
+        touch-action: none;
     }
 
     .photo-preview {
-        display: none;
         max-width: 100%;
+        max-height: 300px;
         border: 1px solid #ddd;
         border-radius: 5px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin: 0 auto;
     }
 
-    .signature-controls {
-        margin-top: 15px;
+    .photo-controls {
+        margin: 15px 0;
+    }
+
+    #photo-preview-container {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        margin-top: 10px;
     }
 </style>
 
@@ -90,6 +113,13 @@ document.addEventListener('DOMContentLoaded', function() {
         maxWidth: 3,
         throttle: 16
     });
+
+    // Elementos del DOM para la foto
+    var photoInput = document.getElementById('photo-entrega');
+    var takePhotoBtn = document.getElementById('take-photo');
+    var removePhotoBtn = document.getElementById('remove-photo');
+    var photoPreviewContainer = document.getElementById('photo-preview-container');
+    var photoPreview = document.getElementById('preview-entrega');
 
     // Ajustar el tamaño del canvas al abrir el modal
     $('.bs-example-modal-lg').on('shown.bs.modal', function () {
@@ -106,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.width = canvas.offsetWidth * ratio;
         canvas.height = canvas.offsetHeight * ratio;
         canvas.getContext("2d").scale(ratio, ratio);
-        signaturePadEntrega.clear(); // Limpiar al redimensionar
     }
 
     // Botón para limpiar la firma
@@ -115,22 +144,31 @@ document.addEventListener('DOMContentLoaded', function() {
         signaturePadEntrega.clear();
     });
 
-    // Manejo de la foto
-    var photoEntrega = document.getElementById('photo-entrega');
-    var previewEntrega = document.getElementById('preview-entrega');
-    photoEntrega.addEventListener('change', function() {
-        var file = photoEntrega.files[0];
+    // Botón para tomar foto - activa el input file
+    takePhotoBtn.addEventListener('click', function() {
+        photoInput.click();
+    });
+
+    // Cuando se selecciona una foto
+    photoInput.addEventListener('change', function() {
+        var file = photoInput.files[0];
         if (file) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                previewEntrega.src = e.target.result;
-                previewEntrega.style.display = 'block';
+                photoPreview.src = e.target.result;
+                photoPreviewContainer.style.display = 'block';
+                removePhotoBtn.disabled = false;
             };
             reader.readAsDataURL(file);
-        } else {
-            previewEntrega.src = '';
-            previewEntrega.style.display = 'none';
         }
+    });
+
+    // Botón para eliminar foto
+    removePhotoBtn.addEventListener('click', function() {
+        photoInput.value = ''; // Limpia el input file
+        photoPreview.src = '';
+        photoPreviewContainer.style.display = 'none';
+        removePhotoBtn.disabled = true;
     });
 
     // Botón para guardar la firma
@@ -140,9 +178,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Aquí puedes agregar la lógica para guardar la firma
-        var dataURL = signaturePadEntrega.toDataURL();
-        console.log("Firma guardada:", dataURL);
+        if (!photoInput.files[0]) {
+            alert("Por favor, tome una foto.");
+            return;
+        }
+        
+        // Aquí puedes agregar la lógica para guardar la firma y foto
+        var signatureData = signaturePadEntrega.toDataURL();
+        console.log("Firma guardada:", signatureData);
+        console.log("Foto:", photoInput.files[0]);
         
         // Cerrar el modal después de guardar
         $('.bs-example-modal-lg').modal('hide');
