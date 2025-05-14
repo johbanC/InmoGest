@@ -1,26 +1,26 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg-recibe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Firma de quien entrega</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Firma de quien recibe</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="signature-pad-container">
-                    <h3 class="signature-pad-title">Firma de la persona que entrega</h3>
+                    <h3 class="signature-pad-title">Firma de la persona que recibe</h3>
                     <div class="signature-wrapper">
-                        <canvas id="signature-pad-entrega" class="signature-pad"></canvas>
+                        <canvas id="signature-pad-recibe" class="signature-pad"></canvas>
                     </div>
                     <div class="signature-controls text-center mt-3">
-                        <button id="clear-entrega" class="btn btn-danger waves-effect waves-light" type="button">
+                        <button id="clear-recibe" class="btn btn-danger waves-effect waves-light" type="button">
                             <i class="fas fa-eraser me-1"></i> Limpiar firma
                         </button>
                     </div>
                 </div>
                 
                 <div class="mt-4">
-                    <h3 class="signature-pad-title">Foto de la persona que entrega</h3>
-                    <input type="file" id="photo-entrega" accept="image/*" class="form-control d-none" capture="user">
+                    <h3 class="signature-pad-title">Foto de la persona que recibe</h3>
+                    <input type="file" id="photo-recibe" accept="image/*" class="form-control d-none" capture="user">
                     
                     <div class="photo-controls text-center mb-3">
                         <button id="take-photo" class="btn btn-primary waves-effect waves-light me-2">
@@ -32,7 +32,7 @@
                     </div>
                     
                     <div id="photo-preview-container" class="text-center" style="display: none;">
-                        <img id="preview-entrega" class="photo-preview" src="" alt="Previsualización de la foto">
+                        <img id="preview-recibe" class="photo-preview" src="" alt="Previsualización de la foto">
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar el canvas de firma
-    var canvas = document.getElementById('signature-pad-entrega');
+    var canvas = document.getElementById('signature-pad-recibe');
     var signaturePadEntrega = new SignaturePad(canvas, {
         backgroundColor: 'rgba(255, 255, 255, 1)',
         penColor: 'rgb(0, 0, 0)',
@@ -115,14 +115,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Elementos del DOM para la foto
-    var photoInput = document.getElementById('photo-entrega');
+    var photoInput = document.getElementById('photo-recibe');
     var takePhotoBtn = document.getElementById('take-photo');
     var removePhotoBtn = document.getElementById('remove-photo');
     var photoPreviewContainer = document.getElementById('photo-preview-container');
-    var photoPreview = document.getElementById('preview-entrega');
+    var photoPreview = document.getElementById('preview-recibe');
 
     // Ajustar el tamaño del canvas al abrir el modal
-    $('.bs-example-modal-lg').on('shown.bs.modal', function () {
+    $('.bs-example-modal-lg-recibe').on('shown.bs.modal', function () {
         resizeCanvas();
     });
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Botón para limpiar la firma
-    var clearButtonEntrega = document.getElementById('clear-entrega');
+    var clearButtonEntrega = document.getElementById('clear-recibe');
     clearButtonEntrega.addEventListener('click', function() {
         signaturePadEntrega.clear();
     });
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Foto:", photoInput.files[0]);
         
         // Cerrar el modal después de guardar
-        $('.bs-example-modal-lg').modal('hide');
+        $('.bs-example-modal-lg-recibe').modal('hide');
     });
 });
 </script>

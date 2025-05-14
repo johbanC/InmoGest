@@ -12,6 +12,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FirmaDigitalController;
+use App\Models\FirmaDigital;
 use PHPUnit\Framework\Reorderable;
 
 
@@ -245,4 +247,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Imagenes
     Route::delete('/eliminar-imagen/{id}', [FileController::class, 'eliminarImagen']);
+
+
+
+    //Firma Digital
+    Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
+        ->name('firmadigital.store');
 });

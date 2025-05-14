@@ -57,26 +57,20 @@
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Agregar firma de quien entrega</button>
-                                            @include('inventarios.modal.modal-nuevo')
+                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-entrega">Agregar firma de quien entrega</button>
+                                            @include('inventarios.modal.modal-nuevo-entrega')
                                         </div>
 
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="wrapper">
-                                            <h3>Firma de la persona que recibe</h3>
-                                            <canvas id="signature-pad-recibe" class="signature-pad" width="600"
-                                                height="200"></canvas>
-                                            <button id="clear-recibe" class="btn btn-danger waves-effect waves-light"
-                                                type="button">Limpiar firma</button>
-                                            <h3>Foto de la persona que recibe</h3>
-                                            <input type="file" id="photo-recibe" accept="image/*" class="form-control"
-                                                capture="user">
-                                            <img id="preview-recibe" src=""
-                                                alt="Previsualización de la foto de quien recibe"
-                                                style="display: none; margin-top: 10px; max-width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-primary waves-effect waves-light"
+                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-recibe">Agregar firma de quien recibe</button>
+                                            @include('inventarios.modal.modal-nuevo-recibe')
                                         </div>
+
                                     </div>
 
 
@@ -216,67 +210,5 @@
             <script src="{{ URL::asset('assets/js/app.js') }}"></script>
 
 
-           <script>
-// // Initialize the signature pad for "persona que entrega"
-// var signaturePadEntrega = new SignaturePad(document.getElementById('signature-pad-entrega'), {
-//     backgroundColor: 'rgba(245, 245, 245, 1)', // Fondo gris claro
-//     penColor: 'rgb(0, 0, 0)'
-// });
-
-// Initialize the signature pad for "persona que recibe"
-var signaturePadRecibe = new SignaturePad(document.getElementById('signature-pad-recibe'), {
-    backgroundColor: 'rgba(245, 245, 245, 1)', // Fondo gris claro
-    penColor: 'rgb(0, 0, 0)'
-});
-
-// // Clear button for "persona que entrega"
-// var clearButtonEntrega = document.getElementById('clear-entrega');
-// clearButtonEntrega.addEventListener('click', function() {
-//     console.log('Botón "Limpiar firma" presionado para persona que entrega');
-//     signaturePadEntrega.clear();
-// });
-
-// Clear button for "persona que recibe"
-var clearButtonRecibe = document.getElementById('clear-recibe');
-clearButtonRecibe.addEventListener('click', function() {
-    console.log('Botón "Limpiar firma" presionado para persona que recibe');
-    signaturePadRecibe.clear();
-});
-
-// // File input for "persona que entrega"
-// var photoEntrega = document.getElementById('photo-entrega');
-// var previewEntrega = document.getElementById('preview-entrega');
-// photoEntrega.addEventListener('change', function() {
-//     var file = photoEntrega.files[0];
-//     if (file) {
-//         var reader = new FileReader();
-//         reader.onload = function(e) {
-//             previewEntrega.src = e.target.result;
-//             previewEntrega.style.display = 'block';
-//         };
-//         reader.readAsDataURL(file);
-//     } else {
-//         previewEntrega.src = '';
-//         previewEntrega.style.display = 'none';
-//     }
-// });
-
-// File input for "persona que recibe"
-var photoRecibe = document.getElementById('photo-recibe');
-var previewRecibe = document.getElementById('preview-recibe');
-photoRecibe.addEventListener('change', function() {
-    var file = photoRecibe.files[0];
-    if (file) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            previewRecibe.src = e.target.result;
-            previewRecibe.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-    } else {
-        previewRecibe.src = '';
-        previewRecibe.style.display = 'none';
-    }
-});
-</script>
+          
         @endsection
