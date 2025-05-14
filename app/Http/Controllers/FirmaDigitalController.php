@@ -48,7 +48,7 @@ class FirmaDigitalController extends Controller
         'nombre_firmante' => 'required|string|max:255',
         'tipo_documento_firmante' => 'required|string|in:DNI,Pasaporte,Cédula,RUC,Otro',
         'numero_documento_firmante' => 'required|string|max:30',
-        'firma_entrega' => 'required|string', // base64
+        'firma_digital_path' => 'required|string', // base64
         'foto_firmante' => 'nullable|image|mimes:jpeg,png,jpg,webp', // imagen normal
         'consentimiento' => 'required|accepted',
         'snapshot_data' => 'nullable|array',
@@ -91,7 +91,7 @@ class FirmaDigitalController extends Controller
 
     try {
         // Guardar firma en base64
-        $rutaFirma = $guardarFirmaBase64($data['firma_entrega'], $codigoInventario, $carpetaDestino);
+        $rutaFirma = $guardarFirmaBase64($data['firma_digital_path'], $codigoInventario, $carpetaDestino);
 
         // Guardar foto si se envió
         $rutaFoto = null;
@@ -146,7 +146,7 @@ class FirmaDigitalController extends Controller
             'nombre_firmante' => 'required|string|max:255',
             'tipo_documento_firmante' => 'required|string|in:DNI,Pasaporte,Cédula,RUC,Otro',
             'numero_documento_firmante' => 'required|string|max:30',
-            'firma_entrega' => 'required|string', // Base64
+            'firma_digital_path' => 'required|string', // Base64
             'foto_firmante' => 'nullable|string', // Base64
             'consentimiento' => 'required|accepted',
             'snapshot_data' => 'nullable|array',

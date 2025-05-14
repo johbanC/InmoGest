@@ -2,6 +2,7 @@
 @section('title')
     Invoice
 @endsection
+
 @section('body')
 
     <body data-sidebar="dark">
@@ -207,8 +208,6 @@
             </div> <!-- end row -->
         @endsection
         @section('scripts')
-            <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-
-
-          
-        @endsection
+    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/modals.js') }}"></script>
+@endsection
