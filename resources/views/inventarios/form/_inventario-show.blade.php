@@ -57,8 +57,7 @@
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear
-                                                nuevo</button>
+                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Agregar firma de quien entrega</button>
                                             @include('inventarios.modal.modal-nuevo')
                                         </div>
 
@@ -67,7 +66,7 @@
                                     <div class="col-md-4">
                                         <div class="wrapper">
                                             <h3>Firma de la persona que recibe</h3>
-                                            <canvas id="signature-pad-recibe" class="signature-pad" width="400"
+                                            <canvas id="signature-pad-recibe" class="signature-pad" width="600"
                                                 height="200"></canvas>
                                             <button id="clear-recibe" class="btn btn-danger waves-effect waves-light"
                                                 type="button">Limpiar firma</button>
