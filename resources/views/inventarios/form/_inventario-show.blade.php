@@ -54,25 +54,51 @@
                                         </address>
                                     </div>
 
+                                    @php
+                                        $firmaEntrega = $firmas->firstWhere('rol_firmante', 'entrega');
+                                        $firmaRecibe = $firmas->firstWhere('rol_firmante', 'recibe');
+                                    @endphp
+
                                     <div class="col-md-4">
-
                                         <div class="card-tools">
-                                            <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-entrega">Agregar firma de quien entrega</button>
-                                            @include('inventarios.modal.modal-nuevo-entrega')
+                                            @if ($firmaEntrega)
+                                            <button type="button" class="btn btn-secondary waves-effect waves-light"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-ver-entrega">
+                                                    Firma de quien entrega ya registrada
+                                                </button> 
+                                                @include('inventarios.modal.modal-ver-entrega', [
+                                                    'firma' => $firmaEntrega,
+                                                ])
+                                            @else
+                                                <button type="button" class="btn btn-primary waves-effect waves-light"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-entrega">
+                                                    Agregar firma de quien entrega
+                                                </button>
+                                                @include('inventarios.modal.modal-nuevo-entrega')
+                                            @endif
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-4">
-
                                         <div class="card-tools">
-                                            <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-recibe">Agregar firma de quien recibe</button>
-                                            @include('inventarios.modal.modal-nuevo-recibe')
+                                            @if ($firmaRecibe)
+                                                <button type="button" class="btn btn-secondary waves-effect waves-light"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-ver-recibe">
+                                                    Firma de quien entrega ya registrada
+                                                </button> 
+                                                @include('inventarios.modal.modal-ver-recibe', [
+                                                    'firma' => $firmaRecibe,
+                                                ])
+                                            @else
+                                                <button type="button" class="btn btn-primary waves-effect waves-light"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-recibe">
+                                                    Agregar firma de quien recibe
+                                                </button>
+                                                @include('inventarios.modal.modal-nuevo-recibe')
+                                            @endif
                                         </div>
-
                                     </div>
+
 
 
 
@@ -208,6 +234,6 @@
             </div> <!-- end row -->
         @endsection
         @section('scripts')
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/modals.js') }}"></script>
-@endsection
+            <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/modals.js') }}"></script>
+        @endsection

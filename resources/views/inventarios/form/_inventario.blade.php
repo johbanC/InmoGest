@@ -265,7 +265,7 @@
                     </fieldset>
 
 
-                    <h3>Datos de entrega</h3>
+                    {{-- <h3>Datos de entrega</h3>
                     <fieldset>
                         <section>
                             <div class="row" style="padding-bottom: 10px">
@@ -279,7 +279,7 @@
 
 
 
-                    </fieldset>
+                    </fieldset> --}}
 
 
 

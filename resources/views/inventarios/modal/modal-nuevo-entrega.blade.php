@@ -7,9 +7,9 @@
             <input type="hidden" name="documentable_id" value="{{ $inventario->id }}">
             <input type="hidden" name="codigo" value="{{ $inventario->codigo }}">
             <input type="hidden" name="rol_firmante" value="entrega">
-            <input type="hidden" name="nombre_firmante" value="johban clavijo">
-            <input type="hidden" name="tipo_documento_firmante" value="Cédula">
-            <input type="hidden" name="numero_documento_firmante" value="123456789">
+            <input type="hidden" name="nombre_firmante" value="Stiven Luna">
+            <input type="hidden" name="tipo_documento_firmante" value="CC">
+            <input type="hidden" name="numero_documento_firmante" value="1127352358">
             <input type="checkbox" name="consentimiento" value="1" checked>
             <div class="modal-content">
                 <div class="modal-header">

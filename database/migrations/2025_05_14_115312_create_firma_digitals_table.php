@@ -23,6 +23,8 @@ return new class extends Migration
 
             // Archivos
             $table->string('firma_digital_path');
+            $table->text('firma_digital_base64')->nullable(); // Nuevo
+            $table->text('json_base64')->nullable(); // con este json vamos a poder probar como se general el hash de validacion
             $table->string('foto_firmante_path')->nullable();
 
             // Seguridad

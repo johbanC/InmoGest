@@ -25,7 +25,8 @@ class Inventario extends Model
         'user_id',
     ];
 
-    protected static function booted(){
+    protected static function booted()
+    {
         static::creating(function ($inventario) {
             // Generar el código de inventario con el formato deseado
             if (empty($inventario->codigo)) {
@@ -39,17 +40,24 @@ class Inventario extends Model
         });
     }
 
-    public function user(): BelongsTo{
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function tipo_inmueble(): BelongsTo{
+    public function tipo_inmueble(): BelongsTo
+    {
         return $this->belongsTo(TipoInmueble::class, 'tipo_inmuebles_id');
     }
 
-    public function areas(){
-    return $this->hasMany(Area::class, 'inventarios_id');
-}
+    public function areas()
+    {
+        return $this->hasMany(Area::class, 'inventarios_id');
+    }
 
+    public function firmasDigitales()
+    {
+        return $this->morphMany(FirmaDigital::class, 'documentable');
+    }
 
 }

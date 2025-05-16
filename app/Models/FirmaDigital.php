@@ -23,6 +23,8 @@ class FirmaDigital extends Model
         'tipo_documento_firmante', // Nuevo: DNI, pasaporte, etc.
         'numero_documento_firmante', // Nuevo
         'firma_digital_path',
+        'firma_digital_base64', // Nuevo: base64 del archivo
+        'json_base64', // Nuevo: base64 del json
         'foto_firmante_path',
         'ip_address',
         'hash_validacion',
