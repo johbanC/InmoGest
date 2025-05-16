@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     modals.forEach(modal => {
         const canvas = document.getElementById(`signature-pad-${modal}`);
-        console.log(`Canvas para modal ${modal}:`, canvas);
+        console.log(`Canvas para modal ${modal}:`, canvas); 
 
         if (!canvas) {
             console.warn(`No se encontró el canvas para ${modal}`);
