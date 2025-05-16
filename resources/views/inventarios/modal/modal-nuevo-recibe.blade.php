@@ -1,5 +1,5 @@
 <div class="modal fade bs-example-modal-lg-recibe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+    aria-hidden="true" id="modalFirmaRecibe">
     <div class="modal-dialog modal-lg">
         <form id="formularioFirmaDigital_recibe" method="POST" action="{{ route('firmadigital.store') }}" enctype="multipart/form-data">
             @csrf
@@ -10,7 +10,7 @@
             <input type="hidden" name="nombre_firmante" value="johban clavijo">
             <input type="hidden" name="tipo_documento_firmante" value="CC">
             <input type="hidden" name="numero_documento_firmante" value="123456789">
-            <input type="hidden" name="consentimiento" value="1" checked>
+            
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Firma de quien recibe</h5>
@@ -38,6 +38,7 @@
                             <img id="preview-recibe" class="photo-preview" src="" alt="Previsualización de la foto">
                         </div>
                     </div>
+                    <input type="checkbox" name="consentimiento" value="1" checked><p>aceptar</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -47,3 +48,4 @@
         </form>
     </div>
 </div>
+

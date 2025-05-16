@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Invoice
+    Inventario
 @endsection
 
 @section('body')
@@ -17,8 +17,61 @@
             @endslot
         @endcomponent
 
-
         <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+
+        <style>
+    /* Estilos mejorados para el área de firma y foto */
+    .signature-pad-container {
+        width: 100%;
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .signature-pad-title {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #495057;
+        text-align: center;
+    }
+
+    .signature-wrapper {
+        width: 100%;
+        position: relative;
+        background-color: #f5f5f5;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .signature-pad {
+        width: 100% !important;
+        height: 200px;
+        display: block;
+        touch-action: none;
+    }
+
+    .photo-preview {
+        max-width: 100%;
+        max-height: 300px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .photo-controls {
+        margin: 15px 0;
+    }
+
+    #photo-preview-container {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
 
         <div class="row">
             <div class="col-12">
@@ -91,7 +144,7 @@
                                                 ])
                                             @else
                                                 <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-recibe">
+                                                    data-bs-toggle="modal" data-bs-target="#modalFirmaRecibe">
                                                     Agregar firma de quien recibe
                                                 </button>
                                                 @include('inventarios.modal.modal-nuevo-recibe')
@@ -236,4 +289,6 @@
         @section('scripts')
             <script src="{{ URL::asset('assets/js/app.js') }}"></script>
             <script src="{{ URL::asset('assets/js/modals.js') }}"></script>
+
+            
         @endsection

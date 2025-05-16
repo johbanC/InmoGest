@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     modals.forEach(modal => {
         const canvas = document.getElementById(`signature-pad-${modal}`);
+        console.log(`Canvas para modal ${modal}:`, canvas);
+
+        if (!canvas) {
+            console.warn(`No se encontró el canvas para ${modal}`);
+            return; // No continuar si no existe el canvas
+        }
+
         const signaturePad = new SignaturePad(canvas, {
             backgroundColor: 'rgba(255, 255, 255, 1)',
             penColor: 'rgb(0, 0, 0)',
@@ -19,9 +26,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const saveBtn = document.querySelector(`.save-signature[data-target="${modal}"]`);
         const form = document.getElementById(`formularioFirmaDigital_${modal}`);
 
-        // Resize canvas on modal show
+        // Confirmar que todos los elementos existan
+        if (!photoInput || !takePhotoBtn || !removePhotoBtn || !photoPreviewContainer || !photoPreview || !saveBtn || !form) {
+            console.warn(`Faltan elementos para modal ${modal}`);
+            return;
+        }
+
         $(`.bs-example-modal-lg-${modal}`).on('shown.bs.modal', function () {
             resizeCanvas();
+            console.log(`Modal ${modal} mostrado y canvas redimensionado`);
         });
 
         window.addEventListener('resize', resizeCanvas);
@@ -33,18 +46,15 @@ document.addEventListener('DOMContentLoaded', function () {
             canvas.getContext("2d").scale(ratio, ratio);
         }
 
-        // Clear signature
         document.getElementById(`clear-${modal}`).addEventListener('click', function () {
             signaturePad.clear();
         });
 
-        // Take photo
         takePhotoBtn.addEventListener('click', function (e) {
             e.preventDefault();
             photoInput.click();
         });
 
-        // Preview photo
         photoInput.addEventListener('change', function () {
             const file = photoInput.files[0];
             if (file) {
@@ -58,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Remove photo
         removePhotoBtn.addEventListener('click', function () {
             photoInput.value = '';
             photoPreview.src = '';
@@ -66,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
             removePhotoBtn.disabled = true;
         });
 
-        // Save signature
         saveBtn.addEventListener('click', function () {
             if (signaturePad.isEmpty()) {
                 alert("Por favor, proporcione una firma primero.");
