@@ -91,10 +91,10 @@
                                         <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-eye"></i></button>
                                     </a>
 
-                                    <a href="{{ route('inventarios.edit', $inventario->id) }}">
+                                    {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}">
                                         <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-pen"></i></button>
 
-                                    </a>
+                                    </a> --}}
                                     
                                     <!-- <form id="formDelete{{ $inventario->id }}" method="POST" action="{{ route('inventarios.destroy', $inventario->id) }}" style="display: inline;">
                                         @csrf
@@ -193,18 +193,6 @@
                     'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
             });
-
-            var formulario = document.getElementById("formulariotipococina");
-            var botonGuardar = document.getElementById("botonGuardar");
-
-            if (formulario) {
-                formulario.addEventListener("submit", function() {
-                // Deshabilitar el botón después de enviar el formulario
-                    botonGuardar.disabled = true;
-                // Cambiar el texto del botón a "Guardando..."
-                    botonGuardar.innerHTML = 'Guardando...';
-                });
-            }
         });
 
     // Configurar un temporizador para ocultar la alerta después de 3 segundos (3000 milisegundos)

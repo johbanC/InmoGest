@@ -62,7 +62,7 @@
 
 
         $(document).ready(function() {
-            var formulario = document.getElementById("form-horizontal");
+            var formulario = document.getElementById("form-horizontal","formularioFirmaDigital_entrega");
             var botonGuardar = document.getElementById("botonGuardar");
 
             if (formulario) {

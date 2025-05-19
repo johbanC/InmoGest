@@ -132,9 +132,13 @@ class FirmaDigitalController extends Controller
             // Generar y guardar el hash de validación desde json_base64
             $this->generarHashDesdeJsonBase64($registro);
 
-            return response()->json(['success' => true, 'data' => $registro], 201);
+
+
+            // return response()->json(['success' => true, 'data' => $registro], 201);
+            return redirect()->route('inventarios.show', ['inventario' => $data['documentable_id']])->with('status', 1);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return to_route('inventarios.show')->with('status', 2);
+            // return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 

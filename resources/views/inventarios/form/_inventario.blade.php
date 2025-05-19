@@ -1,4 +1,4 @@
-@dump($errors->all())
+{{-- @dump($errors->all()) --}}
 
 <script>
     var areaIndex = 0;

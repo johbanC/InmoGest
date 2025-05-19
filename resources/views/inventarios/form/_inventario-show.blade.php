@@ -19,59 +19,61 @@
 
         <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 
+        @include('layouts.notificaciones')
+
         <style>
-    /* Estilos mejorados para el área de firma y foto */
-    .signature-pad-container {
-        width: 100%;
-        border: 2px dashed #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: #f9f9f9;
-    }
+            /* Estilos mejorados para el área de firma y foto */
+            .signature-pad-container {
+                width: 100%;
+                border: 2px dashed #ccc;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                background-color: #f9f9f9;
+            }
 
-    .signature-pad-title {
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #495057;
-        text-align: center;
-    }
+            .signature-pad-title {
+                font-weight: 600;
+                margin-bottom: 15px;
+                color: #495057;
+                text-align: center;
+            }
 
-    .signature-wrapper {
-        width: 100%;
-        position: relative;
-        background-color: #f5f5f5;
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
-        overflow: hidden;
-    }
+            .signature-wrapper {
+                width: 100%;
+                position: relative;
+                background-color: #f5f5f5;
+                border: 1px solid #dee2e6;
+                border-radius: 5px;
+                overflow: hidden;
+            }
 
-    .signature-pad {
-        width: 100% !important;
-        height: 200px;
-        display: block;
-        touch-action: none;
-    }
+            .signature-pad {
+                width: 100% !important;
+                height: 200px;
+                display: block;
+                touch-action: none;
+            }
 
-    .photo-preview {
-        max-width: 100%;
-        max-height: 300px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+            .photo-preview {
+                max-width: 100%;
+                max-height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
 
-    .photo-controls {
-        margin: 15px 0;
-    }
+            .photo-controls {
+                margin: 15px 0;
+            }
 
-    #photo-preview-container {
-        padding: 10px;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        margin-top: 10px;
-    }
-</style>
+            #photo-preview-container {
+                padding: 10px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+        </style>
 
         <div class="row">
             <div class="col-12">
@@ -115,10 +117,11 @@
                                     <div class="col-md-4">
                                         <div class="card-tools">
                                             @if ($firmaEntrega)
-                                            <button type="button" class="btn btn-secondary waves-effect waves-light"
-                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-ver-entrega">
+                                                <button type="button" class="btn btn-secondary waves-effect waves-light"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target=".bs-example-modal-lg-ver-entrega">
                                                     Firma de quien entrega ya registrada
-                                                </button> 
+                                                </button>
                                                 @include('inventarios.modal.modal-ver-entrega', [
                                                     'firma' => $firmaEntrega,
                                                 ])
@@ -138,7 +141,7 @@
                                                 <button type="button" class="btn btn-secondary waves-effect waves-light"
                                                     data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-ver-recibe">
                                                     Firma de quien entrega ya registrada
-                                                </button> 
+                                                </button>
                                                 @include('inventarios.modal.modal-ver-recibe', [
                                                     'firma' => $firmaRecibe,
                                                 ])
@@ -291,104 +294,114 @@
             {{-- <script src="{{ URL::asset('assets/js/modals.js') }}"></script> --}}
 
             <script>
-                document.addEventListener('DOMContentLoaded', function () {
-    const modals = ['entrega', 'recibe'];
+                document.addEventListener('DOMContentLoaded', function() {
+                    const modals = ['entrega', 'recibe'];
 
-    modals.forEach(modal => {
-        const canvas = document.getElementById(`signature-pad-${modal}`);
-        console.log(`Canvas para modal ${modal}:`, canvas); 
+                    modals.forEach(modal => {
+                        const canvas = document.getElementById(`signature-pad-${modal}`);
+                        console.log(`Canvas para modal ${modal}:`, canvas);
 
-        if (!canvas) {
-            console.warn(`No se encontró el canvas para ${modal}`);
-            return; // No continuar si no existe el canvas
-        }
+                        if (!canvas) {
+                            console.warn(`No se encontró el canvas para ${modal}`);
+                            return; // No continuar si no existe el canvas
+                        }
 
-        const signaturePad = new SignaturePad(canvas, {
-            backgroundColor: 'rgba(255, 255, 255, 1)',
-            penColor: 'rgb(0, 0, 0)',
-            minWidth: 1,
-            maxWidth: 3,
-            throttle: 16
-        });
+                        const signaturePad = new SignaturePad(canvas, {
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
+                            penColor: 'rgb(0, 0, 0)',
+                            minWidth: 1,
+                            maxWidth: 3,
+                            throttle: 16
+                        });
 
-        const photoInput = document.getElementById(`foto_firmante_${modal}`);
-        const takePhotoBtn = document.getElementById(`take-photo_${modal}`);
-        const removePhotoBtn = document.getElementById(`remove-photo_${modal}`);
-        const photoPreviewContainer = document.getElementById(`photo-preview-container-${modal}`);
-        const photoPreview = document.getElementById(`preview-${modal}`);
-        const saveBtn = document.querySelector(`.save-signature[data-target="${modal}"]`);
-        const form = document.getElementById(`formularioFirmaDigital_${modal}`);
+                        const photoInput = document.getElementById(`foto_firmante_${modal}`);
+                        const takePhotoBtn = document.getElementById(`take-photo_${modal}`);
+                        const removePhotoBtn = document.getElementById(`remove-photo_${modal}`);
+                        const photoPreviewContainer = document.getElementById(`photo-preview-container-${modal}`);
+                        const photoPreview = document.getElementById(`preview-${modal}`);
+                        const saveBtn = document.querySelector(`.save-signature[data-target="${modal}"]`);
+                        const form = document.getElementById(`formularioFirmaDigital_${modal}`);
 
-        // Confirmar que todos los elementos existan
-        if (!photoInput || !takePhotoBtn || !removePhotoBtn || !photoPreviewContainer || !photoPreview || !saveBtn || !form) {
-            console.warn(`Faltan elementos para modal ${modal}`);
-            return;
-        }
+                        // Confirmar que todos los elementos existan
+                        if (!photoInput || !takePhotoBtn || !removePhotoBtn || !photoPreviewContainer || !
+                            photoPreview || !saveBtn || !form) {
+                            console.warn(`Faltan elementos para modal ${modal}`);
+                            return;
+                        }
 
-        $(`.bs-example-modal-lg-${modal}`).on('shown.bs.modal', function () {
-            resizeCanvas();
-            console.log(`Modal ${modal} mostrado y canvas redimensionado`);
-        });
+                        $(`.bs-example-modal-lg-${modal}`).on('shown.bs.modal', function() {
+                            resizeCanvas();
+                            console.log(`Modal ${modal} mostrado y canvas redimensionado`);
+                        });
 
-        window.addEventListener('resize', resizeCanvas);
+                        window.addEventListener('resize', resizeCanvas);
 
-        function resizeCanvas() {
-            const ratio = Math.max(window.devicePixelRatio || 1, 1);
-            canvas.width = canvas.offsetWidth * ratio;
-            canvas.height = canvas.offsetHeight * ratio;
-            canvas.getContext("2d").scale(ratio, ratio);
-        }
+                        function resizeCanvas() {
+                            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                            canvas.width = canvas.offsetWidth * ratio;
+                            canvas.height = canvas.offsetHeight * ratio;
+                            canvas.getContext("2d").scale(ratio, ratio);
+                        }
 
-        document.getElementById(`clear-${modal}`).addEventListener('click', function () {
-            signaturePad.clear();
-        });
+                        document.getElementById(`clear-${modal}`).addEventListener('click', function() {
+                            signaturePad.clear();
+                        });
 
-        takePhotoBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            photoInput.click();
-        });
+                        takePhotoBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            photoInput.click();
+                        });
 
-        photoInput.addEventListener('change', function () {
-            const file = photoInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    photoPreview.src = e.target.result;
-                    photoPreviewContainer.style.display = 'block';
-                    removePhotoBtn.disabled = false;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+                        photoInput.addEventListener('change', function() {
+                            const file = photoInput.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    photoPreview.src = e.target.result;
+                                    photoPreviewContainer.style.display = 'block';
+                                    removePhotoBtn.disabled = false;
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        });
 
-        removePhotoBtn.addEventListener('click', function () {
-            photoInput.value = '';
-            photoPreview.src = '';
-            photoPreviewContainer.style.display = 'none';
-            removePhotoBtn.disabled = true;
-        });
+                        removePhotoBtn.addEventListener('click', function() {
+                            photoInput.value = '';
+                            photoPreview.src = '';
+                            photoPreviewContainer.style.display = 'none';
+                            removePhotoBtn.disabled = true;
+                        });
 
-        saveBtn.addEventListener('click', function () {
-            if (signaturePad.isEmpty()) {
-                alert("Por favor, proporcione una firma primero.");
-                return;
-            }
+                        saveBtn.addEventListener('click', function() {
+                            if (signaturePad.isEmpty()) {
+                                alert("Por favor, proporcione una firma primero.");
+                                return;
+                            }
 
-            if (!photoInput.files[0]) {
-                alert("Por favor, tome una foto.");
-                return;
-            }
+                            if (!photoInput.files[0]) {
+                                alert("Por favor, tome una foto.");
+                                return;
+                            }
 
-            const signatureData = signaturePad.toDataURL();
-            const inputFirma = document.getElementById(`firma_${modal}`);
-            inputFirma.value = signatureData;
+                            const signatureData = signaturePad.toDataURL();
+                            const inputFirma = document.getElementById(`firma_${modal}`);
+                            inputFirma.value = signatureData;
 
-            form.submit();
-        });
-    });
-});
-
+                            form.submit();
+                        });
+                    });
+                });
             </script>
 
-            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const btnGuardar = document.getElementById('btnGuardar');
+                    if (btnGuardar) {
+                        btnGuardar.addEventListener('click', function() {
+                            btnGuardar.disabled = true;
+                            btnGuardar.innerHTML = 'Guardando...';
+                        });
+                    }
+                });
+            </script>
         @endsection

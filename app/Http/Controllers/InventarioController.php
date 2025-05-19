@@ -71,7 +71,7 @@ class InventarioController extends Controller
             'observaciones' => 'required|array',
             'fotos' => 'nullable|array',
             'fotos.*' => 'nullable|array', // Validar que cada elemento de fotos es un array
-            'fotos.*.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // Tipos MIME específicos
+            'fotos.*.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp', // Tipos MIME específicos
         ]);
 
         // Crear el inventario
@@ -125,7 +125,16 @@ class InventarioController extends Controller
             $this->procesarFotosArea($request, $index, $area, $baseStoragePath, $basePublicPath, $inventario->codigo);
         }
 
-        return to_route('inventarios.index')->with('status', 'Inventario creado correctamente');
+
+
+        if ($inventario) {
+            return to_route('inventarios.index')->with('status', 1);
+        } else {
+            return to_route('inventarios.index')->with('status', 2);
+        }
+    // }
+
+    //     return to_route('inventarios.index')->with('status', 'Inventario creado correctamente');
     }
 
 
@@ -188,6 +197,7 @@ class InventarioController extends Controller
                 }
             }
         }
+        
     }
     /**
      * Display the specified resource.
