@@ -256,9 +256,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('inventarios.generarEnlaceFirmaRemota');
 
 
-    Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
-        ->name('inventarios.firmaremota')
-        ->middleware('signed');
+   
 
 
 
@@ -272,3 +270,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ->name('firma.remota')
     // ->middleware('signed'); // Solo accesible con URL firmada
 });
+
+ Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
+        ->name('inventarios.firmaremota')
+        ->middleware('signed');
