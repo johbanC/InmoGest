@@ -270,7 +270,22 @@ class InventarioController extends Controller
     return view('inventarios.enlace-firma', compact('url', 'inventario', 'rol'));
 }
 
-    public function firmaremota(){
-        return ('test');
+    public function firmaremota(Inventario $inventario, $rol){
+        // Cargar áreas con sus relaciones y las firmas digitales polimórficas
+        $inventario->load(['areas.items', 'areas.fotos', 'firmasDigitales']);
+
+        $firmas = $inventario->firmasDigitales; // colección de firmas asociadas
+
+        // Filtrar las firmas por tipo: 'entrega' y 'recibe' (según tu campo 'tipo' o similar)
+        $firmaEntrega = $firmas->firstWhere('rol_firmante', 'Entrega');
+        $firmaRecibe = $firmas->firstWhere('rol_firmante', 'Recibe');
+
+        return view('inventarios.show', [
+            'inventario' => $inventario,
+            'areas' => $inventario->areas,
+            'firmas' => $firmas,
+            'firmaEntrega' => $firmaEntrega,
+            'firmaRecibe' => $firmaRecibe,
+        ]);
     }
 }

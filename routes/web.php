@@ -248,29 +248,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/eliminar-imagen/{id}', [FileController::class, 'eliminarImagen']);
 
 
-
-
-
-
     Route::get('/inventarios/generar-enlace-firma/{inventario}/{rol}', [InventarioController::class, 'generarEnlaceFirmaRemota'])
         ->name('inventarios.generarEnlaceFirmaRemota');
 
 
-   
-
-
-
-
-
-    // //Firma Digital
-    // Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
-    //     ->name('firmadigital.store');
-
-    // Route::get('/firma-remota/{inventario}', [InventarioController::class, 'firmaRemota'])
-    // ->name('firma.remota')
-    // ->middleware('signed'); // Solo accesible con URL firmada
+    //Firma Digital
+    Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
+        ->name('firmadigital.store');
 });
 
- Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
-        ->name('inventarios.firmaremota')
-        ->middleware('signed');
+
+// Ruta para manejar la firma remota del lado del cliente
+Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
+    ->name('inventarios.firmaremota')
+    ->middleware('signed');
