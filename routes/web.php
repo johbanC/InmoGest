@@ -244,13 +244,31 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/inventarios/{inventario}', [InventarioController::class, 'show'])
         ->name('inventarios.show');
 
-
     //Imagenes
     Route::delete('/eliminar-imagen/{id}', [FileController::class, 'eliminarImagen']);
 
 
 
-    //Firma Digital
-    Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
-        ->name('firmadigital.store');
+
+
+
+    Route::get('/inventarios/generar-enlace-firma/{inventario}/{rol}', [InventarioController::class, 'generarEnlaceFirmaRemota'])
+        ->name('inventarios.generarEnlaceFirmaRemota');
+
+
+    Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
+        ->name('inventarios.firmaremota')
+        ->middleware('signed');
+
+
+
+
+
+    // //Firma Digital
+    // Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
+    //     ->name('firmadigital.store');
+
+    // Route::get('/firma-remota/{inventario}', [InventarioController::class, 'firmaRemota'])
+    // ->name('firma.remota')
+    // ->middleware('signed'); // Solo accesible con URL firmada
 });

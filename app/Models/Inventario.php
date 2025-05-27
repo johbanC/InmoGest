@@ -60,4 +60,13 @@ class Inventario extends Model
         return $this->morphMany(FirmaDigital::class, 'documentable');
     }
 
+  public function firmaEntrega()
+{
+    return $this->morphOne(FirmaDigital::class, 'documentable')->where('rol_firmante', 'entrega');
+}
+
+public function firmaRecibe()
+{
+    return $this->morphOne(FirmaDigital::class, 'documentable')->where('rol_firmante', 'recibe');
+}
 }

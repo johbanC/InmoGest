@@ -8,6 +8,7 @@ use App\Models\TipoInmueble;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File as FileSystem;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Inventario;
 use App\Models\Area;
@@ -15,6 +16,7 @@ use App\Models\Item;
 use App\Models\Foto;
 use App\Models\FirmaDigital;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 
 class InventarioController extends Controller
@@ -22,14 +24,21 @@ class InventarioController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
+        $inventarios = Cache::remember('inventarios_index', now()->addHours(2), function () {
+            return Inventario::with([
+                'user:id,name',
+                'tipo_inmueble:id,nombre',
+                'firmaEntrega',
+                'firmaRecibe'
+            ])
+                ->orderBy('id', 'asc')
+                ->get();
+        });
 
-        return view('inventarios.index', [
-
-            'inventarios' => Inventario::with('user')->orderBy('id', 'DESC')->get()
-
-        ]);
+        return view('inventarios.index', compact('inventarios'));
     }
 
     /**
@@ -132,9 +141,9 @@ class InventarioController extends Controller
         } else {
             return to_route('inventarios.index')->with('status', 2);
         }
-    // }
+        // }
 
-    //     return to_route('inventarios.index')->with('status', 'Inventario creado correctamente');
+        //     return to_route('inventarios.index')->with('status', 'Inventario creado correctamente');
     }
 
 
@@ -197,7 +206,6 @@ class InventarioController extends Controller
                 }
             }
         }
-        
     }
     /**
      * Display the specified resource.
@@ -248,5 +256,21 @@ class InventarioController extends Controller
     public function destroy(Inventario $inventario)
     {
         //
+    }
+
+
+    public function generarEnlaceFirmaRemota(Inventario $inventario, $rol)
+{
+    $url = \Illuminate\Support\Facades\URL::signedRoute('inventarios.firmaremota', [
+        'inventario' => $inventario->id,
+        'rol' => $rol, // 'entrega' o 'recibe'
+    ], now()->addMinutes(30)); // Expira en 30 minutos
+
+    // Retorna una vista mostrando el enlace
+    return view('inventarios.enlace-firma', compact('url', 'inventario', 'rol'));
+}
+
+    public function firmaremota(){
+        return ('test');
     }
 }
