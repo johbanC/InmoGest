@@ -252,11 +252,12 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('inventarios.generarEnlaceFirmaRemota');
 
 
-    //Firma Digital
-    Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
-        ->name('firmadigital.store');
+    
 });
 
+//Firma Digital
+    Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
+        ->name('firmadigital.store');
 
 // Ruta para manejar la firma remota del lado del cliente
 Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])

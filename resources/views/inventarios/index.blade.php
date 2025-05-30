@@ -33,6 +33,7 @@
         integrity="sha512-TtQdiqlFBF4xOf9GCawalT4FQ7qihYm+EMYxpor3WzndeGC+NflmNd/P5AN8vvRH4XqTjoNrIeJRbZcifEMbWA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <style type="text/css">
         .text-pdf {
             color: #AD0B00;
@@ -121,28 +122,29 @@
                                             <a
                                                 href="{{ route('inventarios.generarEnlaceFirmaRemota', [$inventario->id, 'recibe']) }}">
                                                 <button type="button"
-                                                    class="btn btn-xs btn-default text-primary mx-1 shadow"><i
-                                                        class="fa fa-lg fa-fw fa-link"></i></button>
+                                                    class="btn btn-xs btn-default text-primary mx-1 shadow"
+                                                    data-bs-toggle="tooltip"><i class="fa fa-lg fa-fw fa-link"></i></button>
                                             </a>
 
+                                          
                                             {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}">
                                         <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-pen"></i></button>
 
                                     </a> --}}
 
                                             <!-- <form id="formDelete{{ $inventario->id }}" method="POST" action="{{ route('inventarios.destroy', $inventario->id) }}" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button" onclick="eliminar({{ $inventario->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
-                                                        <i class="fa fa-lg fa-fw fa-trash"></i>
-                                                    </button>
-                                                </form> -->
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" onclick="eliminar({{ $inventario->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
+                                                            <i class="fa fa-lg fa-fw fa-trash"></i>
+                                                        </button>
+                                                    </form> -->
 
                                             <!-- <a href="{{ route('inventarios.index', $inventario) }}" target="_black"> en index estaba PDF
-                                                    <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
-                                                        <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
-                                                    </button>
-                                                </a> -->
+                                                        <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
+                                                            <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
+                                                        </button>
+                                                    </a> -->
 
                                         </td>
                                     </tr>
@@ -161,6 +163,7 @@
 
         <!-- Bootstrap -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+            
 
         <!-- DataTables -->
         <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
@@ -239,5 +242,9 @@
                     alertInstance.close();
                 }
             }, 3000);
+
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
         </script>
     @endsection

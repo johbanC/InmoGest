@@ -106,7 +106,7 @@
                                     </form> -->
 
                                     <a href="{{ route('fichastecnicas.pdf', $fichatecnica) }}" target="_black">
-                                        <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
+                                        <button class="btn btn-xs btn-default mx-1 shadow" title="Ver Pdf">
                                             <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
                                         </button>
                                     </a>

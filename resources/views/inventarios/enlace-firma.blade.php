@@ -1,38 +1,167 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Enlace de Firma Remota</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h4>Enlace para firma remota</h4>
-            </div>
-            <div class="card-body">
-                <p><strong>Inventario ID:</strong> {{ $inventario->id }}</p>
-                <p><strong>Rol:</strong> {{ $rol }}</p>
-                <p><strong>Enlace (expira en 30 minutos):</strong></p>
-                
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="enlaceFirma" value="{{ $url }}" readonly>
-                    <button class="btn btn-outline-secondary" onclick="copiarEnlace()">Copiar</button>
+@extends('layouts.master')
+
+@section('title')
+    Enlace de Firma Remota
+@endsection
+
+@section('css')
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
+
+    <!-- Bootstrap Css -->
+    <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="{{ URL::asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
+@endsection
+
+@section('body')
+
+    <body data-sidebar="dark">
+    @endsection
+
+    @section('content')
+        @component('components.breadcrumb')
+            @slot('page_title')
+                Enlace para firma remota
+            @endslot
+            @slot('subtitle')
+                Inventario
+            @endslot
+        @endcomponent
+
+        @include('layouts.notificaciones')
+        <!-- Para poder verificar que error tengo
+             @dump($errors->all())
+             -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <p><strong>Inventario ID:</strong> {{ $inventario->codigo }}</p>
+                            <p><strong>Rol:</strong> {{ $rol }}</p>
+                            <p><strong>Enlace (expira en 30 minutos):</strong></p>
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="enlaceFirma" value="{{ $url }}"
+                                    readonly>
+                                <button class="btn btn-secondary" onclick="copiarEnlace()">Copiar</button>
+                            </div>
+
+                            <a href="{{ $url }}" class="btn btn-primary" target="_blank">Ir al enlace</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Volver</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <a href="{{ $url }}" class="btn btn-primary" target="_blank">Ir al enlace</a>
-                <a href="{{ url()->previous() }}" class="btn btn-secondary">Volver</a>
             </div>
         </div>
-    </div>
+    @endsection
 
-    <script>
-        function copiarEnlace() {
-            const enlace = document.getElementById('enlaceFirma');
-            enlace.select();
-            document.execCommand('copy');
-            alert('Enlace copiado al portapapeles');
-        }
-    </script>
-</body>
-</html>
+
+
+    @section('scripts')
+        <!-- App js -->
+        <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
+
+
+
+        <script>
+            function copiarEnlace() {
+                const enlace = document.getElementById('enlaceFirma');
+                enlace.select();
+                document.execCommand('copy');
+                alert('Enlace copiado al portapapeles');
+            }
+        </script>
+
+
+        <script>
+            $(document).ready(function() {
+                var formulario = document.getElementById("form-horizontal", "formularioFirmaDigital_entrega");
+                var botonGuardar = document.getElementById("botonGuardar");
+
+                if (formulario) {
+                    formulario.addEventListener("submit", function() {
+                        // Deshabilitar el botón después de enviar el formulario
+                        botonGuardar.disabled = true;
+                        // Cambiar el texto del botón a "Guardando..."
+                        botonGuardar.innerHTML = 'Guardando...';
+                    });
+                }
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var formulario = document.getElementById("formularioFichaTecnica");
+                var botonGuardar = document.getElementById("botonGuardar");
+
+                formulario.addEventListener("submit", function() {
+                    // Deshabilitar el botón después de enviar el formulario
+                    botonGuardar.disabled = true;
+                    // Cambiar el texto del botón a "Guardando..."
+                    botonGuardar.innerHTML = 'Guardando...';
+                });
+            });
+        </script>
+
+
+        <script>
+            // Crea una instancia de InputMask y aplica la máscara al campo de valor y administración
+            var valorInput = document.getElementById('input-valor');
+            var administracionInput = document.getElementById('input-administracion');
+
+            var valorMask = IMask(valorInput, {
+                mask: 'num',
+                blocks: {
+                    num: {
+                        // Permite hasta 15 dígitos antes del separador decimal
+                        mask: Number,
+                        thousandsSeparator: '.',
+                        radix: ',',
+                        scale: 2, // Dos dígitos decimales
+                        signed: false // No se permite un signo de negativo
+                    }
+                },
+                lazy: false // Muestra el símbolo de la moneda siempre
+            });
+
+            var administracionMask = IMask(administracionInput, {
+                mask: 'num',
+                blocks: {
+                    num: {
+                        // Permite hasta 15 dígitos antes del separador decimal
+                        mask: Number,
+                        thousandsSeparator: '.',
+                        radix: ',',
+                        scale: 2, // Dos dígitos decimales
+                        signed: false // No se permite un signo de negativo
+                    }
+                },
+                lazy: false // Muestra el símbolo de la moneda siempre
+            });
+        </script>
+
+
+        <script>
+            // AGREGAR LOS PUNTOS EN EL NÚMERO DE DOCUMENTO Y PERMITIR SOLO NÚMEROS
+            document.getElementById('input-cedula').addEventListener('input', function(evt) {
+                var value = evt.target.value;
+                // Eliminar todos los caracteres que no sean números
+                value = value.replace(/\D/g, '');
+                // Aplicar el formato con puntos
+                evt.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            });
+        </script>
+
+        <script>
+            // Crea una instancia de InputMask y aplica la máscara al campo de teléfono
+            var telefonoInput = document.getElementById('input-telefono');
+            var telefonoMask = IMask(telefonoInput, {
+                mask: '(000) 000-0000'
+            });
+        </script>
+    @endsection

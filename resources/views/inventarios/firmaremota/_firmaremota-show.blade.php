@@ -1,12 +1,7 @@
-@extends('layouts.master')
-@section('title')
-    Inventario
-@endsection
 
-@section('body')
+@extends('layouts.firmasremotas')
 
-    <body data-sidebar="dark">
-    @endsection
+
     @section('content')
         @component('components.breadcrumb')
             @slot('page_title')
@@ -401,18 +396,6 @@
                             btnGuardar.disabled = true;
                             btnGuardar.innerHTML = 'Guardando...';
                         });
-                    }
-                });
-            </script>
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Obtener el parámetro 'destino' de la URL
-                    const params = new URLSearchParams(window.location.search);
-                    const destino = params.get('destino');
-                    if (destino) {
-                        // Asignar el valor al input oculto
-                        document.querySelector('input[name="destino"]').value = destino;
                     }
                 });
             </script>

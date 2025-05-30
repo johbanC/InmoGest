@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\FirmaDigital;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+
+use function Laravel\Prompts\alert;
 
 class FirmaDigitalController extends Controller
 {
@@ -38,6 +41,7 @@ class FirmaDigitalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
 
     public function store(Request $request)
     {
@@ -132,13 +136,19 @@ class FirmaDigitalController extends Controller
             // Generar y guardar el hash de validación desde json_base64
             $this->generarHashDesdeJsonBase64($registro);
 
+            // Si la firma es remota, mostrar mensaje en pantalla
+            if ($request->input('destino') === 'remoto') {
+                return redirect()->back()
+                    ->with('status', 1);
+            }
 
-
-            // return response()->json(['success' => true, 'data' => $registro], 201);
+            // Si no es remota, redirigir normalmente
             return redirect()->route('inventarios.show', ['inventario' => $data['documentable_id']])->with('status', 1);
         } catch (\Exception $e) {
-            return to_route('inventarios.show')->with('status', 2);
-            // return response()->json(['error' => $e->getMessage()], 500);
+            if ($request->input('destino') === 'remoto') {
+                alert('Error al registrar la firma: ' . $e->getMessage(), 'error');
+            }
+            return redirect()->route('inventarios.show', ['inventario' => $data['documentable_id']])->with('status', 2);
         }
     }
 

@@ -10,6 +10,7 @@
             <input type="hidden" name="nombre_firmante" value="Stiven Luna">
             <input type="hidden" name="tipo_documento_firmante" value="CC">
             <input type="hidden" name="numero_documento_firmante" value="1127352358">
+            <input type="text" name="destino" value="">
             
             <div class="modal-content">
                 <div class="modal-header">
@@ -50,3 +51,21 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Verificar si en la URL hay una variable "destino=remoto"
+        const params = new URLSearchParams(window.location.search);
+        const esRemoto = params.get('destino') === 'remoto';
+
+        if (esRemoto) {
+            const formulario = document.getElementById('formularioFirmaDigital_entrega');
+            if (formulario) {
+                const inputDestino = formulario.querySelector('input[name="destino"]');
+                if (inputDestino) {
+                    inputDestino.value = 'remoto';
+                }
+            }
+        }
+    });
+</script>

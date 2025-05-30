@@ -27,19 +27,18 @@ class InventarioController extends Controller
 
     public function index()
     {
-        $inventarios = Cache::remember('inventarios_index', now()->addHours(2), function () {
-            return Inventario::with([
-                'user:id,name',
-                'tipo_inmueble:id,nombre',
-                'firmaEntrega',
-                'firmaRecibe'
-            ])
-                ->orderBy('id', 'asc')
-                ->get();
-        });
+        $inventarios = Inventario::with([
+            'user:id,name',
+            'tipo_inmueble:id,nombre',
+            'firmaEntrega',
+            'firmaRecibe'
+        ])
+            ->orderBy('id', 'asc')
+            ->get();
 
         return view('inventarios.index', compact('inventarios'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -260,17 +259,19 @@ class InventarioController extends Controller
 
 
     public function generarEnlaceFirmaRemota(Inventario $inventario, $rol)
-{
-    $url = \Illuminate\Support\Facades\URL::signedRoute('inventarios.firmaremota', [
-        'inventario' => $inventario->id,
-        'rol' => $rol, // 'entrega' o 'recibe'
-    ], now()->addMinutes(30)); // Expira en 30 minutos
+    {
+        $url = \Illuminate\Support\Facades\URL::signedRoute('inventarios.firmaremota', [
+            'inventario' => $inventario->id,
+            'rol' => $rol, // 'entrega' o 'recibe'
+            'destino' => 'remoto' //
+        ], now()->addMinutes(30)); // Expira en 30 minutos
 
-    // Retorna una vista mostrando el enlace
-    return view('inventarios.enlace-firma', compact('url', 'inventario', 'rol'));
-}
+        // Retorna una vista mostrando el enlace
+        return view('inventarios.enlace-firma', compact('url', 'inventario', 'rol'));
+    }
 
-    public function firmaremota(Inventario $inventario, $rol){
+    public function firmaremota(Inventario $inventario, $rol)
+    {
         // Cargar áreas con sus relaciones y las firmas digitales polimórficas
         $inventario->load(['areas.items', 'areas.fotos', 'firmasDigitales']);
 
@@ -280,7 +281,7 @@ class InventarioController extends Controller
         $firmaEntrega = $firmas->firstWhere('rol_firmante', 'Entrega');
         $firmaRecibe = $firmas->firstWhere('rol_firmante', 'Recibe');
 
-        return view('inventarios.show', [
+        return view('inventarios.firmaremota', [
             'inventario' => $inventario,
             'areas' => $inventario->areas,
             'firmas' => $firmas,
