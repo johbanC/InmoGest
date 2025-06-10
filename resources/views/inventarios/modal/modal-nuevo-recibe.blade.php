@@ -8,9 +8,9 @@
             <input type="hidden" name="documentable_id" value="{{ $inventario->id }}">
             <input type="hidden" name="codigo" value="{{ $inventario->codigo }}">
             <input type="hidden" name="rol_firmante" value="recibe">
-            <input type="hidden" name="nombre_firmante" value="johban clavijo">
-            <input type="hidden" name="tipo_documento_firmante" value="CC">
-            <input type="hidden" name="numero_documento_firmante" value="123456789">
+            <input type="hidden" name="nombre_firmante" value="{{ $inventario->cliente->nombre }} {{ $inventario->cliente->apellido }}">    
+            <input type="hidden" name="tipo_documento_firmante" value="{{ $inventario->cliente->tipo_documento }}">
+            <input type="hidden" name="numero_documento_firmante" value="{{ $inventario->cliente->numero_documento }}">
             <input type="hidden" name="destino" value="">
 
             <div class="modal-content">

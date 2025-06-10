@@ -13,6 +13,8 @@
     <!-- App Css-->
     <link href="{{ URL::asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
 
+    <link href="{{ URL::asset('assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
+
 
 
     <style>
@@ -40,8 +42,8 @@
 
         @include('layouts.notificaciones')
         <!-- Para poder verificar que error tengo
-             {{-- @dump($errors->all()) --}}
-             -->
+                 {{-- @dump($errors->all()) --}}
+                 -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -67,6 +69,7 @@
         <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
+        <script src="{{ URL::asset('assets/libs/select2/select2.min.js') }}"></script>
 
         <script>
             $(document).ready(function() {
@@ -98,4 +101,35 @@
         @include('inventarios.form._patio')
         @include('inventarios.form._garaje')
         @include('inventarios.form._otro')
+
+
+
+        <!-- Select2 CSS y JS ya cargados -->
+
+        <script>
+            $(document).ready(function() {
+                $('#inquilino_id').select2({
+                    placeholder: "Seleccione un inquilino...",
+                    allowClear: true,
+                    theme: 'bootstrap-5',
+                    ajax: {
+                        url: '{{ route('api.inquilinos') }}',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function(params) {
+                            return {
+                                q: params.term
+                            };
+                        },
+                        processResults: function(data) {
+                            return {
+                                results: data.results
+                            };
+                        },
+                        cache: true
+                    },
+                    minimumInputLength: 2
+                });
+            });
+        </script>
     @endsection

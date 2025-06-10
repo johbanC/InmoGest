@@ -16,6 +16,46 @@
                     </a>
                 </li>
 
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-users"></i>
+                        <span>Clientes</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('propietarios.index') }}" class=" waves-effect">
+                                <i class="fas fa-house-user"></i>
+                                <span>Propietarios</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('inquilinos.index') }}" class=" waves-effect">
+                                <i class="fas fa-user"></i>
+                                <span>inquilinos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('fiadores.index') }}" class=" waves-effect">
+                                <i class="mdi mdi-account-cash-outline"></i>
+                                <span>Fiador</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <li>
                     <a href="{{ route('fichastecnicas.index') }}" class=" waves-effect">
                         <i class="ti-receipt"></i>
@@ -24,7 +64,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('inventarios.index')}}" class="waves-effect" >
+                    <a href="{{ route('inventarios.index') }}" class="waves-effect">
                         <i class="ti-home"></i>
                         <span class="badge rounded-pill bg-primary float-end">Beta</span>
                         <span>Inventario</span>
@@ -33,17 +73,41 @@
 
 
                 <li class="menu-title">PROXIMAMENTE</li>
-                
+
 
                 <li>
                     <a href="#" class="waves-effect" id="alert-button2">
-                        <i class="fas fa-tools"></i><span class="badge rounded-pill bg-primary float-end">Muy Pronto</span>
+                        <i class="fas fa-tools"></i><span class="badge rounded-pill bg-primary float-end">Muy
+                            Pronto</span>
                         <span>Reparaciones</span>
                     </a>
                 </li>
 
                 <li class="menu-title">CONFIGURACION</li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ti-settings"></i>
+                        <span>Configuracion</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('tipodocumentos.index') }}" class="waves-effect">
+                                <i class="ti-layout-cta-left"></i>
+                                <span>Tipo de documento</span>
+                            </a>
+                        </li>
+                        <li><a href="email-read.html">Email Read</a></li>
+                        <li><a href="email-compose.html">Email Compose</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{{ route('tiposinmuebles.index') }}" class="waves-effect">
+                        <i class="ti-layout-cta-left"></i>
+                        <span>Tipo de documento</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{ route('tiposinmuebles.index') }}" class="waves-effect">
@@ -88,25 +152,25 @@
 </div>
 <!-- Left Sidebar End -->
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
 
-    <script>
-        $(document).ready(function() {
-            $("#side-menu").metisMenu();
-            
-            $("#vertical-menu-btn").on("click", function(event) {
-                event.preventDefault();
-                $("body").toggleClass("sidebar-enable");
-                if ($(window).width() >= 992) {
-                    $("body").toggleClass("vertical-collpsed");
-                } else {
-                    $("body").removeClass("vertical-collpsed");
-                }
-            });
+<script>
+    $(document).ready(function() {
+        $("#side-menu").metisMenu();
+
+        $("#vertical-menu-btn").on("click", function(event) {
+            event.preventDefault();
+            $("body").toggleClass("sidebar-enable");
+            if ($(window).width() >= 992) {
+                $("body").toggleClass("vertical-collpsed");
+            } else {
+                $("body").removeClass("vertical-collpsed");
+            }
         });
-    </script>
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -118,10 +182,10 @@
 
     // Función para mostrar la alerta
     function showAlert() {
-      Swal.fire("Disponible muy pronto!");
-  }
+        Swal.fire("Disponible muy pronto!");
+    }
 
     // Agregamos controladores de eventos para el clic en ambos botones
-  alertButton1.addEventListener('click', showAlert);
-  alertButton2.addEventListener('click', showAlert);
+    alertButton1.addEventListener('click', showAlert);
+    alertButton2.addEventListener('click', showAlert);
 </script>

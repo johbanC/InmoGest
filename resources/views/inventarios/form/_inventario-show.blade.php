@@ -100,9 +100,10 @@
                                         <address>
                                             <strong>Inventario</strong><br>
                                             Codigo: {{ $inventario->codigo }}<br>
-                                            Inquilino: {{ $inventario->inquilino }}<br>
-                                            Numero: {{ $inventario->numero_inquilino }} <br>
-                                            Email: {{ $inventario->email_inquilino }} <br>
+                                            Numero de documento: {{ $inventario->cliente->tipoDocumento->acronimo ?? '' }} {{ $inventario->cliente->numero_documento }}<br>
+                                            Inquilino: {{ $inventario->cliente->nombre }}  {{ $inventario->cliente->apellido }}<br>
+                                            Numero: {{ $inventario->cliente->telefono }} <br>
+                                            Email: {{ $inventario->cliente->email }} <br>
                                             Direccion: {{ $inventario->direccion }} <br>
                                             Tipo de inmueble: {{ $inventario->tipo_inmueble->nombre }} <br>
 

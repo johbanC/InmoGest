@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Inventario;
 use App\Models\Area;
+use App\Models\Cliente;
 use App\Models\Item;
 use App\Models\Foto;
 use App\Models\FirmaDigital;
@@ -33,21 +34,58 @@ class InventarioController extends Controller
             'firmaEntrega',
             'firmaRecibe'
         ])
-            ->orderBy('id', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('inventarios.index', compact('inventarios'));
     }
-
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-
         $tipoinmuebles = TipoInmueble::all()->pluck('nombre', 'id');
-        return view('inventarios.new', compact('tipoinmuebles'));
+
+        // Traer solo los clientes tipo INQUI con su tipoDocumento
+        $inquilinos = \App\Models\Cliente::with('tipoDocumento')
+            ->whereHas('tipoCliente', function ($q) {
+                $q->where('acronimo', 'INQUI');
+            })
+            ->orderBy('nombre')
+            ->limit(5)
+            ->get();
+
+        return view('inventarios.new', compact('tipoinmuebles', 'inquilinos'));
+    }
+
+
+
+
+    public function buscarInquilinos(Request $request)
+    {
+        $search = $request->input('q');
+        $results = \App\Models\Cliente::with('tipoDocumento')
+            ->whereHas('tipoCliente', function ($q) {
+                $q->where('acronimo', 'INQUI');
+            })
+            ->where(function ($q) use ($search) {
+                $q->where('nombre', 'like', "%$search%")
+                    ->orWhere('apellido', 'like', "%$search%")
+                    ->orWhere('numero_documento', 'like', "%$search%");
+            })
+            ->orderBy('nombre')
+            ->limit(20)
+            ->get();
+
+        $formatted = [];
+        foreach ($results as $inquilino) {
+            $formatted[] = [
+                'id' => $inquilino->id,
+                'text' => ($inquilino->tipoDocumento->acronimo ?? '') . ' ' . $inquilino->numero_documento . ' - ' . $inquilino->nombre . ' ' . $inquilino->apellido
+            ];
+        }
+        return response()->json(['results' => $formatted]);
     }
 
     /**
@@ -65,12 +103,13 @@ class InventarioController extends Controller
 
         // Validar los datos recibidos
         $request->validate([
-            'inquilino' => 'required|string',
-            'numero_inquilino' => 'required|string',
+            'cliente_id' => 'required|exists:clientes,id',
+            // 'inquilino' => 'required|string',
+            // 'numero_inquilino' => 'required|string',
             'direccion' => 'required|string',
             'tipo_inmuebles_id' => 'required|exists:tipo_inmuebles,id',
             'nombre_propiedad' => 'required|string',
-            'email_inquilino' => 'required|email',
+            // 'email_inquilino' => 'required|email',
             'nombre_area' => 'required|array',
             'nombre_item' => 'required|array',
             'cant' => 'required|array',
@@ -84,6 +123,7 @@ class InventarioController extends Controller
 
         // Crear el inventario
         $inventario = Inventario::create([
+            'cliente_id' => $request->cliente_id,
             'nombre_propiedad' => $request->nombre_propiedad,
             'numero_inquilino' => $request->numero_inquilino,
             'email_inquilino' => $request->email_inquilino,
@@ -220,12 +260,15 @@ class InventarioController extends Controller
         $firmaEntrega = $firmas->firstWhere('rol_firmante', 'Entrega');
         $firmaRecibe = $firmas->firstWhere('rol_firmante', 'Recibe');
 
+        $cliente = $inventario->cliente; // Obtener el cliente asociado al inventario
+
         return view('inventarios.show', [
             'inventario' => $inventario,
             'areas' => $inventario->areas,
             'firmas' => $firmas,
             'firmaEntrega' => $firmaEntrega,
             'firmaRecibe' => $firmaRecibe,
+            'cliente' => $cliente,
         ]);
     }
 

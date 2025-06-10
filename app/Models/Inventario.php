@@ -11,6 +11,7 @@ class Inventario extends Model
     use HasFactory;
 
     protected $fillable = [
+        'cliente_id',
         'nombre_propiedad',
         'numero_inquilino',
         'email_inquilino',
@@ -60,13 +61,18 @@ class Inventario extends Model
         return $this->morphMany(FirmaDigital::class, 'documentable');
     }
 
-  public function firmaEntrega()
-{
-    return $this->morphOne(FirmaDigital::class, 'documentable')->where('rol_firmante', 'entrega');
-}
+    public function firmaEntrega()
+    {
+        return $this->morphOne(FirmaDigital::class, 'documentable')->where('rol_firmante', 'entrega');
+    }
 
-public function firmaRecibe()
-{
-    return $this->morphOne(FirmaDigital::class, 'documentable')->where('rol_firmante', 'recibe');
-}
+    public function firmaRecibe()
+    {
+        return $this->morphOne(FirmaDigital::class, 'documentable')->where('rol_firmante', 'recibe');
+    }
+
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(Cliente::class);
+    }
 }

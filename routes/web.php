@@ -13,6 +13,10 @@ use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FirmaDigitalController;
+use App\Http\Controllers\TipoDocumentoController;
+use App\Http\Controllers\PropietarioController;
+use App\Http\Controllers\InquilinoController;
+use App\Http\Controllers\FiadorController;
 use App\Models\FirmaDigital;
 use PHPUnit\Framework\Reorderable;
 
@@ -181,24 +185,104 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('tipococinas.destroy');
 
 
-    //Listado de clientes
-    Route::get('/clientes', [ClienteController::class, 'index'])
-        ->name('clientes.index');
+    // //Listado de clientes
+    // Route::get('/clientes', [ClienteController::class, 'index'])
+    //     ->name('clientes.index');
 
-    Route::get('/clientes/new', [ClienteController::class, 'create'])
-        ->name('clientes.new');
+    // Route::get('/clientes/new', [ClienteController::class, 'create'])
+    //     ->name('clientes.new');
 
-    Route::post('clientes/new', [ClienteController::class, 'store'])
-        ->name('clientes.store');
+    // Route::post('clientes/new', [ClienteController::class, 'store'])
+    //     ->name('clientes.store');
 
-    Route::get('clientes/{cliente}/edit', [ClienteController::class, 'edit'])
-        ->name('clientes.edit');
+    // Route::get('clientes/{cliente}/edit', [ClienteController::class, 'edit'])
+    //     ->name('clientes.edit');
 
-    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])
-        ->name('clientes.update');
+    // Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])
+    //     ->name('clientes.update');
 
-    Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])
-        ->name('clientes.destroy');
+    // Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])
+    //     ->name('clientes.destroy');
+
+
+    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+
+
+    //Propietarios
+
+    Route::get('/propietarios', [PropietarioController::class, 'index'])
+        ->name('propietarios.index');
+
+    Route::get('/propietarios/new', [PropietarioController::class, 'create'])
+        ->name('propietarios.new');
+
+    Route::post('propietarios/new', [PropietarioController::class, 'store'])
+        ->name('propietarios.store');
+
+    Route::get('propietarios/{propietario}/edit', [PropietarioController::class, 'edit'])
+        ->name('propietarios.edit');
+
+    Route::put('/propietarios/{propietario}', [PropietarioController::class, 'update'])
+        ->name('propietarios.update');
+
+    Route::delete('/propietarios/{propietario}', [PropietarioController::class, 'destroy'])
+        ->name('propietarios.destroy');
+
+    route::get('/propietarios/{inventario}', [PropietarioController::class, 'show'])
+        ->name('propietarios.show');
+
+
+
+
+
+    //  //Inquilinos
+    Route::get('/inquilinos', [InquilinoController::class, 'index'])
+        ->name('inquilinos.index');
+
+    Route::get('/inquilinos/new', [InquilinoController::class, 'create'])
+        ->name('inquilinos.new');
+
+    Route::post('inquilinos/new', [InquilinoController::class, 'store'])
+        ->name('inquilinos.store');
+
+    Route::get('inquilinos/{inquilino}/edit', [InquilinoController::class, 'edit'])
+        ->name('inquilinos.edit');
+
+    Route::put('/inquilinos/{inquilino}', [InquilinoController::class, 'update'])
+        ->name('inquilinos.update');
+
+    Route::delete('/inquilinos/{inquilino}', [InquilinoController::class, 'destroy'])
+        ->name('inquilinos.destroy');
+
+    route::get('/inquilinos/{inventario}', [InquilinoController::class, 'show'])
+        ->name('inquilinos.show');
+
+
+
+    //Fiador
+    Route::get('/fiadores', [FiadorController::class, 'index'])
+        ->name('fiadores.index');
+
+    Route::get('/fiadores/new', [FiadorController::class, 'create'])
+        ->name('fiadores.new');
+
+    Route::post('fiadores/new', [FiadorController::class, 'store'])
+        ->name('fiadores.store');
+
+    Route::get('fiadores/{fiador}/edit', [FiadorController::class, 'edit'])
+        ->name('fiadores.edit');
+
+    Route::put('/fiadores/{fiador}', [FiadorController::class, 'update'])
+        ->name('fiadores.update');
+
+    Route::delete('/fiadores/{fiador}', [FiadorController::class, 'destroy'])
+        ->name('fiadores.destroy');
+
+    route::get('/fiadores/{inventario}', [FiadorController::class, 'show'])
+        ->name('fiadores.show');
+
+
+
 
 
 
@@ -252,12 +336,38 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('inventarios.generarEnlaceFirmaRemota');
 
 
-    
+
+
+
+
+    // API para buscar inquilinos por nombre
+Route::get('/api/inquilinos', [InventarioController::class, 'buscarInquilinos'])->name('api.inquilinos');
+
+
+
+    // Tipo de Cocinas
+    Route::get('/tipodocumentos', [TipoDocumentoController::class, 'index'])
+        ->name('tipodocumentos.index');
+
+    Route::get('/tipodocumentos/new', [TipoDocumentoController::class, 'create'])
+        ->name('tipodocumentos.new');
+
+    Route::post('tipodocumentos/new', [TipoDocumentoController::class, 'store'])
+        ->name('tipodocumentos.store');
+
+    Route::get('tipodocumentos/{tipodocumento}/edit', [TipoDocumentoController::class, 'edit'])
+        ->name('tipodocumentos.edit');
+
+    Route::put('/tipodocumentos/{tipodocumento}', [TipoDocumentoController::class, 'update'])
+        ->name('tipodocumentos.update');
+
+    Route::delete('/tipodocumentos/{tipodocumento}', [TipoDocumentoController::class, 'destroy'])
+        ->name('tipodocumentos.destroy');
 });
 
 //Firma Digital
-    Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
-        ->name('firmadigital.store');
+Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
+    ->name('firmadigital.store');
 
 // Ruta para manejar la firma remota del lado del cliente
 Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
