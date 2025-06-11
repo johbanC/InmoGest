@@ -50,7 +50,7 @@ class FirmaDigitalController extends Controller
             'documentable_id' => 'required|integer',
             'rol_firmante' => 'required|string|max:50',
             'nombre_firmante' => 'required|string|max:255',
-            'tipo_documento_firmante' => 'required|string|in:DNI,Pasaporte,CC,RUC,Otro',
+            'tipo_documento_firmante' => 'required|string|in:DNI,Pasaporte,CC,RUC,NIT,Otro',
             'numero_documento_firmante' => 'required|string|max:30',
             'firma_digital_path' => 'required|string', // base64
             'foto_firmante' => 'nullable|image|mimes:jpeg,png,jpg,webp',
@@ -131,6 +131,7 @@ class FirmaDigitalController extends Controller
                 'dispositivo' => $data['dispositivo'] ?? null,
                 'ip_address' => $ip,
                 'fecha_firma' => now(),
+                'ubicacion' => $request->input('ubicacion', null),
             ]);
 
             // Generar y guardar el hash de validación desde json_base64

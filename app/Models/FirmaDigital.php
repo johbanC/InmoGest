@@ -31,7 +31,8 @@ class FirmaDigital extends Model
         'dispositivo',
         'consentimiento',
         'snapshot_data',
-        'fecha_firma' // Nuevo campo explícito
+        'fecha_firma', // Nuevo campo explícito
+        'ubicacion' // Donde se realizó la firma
     ];
 
     /**

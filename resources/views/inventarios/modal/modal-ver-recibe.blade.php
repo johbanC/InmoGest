@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="modalVerFirmaRecibe">Información de quien recibe</h5>
+                <h5 class="modal-title" id="modalVerFirmaRecibe">Información de quien recibe</h5>                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
 
@@ -11,6 +11,7 @@
 
                 {{-- Sección de la firma digital --}}
                 <div class="signature-pad-container">
+                    <h5 class="signature-pad-title">Firma realizada de forma: {{ $firmaRecibe->ubicacion }}</h5>
                     <h3 class="signature-pad-title">Firma de la persona que recibe</h3>
 
                     @if ($firmaRecibe && $firmaRecibe->firma_digital_path)

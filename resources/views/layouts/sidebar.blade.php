@@ -97,52 +97,62 @@
                                 <span>Tipo de documento</span>
                             </a>
                         </li>
-                        <li><a href="email-read.html">Email Read</a></li>
-                        <li><a href="email-compose.html">Email Compose</a></li>
+                        <li>
+                            <a href="{{ route('tiposinmuebles.index') }}" class="waves-effect">
+                                <i class="fas fa-home"></i>
+                                <span>Tipo de inmuebles</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('tipostransaccions.index') }}" class="waves-effect">
+                                <i class="fas fa-exchange-alt "></i>
+                                <span>Tipo de transacciones</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('calentadors.index') }}" class="waves-effect">
+                                <i class="fas fa-thermometer-half"></i>
+                                <span>Tipo de calentador</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('tipococinas.index') }}" class="waves-effect">
+                                <i class="fas fa-utensils"></i>
+                                <span>Tipo de cocina</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('tipoporterias.index') }}" class="waves-effect">
+                                <i class="fas fa-door-open"></i>
+                                <span>Tipo de portería</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="{{ route('tiposinmuebles.index') }}" class="waves-effect">
-                        <i class="ti-layout-cta-left"></i>
-                        <span>Tipo de documento</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        
+                        <i class="fa-solid fa-users-gear"></i>
+                        <span>Usuarios</span>
                     </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <li>
+                            <a href="#" class="waves-effect">
+                                <i class="ti-user"></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
-                <li>
-                    <a href="{{ route('tiposinmuebles.index') }}" class="waves-effect">
-                        <i class="fas fa-home"></i>
-                        <span>Tipo de inmuebles</span>
-                    </a>
-                </li>
 
-                <li>
-                    <a href="{{ route('tipostransaccions.index') }}" class="waves-effect">
-                        <i class="fas fa-exchange-alt "></i>
-                        <span>Tipo de transacciones</span>
-                    </a>
-                </li>
 
-                <li>
-                    <a href="{{ route('calentadors.index') }}" class="waves-effect">
-                        <i class="fas fa-thermometer-half"></i>
-                        <span>Tipo de calentador</span>
-                    </a>
-                </li>
 
-                <li>
-                    <a href="{{ route('tipococinas.index') }}" class="waves-effect">
-                        <i class="fas fa-utensils"></i>
-                        <span>Tipo de cocina</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('tipoporterias.index') }}" class="waves-effect">
-                        <i class="fas fa-door-open"></i>
-                        <span>Tipo de portería</span>
-                    </a>
-                </li>
 
 
             </ul>

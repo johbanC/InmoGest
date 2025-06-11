@@ -9,9 +9,9 @@
             <input type="hidden" name="codigo" value="{{ $inventario->codigo }}">
             <input type="hidden" name="rol_firmante" value="recibe">
             <input type="hidden" name="nombre_firmante" value="{{ $inventario->cliente->nombre }} {{ $inventario->cliente->apellido }}">    
-            <input type="hidden" name="tipo_documento_firmante" value="{{ $inventario->cliente->tipo_documento }}">
+            <input type="hidden" name="tipo_documento_firmante" value="{{ $inventario->cliente->tipoDocumento->acronimo }}">
             <input type="hidden" name="numero_documento_firmante" value="{{ $inventario->cliente->numero_documento }}">
-            <input type="hidden" name="destino" value="">
+            <input type="hidden" name="ubicacion" value="">
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <input type="checkbox" name="consentimiento" value="1" checked>
-                    <p>aceptar</p>
+                    <p>Acepta en realizar la firma digital</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -57,17 +57,13 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Verificar si en la URL hay una variable "destino=remoto"
         const params = new URLSearchParams(window.location.search);
-        const esRemoto = params.get('destino') === 'remoto';
-
-        if (esRemoto) {
-            const formulario = document.getElementById('formularioFirmaDigital_recibe');
-            if (formulario) {
-                const inputDestino = formulario.querySelector('input[name="destino"]');
-                if (inputDestino) {
-                    inputDestino.value = 'remoto';
-                }
+        const ubicacion = params.get('ubicacion');
+        const formulario = document.getElementById('formularioFirmaDigital_recibe');
+        if (formulario) {
+            const inputDestino = formulario.querySelector('input[name="ubicacion"]');
+            if (inputDestino) {
+                inputDestino.value = (ubicacion === 'remoto') ? 'Remoto' : 'Local';
             }
         }
     });

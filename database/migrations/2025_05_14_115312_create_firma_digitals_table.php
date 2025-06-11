@@ -36,6 +36,7 @@ return new class extends Migration
             $table->boolean('consentimiento')->default(false);
             $table->json('snapshot_data')->nullable();
             $table->timestamp('fecha_firma')->useCurrent(); // Nuevo
+            $table->string('ubicacion')->nullable(); // Donde se realizó la firma
 
             $table->timestamps();
             $table->softDeletes();

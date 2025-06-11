@@ -306,7 +306,7 @@ class InventarioController extends Controller
         $url = \Illuminate\Support\Facades\URL::signedRoute('inventarios.firmaremota', [
             'inventario' => $inventario->id,
             'rol' => $rol, // 'entrega' o 'recibe'
-            'destino' => 'remoto' //
+            'ubicacion' => 'remoto' //
         ], now()->addMinutes(30)); // Expira en 30 minutos
 
         // Retorna una vista mostrando el enlace

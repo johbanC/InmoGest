@@ -8,9 +8,9 @@
             <input type="hidden" name="codigo" value="{{ $inventario->codigo }}">
             <input type="hidden" name="rol_firmante" value="entrega">
             <input type="hidden" name="nombre_firmante" value="Dream House Propiedad Raiz">
-            <input type="hidden" name="tipo_documento_firmante" value="CC">
-            <input type="hidden" name="numero_documento_firmante" value="1127352358">
-            <input type="text" name="destino" value="">
+            <input type="hidden" name="tipo_documento_firmante" value="NIT">
+            <input type="hidden" name="numero_documento_firmante" value="901358824">
+            <input type="hidden" name="ubicacion" value="">
             
             <div class="modal-content">
                 <div class="modal-header">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
 
-                    <input type="checkbox" name="consentimiento" value="1" checked><p>aceptar</p>
+                    <input type="checkbox" name="consentimiento" value="1" checked><p>Acepta en realizar la firma digital</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -54,16 +54,18 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Verificar si en la URL hay una variable "destino=remoto"
+        // Verificar si en la URL hay una variable "ubicacion=remoto"
         const params = new URLSearchParams(window.location.search);
-        const esRemoto = params.get('destino') === 'remoto';
+        const esRemoto = params.get('ubicacion') === 'remoto';
 
         if (esRemoto) {
             const formulario = document.getElementById('formularioFirmaDigital_entrega');
             if (formulario) {
-                const inputDestino = formulario.querySelector('input[name="destino"]');
+                const inputDestino = formulario.querySelector('input[name="ubicacion"]');
                 if (inputDestino) {
-                    inputDestino.value = 'remoto';
+                    inputDestino.value = 'Remoto';
+                }else{
+                    inputDestino.value = 'Local';
                 }
             }
         }
