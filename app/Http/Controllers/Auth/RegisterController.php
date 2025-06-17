@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -41,6 +43,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -69,5 +76,24 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+
+
+
+
+    public function register(Request $request)
+    {
+
+        dd($request->all());
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        if ($request->has('rol')) {
+            $user->assignRole($request->rol);
+        }
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente.');
     }
 }

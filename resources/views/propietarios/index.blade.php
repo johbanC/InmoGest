@@ -60,6 +60,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
+
+                                @can('crear propietarios')
+                                    <a href="{{ route('propietarios.new') }}">
+                                        <button type="button" class="btn btn-success waves-effect waves-light">
+                                            <i class="fa fa-plus
                                 <a href="{{ route('propietarios.new') }}">
                                     <button type="button" class="btn btn-success waves-effect waves-light">
                                         <i class="fa fa-plus"></i> Nuevo Propietario
@@ -73,6 +78,8 @@
                                 @include('propietarios.modal.modal-nuevo', [
                                     'tipodocumentos' => $tipodocumentos,
                                 ])
+
+                                @endcan
 
 
 
@@ -123,14 +130,21 @@
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    @can('ver propietarios')
                                                     <a class="dropdown-item"
                                                         href="{{ route('propietarios.show', $cliente->id) }}">
                                                         <i class="fa fa-eye"></i> Ver Detalles
                                                     </a>
+                                                    @endcan
+
+                                                    @can('editar propietarios')
                                                     <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target=".modalEditar{{ $cliente->id }}">
                                                         <i class="fa fa-pen"></i> Editar
                                                     </button>
+                                                    @endcan
+
+                                                    @can('eliminar propietarios')
                                                     <form action="{{ route('propietarios.destroy', $cliente->id) }}"
                                                         method="POST" style="display:inline;"
                                                         id="formDelete{{ $cliente->id }}">
@@ -141,6 +155,7 @@
                                                             <i class="fa fa-trash"></i> Eliminar
                                                         </button>
                                                     </form>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>

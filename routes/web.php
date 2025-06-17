@@ -17,6 +17,10 @@ use App\Http\Controllers\TipoDocumentoController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\FiadorController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 use App\Models\FirmaDigital;
 use PHPUnit\Framework\Reorderable;
 
@@ -38,7 +42,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+
+Auth::routes(['register' => false]);
+
 
 Route::group(['middleware' => 'auth'], function () {
     /*Route::get('{any}',[HomeController::class,'index']);*/
@@ -48,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/fichastecnicas', [FichaTecnicaController::class, 'index'])
+        ->middleware('can:ver ficha tecnica')
         ->name('fichastecnicas.index');
 
     Route::get('/fichastecnicas/new', [FichaTecnicaController::class, 'create'])
@@ -341,7 +348,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // API para buscar inquilinos por nombre
-Route::get('/api/inquilinos', [InventarioController::class, 'buscarInquilinos'])->name('api.inquilinos');
+    Route::get('/api/inquilinos', [InventarioController::class, 'buscarInquilinos'])->name('api.inquilinos');
 
 
 
@@ -363,6 +370,44 @@ Route::get('/api/inquilinos', [InventarioController::class, 'buscarInquilinos'])
 
     Route::delete('/tipodocumentos/{tipodocumento}', [TipoDocumentoController::class, 'destroy'])
         ->name('tipodocumentos.destroy');
+
+
+
+
+    //usuarios
+
+
+    Route::get('/usuarios/create', [RegisterController::class, 'showRegistrationForm'])
+        ->name('usuarios.registrar');
+
+
+   
+
+    
+    Route::post('/usuarios/registrar', [RegisterController::class, 'register'])->name('usuarios.registrar.store');
+
+
+
+
+    
+
+
+
+
+    Route::get('/usuarios', [UserController::class, 'index'])
+        ->name('usuarios.index');
+
+    Route::get('/usuarios/{usuario}/edit', [UserController::class, 'edit'])
+        ->name('usuarios.edit');
+
+    Route::put('/usuarios/{usuario}', [UserController::class, 'update'])
+        ->name('usuarios.update');
+
+    Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])
+        ->name('usuarios.destroy');
+
+    Route::get('/usuarios/{usuario}', [UserController::class, 'show'])
+        ->name('usuarios.show');
 });
 
 //Firma Digital
@@ -373,3 +418,22 @@ Route::post('/inventarios', [FirmaDigitalController::class, 'store'])
 Route::get('/inventarios/firmaremota/{inventario}/{rol}', [App\Http\Controllers\InventarioController::class, 'firmaremota'])
     ->name('inventarios.firmaremota')
     ->middleware('signed');
+
+
+
+
+
+Route::resource('roles', RoleController::class)->middleware('auth');
+
+
+
+
+Route::resource('usuarios', UserController::class)->middleware('auth');
+
+
+
+Route::post('usuarios/{usuario}/asignar-rol', [UserController::class, 'asignarRol'])->name('usuarios.asignarRol');
+
+
+Route::get('roles/{role}/permisos', [RoleController::class, 'editPermissions'])->name('roles.permisos');
+Route::post('roles/{role}/permisos', [RoleController::class, 'updatePermissions'])->name('roles.permisos.update');
