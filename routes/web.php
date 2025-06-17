@@ -17,6 +17,7 @@ use App\Http\Controllers\TipoDocumentoController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\FiadorController;
+use Illuminate\Foundation\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\RoleController;
 use App\Models\FirmaDigital;
 use PHPUnit\Framework\Reorderable;
 
-use Illuminate\Foundation\Auth\RegisteredUserController;
+
 
 
 use App\Http\Controllers\ProfileController;

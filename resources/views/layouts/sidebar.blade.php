@@ -1,9 +1,9 @@
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu">
-    
+
 
     <div data-simplebar class="h-100">
-        
+
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
@@ -27,41 +27,41 @@
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                         @can('menu propietarios')
-                        <li>
-                            <a href="{{ route('propietarios.index') }}" class=" waves-effect">
-                                <i class="fas fa-house-user"></i>
-                                <span>Propietarios</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('propietarios.index') }}" class=" waves-effect">
+                                    <i class="fas fa-house-user"></i>
+                                    <span>Propietarios</span>
+                                </a>
+                            </li>
                         @endcan
 
                         @can('menu inquilinos')
-                        <li>
-                            <a href="{{ route('inquilinos.index') }}" class=" waves-effect">
-                                <i class="fas fa-user"></i>
-                                <span>inquilinos</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('inquilinos.index') }}" class=" waves-effect">
+                                    <i class="fas fa-user"></i>
+                                    <span>inquilinos</span>
+                                </a>
+                            </li>
                         @endcan
 
                         @can('menu fiadores')
-                        <li>
-                            <a href="{{ route('fiadores.index') }}" class=" waves-effect">
-                                <i class="mdi mdi-account-cash-outline"></i>
-                                <span>Fiador</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('fiadores.index') }}" class=" waves-effect">
+                                    <i class="mdi mdi-account-cash-outline"></i>
+                                    <span>Fiador</span>
+                                </a>
+                            </li>
                         @endcan
                     </ul>
                 </li>
 
                 @can('menu ficha tecnica')
-                <li>
-                    <a href="{{ route('fichastecnicas.index') }}" class=" waves-effect">
-                        <i class="ti-receipt"></i>
-                        <span>Ficha Tecnica</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ route('fichastecnicas.index') }}" class=" waves-effect">
+                            <i class="ti-receipt"></i>
+                            <span>Ficha Tecnica</span>
+                        </a>
+                    </li>
                 @endcan
 
                 <li>
@@ -137,8 +137,8 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        
-                        <i class="fa-solid fa-users-gear"></i>
+
+                        <i class="fas fa-users-cog"></i>
                         <span>Usuarios</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
@@ -151,7 +151,7 @@
 
                         <li>
                             <a href="{{ route('roles.index') }}" class="waves-effect">
-                                <i class="ti-user"></i>
+                                <i class="fas fa-user-lock"></i>
                                 <span>Roles</span>
                             </a>
                         </li>
@@ -159,14 +159,15 @@
                 </li>
 
 
-<li class="mt-3">
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="btn btn-link text-danger w-100 text-start" style="font-weight:bold;">
-            <i class="fas fa-power-off"></i> Cerrar sesión
-        </button>
-    </form>
-</li>
+                <li class="mt-3">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-link text-danger w-100 text-start"
+                            style="font-weight:bold;">
+                            <i class="fas fa-power-off"></i> Cerrar sesión
+                        </button>
+                    </form>
+                </li>
 
 
 
