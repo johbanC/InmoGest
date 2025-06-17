@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
-                                <a href="{{ route('usuarios.create') }}">
+                                <a href="{{ route('register') }}">
                                     <button type="button" class="btn btn-success waves-effect waves-light">
                                         <i class="fa fa-plus"></i> Nuevo Usuario
                                     </button>
