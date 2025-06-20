@@ -26,6 +26,17 @@
                         <span>Clientes</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        {{-- @can('menú propietarios')  
+                            <li>
+                                <a href="{{ route('propietarios.index') }}" class=" waves-effect">
+                                    <i class="fas fa-house-user"></i>
+                                    <span>Propietarios</span>
+                                </a>
+                            </li>
+                        @endcan --}}
+
+
+
                         @can('menú propietarios')
                             <li>
                                 <a href="{{ route('propietarios.index') }}" class=" waves-effect">
@@ -33,7 +44,17 @@
                                     <span>Propietarios</span>
                                 </a>
                             </li>
+                        @elsecan('menu propietarios')
+                            <li>
+                                <a href="{{ route('propietarios.index') }}" class=" waves-effect">
+                                    <i class="fas fa-house-user"></i>
+                                    <span>Propietarios</span>
+                                </a>
+                            </li>
                         @endcan
+
+
+
 
                         @can('menu inquilinos')
                             <li>
@@ -63,15 +84,15 @@
                         </a>
                     </li>
                 @endcan
-                
+
                 @can('menu inventario')
-                <li>
-                    <a href="{{ route('inventarios.index') }}" class="waves-effect">
-                        <i class="ti-home"></i>
-                        <span class="badge rounded-pill bg-primary float-end">Beta</span>
-                        <span>Inventario</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ route('inventarios.index') }}" class="waves-effect">
+                            <i class="ti-home"></i>
+                            <span class="badge rounded-pill bg-primary float-end">Beta</span>
+                            <span>Inventario</span>
+                        </a>
+                    </li>
                 @endcan
 
 
