@@ -25,7 +25,7 @@ return new class extends Migration
             // y el id del estado para saber si esta activo o no
 
 
-            $table->foreignId('tipo_estatus_id')->constrained('tipo_estatus');
+            $table->foreignId('tipo_estatus_id')->constrained('tipo_estatuses');
             $table->foreignId('user_id')->constrained();
         });
 
