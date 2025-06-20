@@ -23,7 +23,7 @@
 
     @section('content')
     @component('components.breadcrumb')
-    @slot('page_title') Actualizando Ficha Tecnica @endslot
+    @slot('page_title') Actualizando Permisos @endslot
     @slot('subtitle') @endslot
     @endcomponent
 

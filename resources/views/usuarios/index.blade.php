@@ -57,11 +57,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
-                                <a href="{{ route('register') }}">
+                                {{-- <a href="{{ route('register') }}">
                                     <button type="button" class="btn btn-success waves-effect waves-light">
                                         <i class="fa fa-plus"></i> Nuevo Usuario
                                     </button>
-                                </a>
+                                </a> --}}
 
                                 <!-- Botón para abrir el modal -->
                                 <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
@@ -69,6 +69,8 @@
                                     <i class="fa fa-plus"></i> Nuevo Usuario
                                 </button>
                                 @include('usuarios.modal._nuevo-usuario')
+
+                                
 
                                 {{-- Si usas modal para crear usuarios, inclúyelo aquí --}}
                                 {{-- @include('usuarios.modal.modal-nuevo') --}}
@@ -86,6 +88,7 @@
                                     <th>Nro</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
+                                    <th>Celular</th>
                                     <th>Roles</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -96,6 +99,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $usuario->name }}</td>
                                         <td>{{ $usuario->email }}</td>
+                                        <td>{{ $usuario->celular }}</td>
                                         <td>
                                             @foreach ($usuario->getRoleNames() as $rol)
                                                 <span class="badge bg-info">{{ $rol }}</span>
@@ -139,43 +143,8 @@
                                     </tr>
                                     {{-- Si usas modal para editar usuarios, inclúyelo aquí --}}
                                     {{-- @include('usuarios.modal.modal-edit', ['usuario' => $usuario]) --}}
-                                @endforeach
-                                {{-- Modal para asignar rol --}}
-                                <div class="modal fade" id="modalRol{{ $usuario->id }}" tabindex="-1"
-                                    aria-labelledby="modalRolLabel{{ $usuario->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <form method="POST" action="{{ route('usuarios.asignarRol', $usuario->id) }}">
-                                            @csrf
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalRolLabel{{ $usuario->id }}">Asignar
-                                                        Rol a {{ $usuario->name }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Cerrar"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label for="rol" class="form-label">Rol</label>
-                                                        <select name="rol" id="rol" class="form-select" required>
-                                                            <option value="">Seleccione un rol</option>
-                                                            @foreach ($roles as $rol)
-                                                                <option value="{{ $rol->name }}"
-                                                                    {{ $usuario->hasRole($rol->name) ? 'selected' : '' }}>
-                                                                    {{ $rol->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Cancelar</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                    @include('usuarios.modal._asignar-rol', ['usuario' => $usuario])
+                                @endforeach                               
                             </tbody>
                         </table>
                     </div>
@@ -183,10 +152,6 @@
             </div>
         </div>
     @endsection
-
-
-
-
 
 
 

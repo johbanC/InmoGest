@@ -43,11 +43,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
-                                <a href="{{ route('roles.create') }}">
-                                    <button type="button" class="btn btn-success waves-effect waves-light">
-                                        <i class="fa fa-plus"></i> Nuevo Rol
-                                    </button>
-                                </a>
+                                <button type="button" class="btn btn-success waves-effect waves-light"
+                                    data-bs-toggle="modal" data-bs-target="#modalNuevoRol">
+                                    <i class="fa fa-plus"></i> Nuevo Rol
+                                </button>
+                                @include('roles.modal.modal-nuevo')
                             </div>
                         </div>
                         <br>
@@ -67,27 +67,50 @@
                                         <td>{{ $role->name }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('roles.permisos', $role->id) }}"
-                                                    class="btn btn-sm btn-info">
-                                                    <i class="fa fa-key"></i> Permisos
-                                                </a>
-                                                <a href="{{ route('roles.edit', $role->id) }}"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="fa fa-pen"></i> Editar
-                                                </a>
+                                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton{{ $role->id }}" data-bs-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Acciones
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                                <div class="dropdown-menu"
+                                                    aria-labelledby="dropdownMenuButton{{ $role->id }}">
+                                                    
+                                                        <a class="dropdown-item" href="{{ route('roles.show', $role->id) }}">
+                                                            <i class="fa fa-eye"></i> Ver Detalles
+                                                        </a>
+                                                    
 
-                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
-                                                    style="display:inline-block;" id="formDelete{{ $role->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button" class="btn btn-sm btn-danger"
-                                                        onclick="eliminar({{ $role->id }})">
-                                                        <i class="fa fa-trash"></i> Eliminar
-                                                    </button>
-                                                </form>
+                                                    
+                                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#modalEditarRol{{ $role->id }}">
+                                                            <i class="fa fa-pen"></i> Editar
+                                                        </button>
+                                                   
+
+                                                    
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('roles.permisos', $role->id) }}">
+                                                            <i class="fa fa-key"></i> Permisos
+                                                        </a>
+                                                    
+
+                                                    
+                                                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
+                                                            style="display:inline;" id="formDelete{{ $role->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="dropdown-item text-danger"
+                                                                onclick="eliminarRol({{ $role->id }})">
+                                                                <i class="fa fa-trash"></i> Eliminar
+                                                            </button>
+                                                        </form>
+                                                    
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
+                                    @include('roles.modal.modal-edit')
                                 @endforeach
                             </tbody>
                         </table>

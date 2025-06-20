@@ -66,11 +66,12 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
-                                <a href="{{ route('inventarios.new') }}">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light"
-                                        data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear Nuevo</button>
-
-                                </a>
+                                @can('crear inventario')
+                                    <a href="{{ route('inventarios.new') }}">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear Nuevo</button>
+                                    </a>
+                                @endcan
 
 
 
@@ -112,39 +113,42 @@
                                         </td>
                                         <td>{{ $inventario->user->name }}</td>
                                         <td>
-
+                                            @can('ver inventario')
                                             <a href="{{ route('inventarios.show', $inventario->id) }}">
                                                 <button type="button"
                                                     class="btn btn-xs btn-default text-primary mx-1 shadow"><i
                                                         class="fa fa-lg fa-fw fa-eye"></i></button>
                                             </a>
+                                            @endcan
 
+                                            @can('generar enlace inventario')
                                             <a
                                                 href="{{ route('inventarios.generarEnlaceFirmaRemota', [$inventario->id, 'recibe']) }}">
                                                 <button type="button"
                                                     class="btn btn-xs btn-default text-primary mx-1 shadow"
                                                     data-bs-toggle="tooltip"><i class="fa fa-lg fa-fw fa-link"></i></button>
                                             </a>
+                                            @endcan
 
-                                          
+
                                             {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}">
                                         <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-pen"></i></button>
 
                                     </a> --}}
 
                                             <!-- <form id="formDelete{{ $inventario->id }}" method="POST" action="{{ route('inventarios.destroy', $inventario->id) }}" style="display: inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" onclick="eliminar({{ $inventario->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
-                                                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                                                        </button>
-                                                    </form> -->
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button" onclick="eliminar({{ $inventario->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
+                                                                        <i class="fa fa-lg fa-fw fa-trash"></i>
+                                                                    </button>
+                                                                </form> -->
 
                                             <!-- <a href="{{ route('inventarios.index', $inventario) }}" target="_black"> en index estaba PDF
-                                                        <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
-                                                            <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
-                                                        </button>
-                                                    </a> -->
+                                                                    <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
+                                                                        <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
+                                                                    </button>
+                                                                </a> -->
 
                                         </td>
                                     </tr>
@@ -163,7 +167,7 @@
 
         <!-- Bootstrap -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-            
+
 
         <!-- DataTables -->
         <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>

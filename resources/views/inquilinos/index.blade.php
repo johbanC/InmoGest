@@ -60,11 +60,12 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
-                                <a href="{{ route('inquilinos.new') }}">
+
+                                {{-- <a href="{{ route('inquilinos.new') }}">
                                     <button type="button" class="btn btn-success waves-effect waves-light">
                                         <i class="fa fa-plus"></i> Nuevo Inquilino
                                     </button>
-                                </a>
+                                </a> --}}
 
                                 <button type="button" class="btn btn-success waves-effect waves-light"
                                     data-bs-toggle="modal" data-bs-target="#modalNuevoInquilino">

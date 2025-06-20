@@ -17,7 +17,7 @@ use App\Http\Controllers\TipoDocumentoController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\FiadorController;
-use Illuminate\Foundation\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/usuarios/registrar', [RegisteredUserController::class, 'create'])->name('usuarios.registrar');
     Route::post('/usuarios/registrar', [RegisteredUserController::class, 'store'])->name('usuarios.registrar.store');
+
+    
 });
 
 require __DIR__.'/auth.php';
@@ -391,24 +393,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //usuarios
-
-
-    Route::get('/usuarios/create', [RegisterController::class, 'showRegistrationForm'])
-        ->name('usuarios.registrar');
-
-
-   
-
-    
-    Route::post('/usuarios/registrar', [RegisterController::class, 'register'])->name('usuarios.registrar.store');
-
-
-
-
-    
-
-
-
 
     Route::get('/usuarios', [UserController::class, 'index'])
         ->name('usuarios.index');

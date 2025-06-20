@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
+
 class FileController extends Controller
 {
     /**
@@ -44,7 +45,7 @@ class FileController extends Controller
             // Verificar si la carpeta ya existe antes de crearla
                 if (!File::exists($folderPath)) {
                 // Crear la carpeta con permisos 0777 y recursividad true
-                    File::makeDirectory($folderPath, 0777, true);
+                    FileSystem::makeDirectory($folderPath, 0777, true);
                 }
     
             // Recorrer cada imagen enviada en la solicitud

@@ -2,25 +2,22 @@
 
 namespace Database\Seeders;
 
-
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-class PermisosPropietariosSeeder extends Seeder
+class PermisosFiadorSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
         $permisos = [
-            'menu propietarios',
-            'ver propietarios',
-            'crear propietarios',
-            'editar propietarios',
-            'eliminar propietarios',
+            'menu fiadores',
+            'ver fiadores',
+            'crear fiadores',
+            'editar fiadores',
+            'eliminar fiadores',
         ];
+
         foreach ($permisos as $permiso) {
             Permission::firstOrCreate(['name' => $permiso]);
         }

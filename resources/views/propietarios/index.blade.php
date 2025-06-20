@@ -62,23 +62,13 @@
                             <div class="card-tools">
 
                                 @can('crear propietarios')
-                                    <a href="{{ route('propietarios.new') }}">
-                                        <button type="button" class="btn btn-success waves-effect waves-light">
-                                            <i class="fa fa-plus
-                                <a href="{{ route('propietarios.new') }}">
-                                    <button type="button" class="btn btn-success waves-effect waves-light">
+                                    <button type="button" class="btn btn-success waves-effect waves-light"
+                                        data-bs-toggle="modal" data-bs-target="#modalNuevoPropietario">
                                         <i class="fa fa-plus"></i> Nuevo Propietario
                                     </button>
-                                </a>
-
-                                <button type="button" class="btn btn-success waves-effect waves-light"
-                                    data-bs-toggle="modal" data-bs-target="#modalNuevoPropietario">
-                                    <i class="fa fa-plus"></i> Nuevo Propietario
-                                </button>
-                                @include('propietarios.modal.modal-nuevo', [
-                                    'tipodocumentos' => $tipodocumentos,
-                                ])
-
+                                    @include('propietarios.modal.modal-nuevo', [
+                                        'tipodocumentos' => $tipodocumentos,
+                                    ])
                                 @endcan
 
 
@@ -131,30 +121,30 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                     @can('ver propietarios')
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('propietarios.show', $cliente->id) }}">
-                                                        <i class="fa fa-eye"></i> Ver Detalles
-                                                    </a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('propietarios.show', $cliente->id) }}">
+                                                            <i class="fa fa-eye"></i> Ver Detalles
+                                                        </a>
                                                     @endcan
 
                                                     @can('editar propietarios')
-                                                    <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target=".modalEditar{{ $cliente->id }}">
-                                                        <i class="fa fa-pen"></i> Editar
-                                                    </button>
+                                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target=".modalEditar{{ $cliente->id }}">
+                                                            <i class="fa fa-pen"></i> Editar
+                                                        </button>
                                                     @endcan
 
                                                     @can('eliminar propietarios')
-                                                    <form action="{{ route('propietarios.destroy', $cliente->id) }}"
-                                                        method="POST" style="display:inline;"
-                                                        id="formDelete{{ $cliente->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="dropdown-item text-danger"
-                                                            onclick="eliminar({{ $cliente->id }})">
-                                                            <i class="fa fa-trash"></i> Eliminar
-                                                        </button>
-                                                    </form>
+                                                        <form action="{{ route('propietarios.destroy', $cliente->id) }}"
+                                                            method="POST" style="display:inline;"
+                                                            id="formDelete{{ $cliente->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="dropdown-item text-danger"
+                                                                onclick="eliminar({{ $cliente->id }})">
+                                                                <i class="fa fa-trash"></i> Eliminar
+                                                            </button>
+                                                        </form>
                                                     @endcan
                                                 </div>
                                             </div>

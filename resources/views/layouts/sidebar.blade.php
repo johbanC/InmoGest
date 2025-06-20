@@ -26,7 +26,7 @@
                         <span>Clientes</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                        @can('menu propietarios')
+                        @can('menú propietarios')
                             <li>
                                 <a href="{{ route('propietarios.index') }}" class=" waves-effect">
                                     <i class="fas fa-house-user"></i>
@@ -63,7 +63,8 @@
                         </a>
                     </li>
                 @endcan
-
+                
+                @can('menu inventario')
                 <li>
                     <a href="{{ route('inventarios.index') }}" class="waves-effect">
                         <i class="ti-home"></i>
@@ -71,6 +72,7 @@
                         <span>Inventario</span>
                     </a>
                 </li>
+                @endcan
 
 
                 <li class="menu-title">PROXIMAMENTE</li>
@@ -81,6 +83,14 @@
                         <i class="fas fa-tools"></i><span class="badge rounded-pill bg-primary float-end">Muy
                             Pronto</span>
                         <span>Reparaciones</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="waves-effect" id="alert-button2">
+                        <i class="fas fa-dollar-sign"></i><span class="badge rounded-pill bg-primary float-end">Muy
+                            Pronto</span>
+                        <span>Pagos</span>
                     </a>
                 </li>
 
