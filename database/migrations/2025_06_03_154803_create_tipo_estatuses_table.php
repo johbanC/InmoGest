@@ -20,33 +20,6 @@ return new class extends Migration
             $table->string('descripcion')->nullable();
         });
 
-        // Insertar registros iniciales
-        \DB::table('tipo_estatus')->insert([
-            [
-                'nombre' => 'Activo',
-                'acronimo' => 'ACT',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Eliminado',
-                'acronimo' => 'ELI',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Pendiente',
-                'acronimo' => 'PEN',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Aprobado',
-                'acronimo' => 'APRO',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
     }
 
     /**
@@ -54,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_estatuses');
+        Schema::dropIfExists('tipo_estatus');
     }
 };

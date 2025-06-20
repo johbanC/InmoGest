@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('acronimo')->nullable();
             $table->string('descripcion')->nullable();
-            $table->foreignId('tipo_estatus_id')->constrained('tipo_estatuses');            
+            $table->foreignId('tipo_estatus_id')->constrained('tipo_estatus');            
             $table->foreignId('user_id')->constrained('users');
                 
 

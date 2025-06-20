@@ -25,37 +25,10 @@ return new class extends Migration
             // y el id del estado para saber si esta activo o no
 
 
-            $table->foreignId('tipo_estatus_id')->constrained('tipo_estatuses');
+            $table->foreignId('tipo_estatus_id')->constrained('tipo_estatus');
             $table->foreignId('user_id')->constrained();
         });
 
-        // Insertar registros iniciales
-        \DB::table('tipo_clientes')->insert([
-            [
-                'nombre' => 'Propietario',
-                'acronimo' => 'PRO',
-                'tipo_estatus_id' => 1, // Ajusta el ID según tu tabla 'estados'
-                'user_id' => 1,    // Ajusta el ID según tu usuario administrador
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Inquilino',
-                'acronimo' => 'INQUI',
-                'tipo_estatus_id' => 1,
-                'user_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Fiador',
-                'acronimo' => 'FIA',
-                'tipo_estatus_id' => 1,
-                'user_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
     }
 
     /**
