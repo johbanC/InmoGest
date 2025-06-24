@@ -27,9 +27,20 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
+
+
+
+        $espacioLibre = disk_free_space("/");
+$espacioTotal = disk_total_space("/");
+
+// Convertir a GB
+$espacioLibreGB = round($espacioLibre / 1073741824, 2); // 1 GB = 1073741824 bytes
+$espacioTotalGB = round($espacioTotal / 1073741824, 2);
+
+
         $cantidadFichasTecnicas = FichaTecnica::count();
         $CantidadInventarios = Inventario::count();
-        return view('index', compact('cantidadFichasTecnicas', 'CantidadInventarios'));
+        return view('index', compact('cantidadFichasTecnicas', 'CantidadInventarios','espacioLibreGB', 'espacioTotalGB'));
 
         
 
