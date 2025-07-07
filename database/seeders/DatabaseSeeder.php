@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             TipoClienteSeeder::class,
             TipoDocumentoSeeder::class,
             TipoEstatusesSeeder::class,
-            TiposPorteriasSeeder::class,
+            TiposPorteriasSeeder::class
         ]);
     }
 }

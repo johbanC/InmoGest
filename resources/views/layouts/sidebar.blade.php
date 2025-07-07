@@ -10,7 +10,7 @@
             Bienvenido, <strong>{{ auth()->user()->name }}</strong>
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Main</li>
+                <li class="menu-title">Menu Principal</li>
 
                 <li>
                     <a href="/index" class="waves-effect">
@@ -26,16 +26,6 @@
                         <span>Clientes</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                        {{-- @can('menú propietarios')  
-                            <li>
-                                <a href="{{ route('propietarios.index') }}" class=" waves-effect">
-                                    <i class="fas fa-house-user"></i>
-                                    <span>Propietarios</span>
-                                </a>
-                            </li>
-                        @endcan --}}
-
-
 
                         @can('menú propietarios')
                             <li>
@@ -210,7 +200,7 @@
 <!-- Left Sidebar End -->
 
 <!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
 
 <script>
@@ -227,22 +217,4 @@
             }
         });
     });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-<script>
-    // Seleccionamos los botones por sus id
-    const alertButton1 = document.getElementById('alert-button1');
-    const alertButton2 = document.getElementById('alert-button2');
-
-    // Función para mostrar la alerta
-    function showAlert() {
-        Swal.fire("Disponible muy pronto!");
-    }
-
-    // Agregamos controladores de eventos para el clic en ambos botones
-    alertButton1.addEventListener('click', showAlert);
-    alertButton2.addEventListener('click', showAlert);
 </script>
