@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        User::create(['name' => 'admin','email' => 'admin@themesbrand.com','password' => Hash::make('12345678'),'email_verified_at'=> now(),'created_at' => now(),]);
+        User::create(['name' => 'Johban Clavijo','email' => 'jclavijo@endigitalweb.com','password' => Hash::make('Rosa.2106'),'email_verified_at'=> now(),'created_at' => now(),]);
     }
 
     /**
