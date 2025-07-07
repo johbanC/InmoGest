@@ -15,16 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            PermisosPropietariosSeeder::class,
+            PermisosFiadorSeeder::class,
             PermisosFichaTecnicaSeeder::class,
-            PermisosClientesSeeder::class,
-            PermisosVehiculosSeeder::class,
-            PermisosUsuariosSeeder::class,
-            PermisosRolesSeeder::class,
-            PermisosTipoDocumentoSeeder::class,
-            PermisosTipoEstatusSeeder::class,
-            PermisosTipoClienteSeeder::class,
-            PermisosTipoVehiculoSeeder::class,
+            PermisosInquilinosSeeder::class,
+            PermisosInventariosSeeder::class,
+            PermisosPropietariosSeeder::class,
+            TipoClienteSeeder::class,
+            TipoDocumentoSeeder::class,
+            TipoEstatusesSeeder::class,
+            TiposPorteriasSeeder::class,
         ]);
     }
 }
