@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class TiposCalentadoresSeeder extends Seeder
+class TiposCalentadorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +18,7 @@ class TiposCalentadoresSeeder extends Seeder
         ];
 
         foreach ($tipos as $tipo) {
-            \App\Models\TipoCalentador::firstOrCreate(
+            \App\Models\Calentador::firstOrCreate(
                 ['nombre' => $tipo['nombre']],
                 ['user_id' => $tipo['user_id']]
             );
