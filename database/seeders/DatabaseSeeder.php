@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             TiposInmueblesSeeder::class,
             TiposTransaccionesSeeder::class,
             TiposCocinasSeeder::class,
-            TiposCalentadoresSeeder::class,
+            TiposCalentadorSeeder::class,
         ]);
     }
 }
