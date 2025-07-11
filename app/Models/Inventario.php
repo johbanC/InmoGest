@@ -53,7 +53,7 @@ class Inventario extends Model
 
     public function areas()
     {
-        return $this->hasMany(area::class, 'inventarios_id');
+        return $this->hasMany(Area::class, 'inventarios_id');
     }
 
     public function firmasDigitales()

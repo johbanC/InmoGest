@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Inventario;
-use App\Models\Area;
+use App\Models\Area; // <-- AGREGA ESTA LÍNEA
 use App\Models\Cliente;
 use App\Models\Item;
 use App\Models\Foto;
