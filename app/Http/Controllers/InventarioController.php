@@ -207,8 +207,11 @@ class InventarioController extends Controller
         $areaFolderStorage = $baseStoragePath . '/area_' . $area->id;
         $areaFolderPublic = $basePublicPath . '/area_' . $area->id;
 
+
+
         if (!Storage::exists($areaFolderStorage)) {
-            Storage::makeDirectory($areaFolderStorage, 0777, true);
+            Storage::makeDirectory($areaFolderStorage, true);
+            @chmod(storage_path('app/' . $areaFolderStorage), 0777);
         }
 
         // Procesar cada foto
