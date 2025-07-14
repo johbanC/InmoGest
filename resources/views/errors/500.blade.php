@@ -17,7 +17,7 @@
                                             <h1 class="text-dark display-1 mt-4">500</h1>
                                             <h4 class="mb-4">Internal Server Error</h4>
                                             <p class="mb-5">It will be as simple as Occidental in fact, it will be Occidental to an English person</p>
-                                            <a class="btn btn-primary mb-5 waves-effect waves-light" href="index.html"><i class="mdi mdi-home"></i> Back to Dashboard</a>
+                                            <a class="btn btn-primary mb-5 waves-effect waves-light" href="/"><i class="mdi mdi-home"></i> Back to Dashboard</a>
                                         </div>
 
                                     </div>
