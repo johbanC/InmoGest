@@ -84,7 +84,7 @@
                                         Fecha del inventario : {{ $inventario->fecha }}
                                     </h4>
                                     <h3>
-                                        <img src="https://ardilaosorioinmobiliaria.com.co/wp-content/uploads/2024/06/ArdilaOsorioLogoImpresos.png"
+                                        <img src="{{ URL::asset('assets/images/empresa/Logos_Dream_House_Horizontal_Color_JPG-removebg-preview.png') }}"
                                             alt="logo" height="80" />
                                         <!-- aqui deberia de ir el logo de la empresa -->
                                     </h3>
