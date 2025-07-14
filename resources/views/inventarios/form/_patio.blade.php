@@ -63,7 +63,7 @@
                                             <h3 class="card-title">Patio #${patioCounter}</h3>
                                             <input type="hidden" name="tipo_area[${patioId}]" value="patio">
                                             <input type="text" name="nombre_area[${patioId}]" 
-                                                   placeholder="Ingrese el nombre del área" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del área" class="form-control" value="Patio #${patioCounter}" required>
                                             <p class="card-title-desc">Carga toda la información del patio/zona exterior</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">

@@ -62,7 +62,7 @@
                                             <h3 class="card-title">Hall/Pasillo #${hallPasilloCounter}</h3>
                                             <input type="hidden" name="tipo_area[${hallPasilloId}]" value="hall_pasillo">
                                             <input type="text" name="nombre_area[${hallPasilloId}]" 
-                                                   placeholder="Ingrese el nombre del área" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del área" class="form-control" value=" Hall/Pasillo #${hallPasilloCounter}" required>
                                             <p class="card-title-desc">Carga toda la información del Hall/Pasillo del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">

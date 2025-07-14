@@ -64,7 +64,7 @@
                                             <h3 class="card-title">Baño #${banoCounter}</h3>
                                             <input type="hidden" name="tipo_area[${banoId}]" value="bano">
                                             <input type="text" name="nombre_area[${banoId}]" 
-                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del area" class="form-control" value="Baño #${banoCounter}" required>
                                             <p class="card-title-desc">Carga toda la información del Bano del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">

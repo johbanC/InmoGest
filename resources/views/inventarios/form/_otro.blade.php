@@ -29,7 +29,7 @@
                                             <h3 class="card-title">Otro #${otroCounter}</h3>
                                             <input type="hidden" name="tipo_area[${otroId}]" value="otro">
                                             <input type="text" name="nombre_area[${otroId}]" 
-                                                   placeholder="Ingrese el nombre del área" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del área" class="form-control" value="Otro #${otroCounter}" required>
                                             <p class="card-title-desc">Carga toda la información adicional del inmueble</p>
                                             
                                             <div class="table-responsive">

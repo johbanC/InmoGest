@@ -62,7 +62,7 @@
                                             <h3 class="card-title">Comedor #${comedorCounter}</h3>
                                             <input type="hidden" name="tipo_area[${comedorId}]" value="comedor">
                                             <input type="text" name="nombre_area[${comedorId}]" 
-                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del area" class="form-control" value="Comedor #${comedorCounter}" required>
                                             <p class="card-title-desc">Carga toda la información del Comedor del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">

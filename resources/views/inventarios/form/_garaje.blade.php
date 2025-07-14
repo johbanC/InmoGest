@@ -64,7 +64,7 @@
                                             <h3 class="card-title">Garaje #${garajeCounter}</h3>
                                             <input type="hidden" name="tipo_area[${garajeId}]" value="garaje">
                                             <input type="text" name="nombre_area[${garajeId}]" 
-                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del area" class="form-control" value="Garaje #${garajeCounter}" required>
                                             <p class="card-title-desc">Carga toda la información del Garaje del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">

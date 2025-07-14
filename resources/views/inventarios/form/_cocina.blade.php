@@ -62,7 +62,7 @@
                                             <h3 class="card-title">Cocina #${cocinaCounter}</h3>
                                             <input type="hidden" name="tipo_area[${cocinaId}]" value="cocina">
                                             <input type="text" name="nombre_area[${cocinaId}]" 
-                                                   placeholder="Ingrese el nombre del area" class="form-control" required>
+                                                   placeholder="Ingrese el nombre del area" class="form-control" value="Cocina #${cocinaCounter}" required>
                                             <p class="card-title-desc">Carga toda la información de la Cocina del inmueble</p>
                                             <div class="table-responsive">
                                                 <table class="table table-sm m-0">

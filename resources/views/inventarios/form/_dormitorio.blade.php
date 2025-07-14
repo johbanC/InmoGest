@@ -38,11 +38,14 @@
     }
 
     function agregarDormitorio() {
-    dormitorioCounter++;
-    const dormitorioId = nextDormitorioId++;
-    dormitorios.push({id: dormitorioId, counter: dormitorioCounter});
+        dormitorioCounter++;
+        const dormitorioId = nextDormitorioId++;
+        dormitorios.push({
+            id: dormitorioId,
+            counter: dormitorioCounter
+        });
 
-    const nuevoDormitorio = `
+        const nuevoDormitorio = `
         <div class="accordion" id="accordionDormitorio${dormitorioId}">
             <div class="accordion-item border rounded">
                 <h2 class="accordion-header" id="headingDormitorio${dormitorioId}">
@@ -61,8 +64,11 @@
                                     <div class="card-body">
                                         <h3 class="card-title">Dormitorio #${dormitorioCounter}</h3>
                                         <input type="hidden" name="tipo_area[${dormitorioId}]" value="dormitorio">
-                                        <input type="text" name="nombre_area[${dormitorioId}]" 
-                                               placeholder="Ingrese el nombre del area" class="form-control" required>
+                                        <input type="text" name="nombre_area[${dormitorioId}]"
+                                        placeholder="Ingrese el nombre del area"
+                                        class="form-control"
+                                        value="Dormitorio #${dormitorioCounter}"
+                                        required>
                                         <p class="card-title-desc">Carga toda la información del dormitorio del inmueble</p>
                                         <div class="table-responsive">
                                             <table class="table table-sm m-0">
@@ -101,19 +107,20 @@
         </div>
     `;
 
-    $('#dormitorio-container').append(nuevoDormitorio);
-}
+        $('#dormitorio-container').append(nuevoDormitorio);
+    }
 
     function eliminarDormitorio(dormitorioId) {
         $(`#accordionDormitorio${dormitorioId}`).remove();
         dormitorios = dormitorios.filter(d => d.id !== dormitorioId);
-        
+
         dormitorios.forEach((dormitorio, index) => {
             dormitorio.counter = index + 1;
-            $(`#accordionDormitorio${dormitorio.id} .accordion-button`).text(`Dormitorio #${dormitorio.counter}`);
+            $(`#accordionDormitorio${dormitorio.id} .accordion-button`).text(
+                `Dormitorio #${dormitorio.counter}`);
             $(`#accordionDormitorio${dormitorio.id} .card-title`).text(`Dormitorio #${dormitorio.counter}`);
         });
-        
+
         dormitorioCounter = dormitorios.length;
     }
 </script>
