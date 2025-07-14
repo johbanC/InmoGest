@@ -144,7 +144,8 @@ class InventarioController extends Controller
 
         // Crear directorio principal si no existe
         if (!Storage::exists($baseStoragePath)) {
-            Storage::makeDirectory($baseStoragePath, 0777, true);
+            Storage::makeDirectory($baseStoragePath, true);
+            @chmod(storage_path('app/' . $baseStoragePath), 0777);
         }
 
         // Procesar cada área
