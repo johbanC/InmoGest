@@ -270,7 +270,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="d-print-none mt-4">
+                                        {{-- <div class="d-print-none mt-4">
                                             <div class="float-end">
                                                 <a href="javascript:window.print()"
                                                     class="btn btn-success waves-effect waves-light">
@@ -279,7 +279,7 @@
                                                 <a href="#"
                                                     class="btn btn-primary waves-effect waves-light">Enviar</a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

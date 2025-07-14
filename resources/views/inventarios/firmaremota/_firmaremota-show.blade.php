@@ -84,7 +84,7 @@
                                         Fecha del inventario : {{ $inventario->fecha }}
                                     </h4>
                                     <h3>
-                                        <img src="{{ URL::asset('assets/images/empresa/Logos_Dream_House_Horizontal_Color_JPG-removebg-preview.png') }}"
+                                        <img src="https://ardilaosorioinmobiliaria.com.co/wp-content/uploads/2024/06/ArdilaOsorioLogoImpresos.png"
                                             alt="logo" height="80" />
                                         <!-- aqui deberia de ir el logo de la empresa -->
                                     </h3>
@@ -264,7 +264,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="d-print-none mt-4">
+                                        {{-- <div class="d-print-none mt-4">
                                             <div class="float-end">
                                                 <a href="javascript:window.print()"
                                                     class="btn btn-success waves-effect waves-light">
@@ -273,7 +273,7 @@
                                                 <a href="#"
                                                     class="btn btn-primary waves-effect waves-light">Enviar</a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
