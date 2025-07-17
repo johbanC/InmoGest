@@ -36,7 +36,7 @@ class Inventario extends Model
                 $nuevoNumero = $ultimoNumero + 1; // Incrementar el número
 
                 // Formatear el nuevo código con 4 dígitos
-                $inventario->codigo = 'AO-INV-' . str_pad($nuevoNumero, 4, '0', STR_PAD_LEFT);
+                $inventario->codigo = 'DH-INV-' . str_pad($nuevoNumero, 4, '0', STR_PAD_LEFT);
             }
         });
     }
