@@ -131,7 +131,7 @@ class InventarioController extends Controller
             'direccion' => $request->direccion,
             'tipo_inmuebles_id' => $request->tipo_inmuebles_id,
             'arrendador' => $request->arrendador,
-            'inquilino' => $request->inquilino,
+            // 'inquilino' => $request->inquilino,
             'propietario' => $request->propietario,
             'nro_llaves' => $request->nro_llaves,
             'user_id' => auth()->id(),
