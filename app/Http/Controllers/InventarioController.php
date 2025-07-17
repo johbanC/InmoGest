@@ -125,7 +125,7 @@ class InventarioController extends Controller
         $inventario = Inventario::create([
             'cliente_id' => $request->cliente_id,
             'nombre_propiedad' => $request->nombre_propiedad,
-            // 'numero_inquilino' => $request->numero_inquilino,
+            // 'numero_inquilino' => $request->numero_inquilino, 
             'email_inquilino' => $request->email_inquilino,
             'fecha' => now()->format('Y-m-d'),
             'direccion' => $request->direccion,
