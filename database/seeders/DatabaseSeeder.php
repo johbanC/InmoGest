@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\TipoCocina;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,11 +25,15 @@ class DatabaseSeeder extends Seeder
             TipoEstatusesSeeder::class,
             TipoClienteSeeder::class,
             TipoDocumentoSeeder::class,
-            TiposPorteriasSeeder::class,
-            TiposInmueblesSeeder::class,
-            TiposTransaccionesSeeder::class,
-            TiposCocinasSeeder::class,
-            TiposCalentadorSeeder::class,
+          //  TiposPorteriasSeeder::class,
+            //TiposInmueblesSeeder::class,
+           // TiposTransaccionesSeeder::class,
+           // TiposCocinasSeeder::class,
+           // TiposCalentadorSeeder::class,
+           // TiposCocinasSeeder::class,
+          //  TiposInmueblesSeeder::class,
+           // TiposPorteriasSeeder::class,
+           // TiposTransaccionesSeeder::class,
         ]);
     }
 }
