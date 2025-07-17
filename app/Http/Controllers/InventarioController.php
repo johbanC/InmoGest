@@ -126,7 +126,7 @@ class InventarioController extends Controller
             'cliente_id' => $request->cliente_id,
             'nombre_propiedad' => $request->nombre_propiedad,
             // 'numero_inquilino' => $request->numero_inquilino,
-            'email_inquilino' => $request->email_inquilino,
+            // 'email_inquilino' => $request->email_inquilino,
             'fecha' => now()->format('Y-m-d'),
             'direccion' => $request->direccion,
             'tipo_inmuebles_id' => $request->tipo_inmuebles_id,
