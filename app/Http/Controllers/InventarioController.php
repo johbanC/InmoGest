@@ -311,7 +311,7 @@ class InventarioController extends Controller
             'inventario' => $inventario->id,
             'rol' => $rol, // 'entrega' o 'recibe'
             'ubicacion' => 'remoto' //
-        ], now()->addMinutes(30)); // Expira en 30 minutos
+        ], now()->addMinutes(96)); // Expira en 30 minutos
 
         // Retorna una vista mostrando el enlace
         return view('inventarios.enlace-firma', compact('url', 'inventario', 'rol'));

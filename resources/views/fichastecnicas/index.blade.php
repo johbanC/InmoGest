@@ -38,6 +38,11 @@
             color: #AD0B00;
             /* Color similar to Adobe PDF */
         }
+
+        /* Oculta la flecha automática de Bootstrap en el botón dropdown */
+.btn-group .dropdown-toggle::after {
+    display: none !important;
+}
     </style>
 @endsection
 
@@ -66,11 +71,11 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="card-tools">
                                 @can('crear ficha tecnica')
-                                <a href="{{ route('fichastecnicas.new') }}">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light"
-                                        data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear Nuevo</button>
+                                    <a href="{{ route('fichastecnicas.new') }}">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Crear Nuevo</button>
 
-                                </a>
+                                    </a>
                                 @endcan
 
 
@@ -102,39 +107,58 @@
                                         <td>{{ $fichatecnica->barrio }}</td>
                                         <td>$ {{ number_format($fichatecnica->valor, 2, ',', '.') }}</td>
                                         <td>{{ $fichatecnica->user->name }}</td>
+
+
                                         <td>
-                                            <!-- <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow" data-bs-toggle="modal" data-bs-target=".modalEditar{{ $fichatecnica->id }}"><i class="fa fa-lg fa-fw fa-pen"></i></button> -->
-                                            @can('crear ficha tecnica')
-                                                <a href="{{ route('fichastecnicas.show', $fichatecnica->id) }}">
-                                                    <button type="button"
-                                                        class="btn btn-xs btn-default text-primary mx-1 shadow"><i
-                                                            class="fa fa-lg fa-fw fa-eye"></i></button>
-                                                </a>
-                                            @endcan
-                                            @can('editar ficha tecnica')
-                                                <a href="{{ route('fichastecnicas.edit', $fichatecnica->id) }}">
-                                                    <button type="button"
-                                                        class="btn btn-xs btn-default text-primary mx-1 shadow"><i
-                                                            class="fa fa-lg fa-fw fa-pen"></i></button>
+                                            <div class="btn-group">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    @can('crear ficha tecnica')
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('fichastecnicas.show', $fichatecnica->id) }}">
+                                                            <i class="fa fa-eye"></i> Ver Detalles
+                                                        </a>
+                                                    @endcan
 
-                                                </a>
-                                            @endcan
-                                            <!-- <form id="formDelete{{ $fichatecnica->id }}" method="POST" action="{{ route('fichastecnicas.destroy', $fichatecnica->id) }}" style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" onclick="eliminar({{ $fichatecnica->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
-                                                <i class="fa fa-lg fa-fw fa-trash"></i>
-                                            </button>
-                                        </form> -->
-                                            @can('pdf ficha tecnica')
-                                                <a href="{{ route('fichastecnicas.pdf', $fichatecnica) }}" target="_black">
-                                                    <button class="btn btn-xs btn-default mx-1 shadow" title="Ver Pdf">
-                                                        <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
-                                                    </button>
-                                                </a>
-                                            @endcan
+                                                    @can('editar ficha tecnica')
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('fichastecnicas.edit', $fichatecnica->id) }}">
+                                                            <i class="fa fa-pen"></i> Editar
+                                                        </a>
+                                                    @endcan
 
+
+
+
+                                                    @can('pdf ficha tecnica')
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('fichastecnicas.pdf', $fichatecnica) }}"
+                                                            target="_blank">
+                                                            <i class="fa fa-file-pdf text-danger"></i> Ver PDF
+                                                        </a>
+                                                    @endcan
+                                                </div>
+                                            </div>
                                         </td>
+
+                                        {{-- Eliminar (descomenta si lo necesitas) --}}
+                                        {{-- 
+            <form id="formDelete{{ $fichatecnica->id }}" method="POST" action="{{ route('fichastecnicas.destroy', $fichatecnica->id) }}" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="dropdown-item text-danger" onclick="eliminar({{ $fichatecnica->id }})">
+                    <i class="fa fa-trash"></i> Eliminar
+                </button>
+            </form>
+            --}}
+
+
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -186,6 +210,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.31.1/filepond.min.js"
             integrity="sha512-UlakzTkpbSDfqJ7iKnPpXZ3HwcCnFtxYo1g95pxZxQXrcCLB0OP9+uUaFEj5vpX7WwexnUqYXIzplbxq9KSatw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 
         <script>

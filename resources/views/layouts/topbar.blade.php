@@ -8,16 +8,16 @@
                         <img src="{{ asset('assets/images/inmogest-sm.png') }}" alt="" height="35">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/inmogest-dark.png') }}" alt="" height="35">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Negro.png') }}" alt="" height="70">
                     </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/icono-sm.png') }}" alt="" height="35">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Blanco_Icono.png') }}" alt="" height="35">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/inmogest-light.png') }}" alt="" height="35">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Blanco.png') }}" alt="" height="70">
                     </span>
                 </a>
             </div> 

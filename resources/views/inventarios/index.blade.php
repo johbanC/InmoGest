@@ -39,6 +39,11 @@
             color: #AD0B00;
             /* Color similar to Adobe PDF */
         }
+
+        /* Oculta la flecha automática de bootstrap en todos los dropdown-toggle */
+        .dropdown-toggle::after {
+            display: none !important;
+        }
     </style>
 @endsection
 
@@ -100,7 +105,7 @@
                                         <td><b>{{ $inventario->codigo }}</b> <br> {{ $inventario->nombre_propiedad }}</td>
                                         <td>{{ date('d/m/Y', strtotime($inventario->fecha)) }}</td>
                                         <td>{{ $inventario->nombre_propiedad }}</td>
-                                        <td>{{ $inventario->inquilino }}</td>
+                                        <td>{{ $inventario->cliente->nombre }} {{ $inventario->cliente->apellido }}</td>
                                         <td>{{ $inventario->tipo_inmueble->nombre }}</td>
 
                                         <td>
@@ -112,45 +117,58 @@
                                             </span>
                                         </td>
                                         <td>{{ $inventario->user->name }}</td>
+
+
+
                                         <td>
-                                            @can('ver inventario')
-                                            <a href="{{ route('inventarios.show', $inventario->id) }}">
-                                                <button type="button"
-                                                    class="btn btn-xs btn-default text-primary mx-1 shadow"><i
-                                                        class="fa fa-lg fa-fw fa-eye"></i></button>
-                                            </a>
-                                            @endcan
+                                            <div class="btn-group">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton{{ $inventario->id }}" data-bs-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Acciones
+                                                    <i class="mdi mdi-chevron-down"></i>
+                                                </button>
 
-                                            @can('generar enlace inventario')
-                                            <a
-                                                href="{{ route('inventarios.generarEnlaceFirmaRemota', [$inventario->id, 'recibe']) }}">
-                                                <button type="button"
-                                                    class="btn btn-xs btn-default text-primary mx-1 shadow"
-                                                    data-bs-toggle="tooltip"><i class="fa fa-lg fa-fw fa-link"></i></button>
-                                            </a>
-                                            @endcan
+                                                <div class="dropdown-menu"
+                                                    aria-labelledby="dropdownMenuButton{{ $inventario->id }}">
+                                                    @can('ver inventario')
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('inventarios.show', $inventario->id) }}">
+                                                            <i class="fa fa-eye"></i> Ver Inventario
+                                                        </a>
+                                                    @endcan
 
+                                                    @can('generar enlace inventario')
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('inventarios.generarEnlaceFirmaRemota', [$inventario->id, 'recibe']) }}">
+                                                            <i class="fa fa-link"></i> Generar Enlace
+                                                        </a>
+                                                    @endcan
 
-                                            {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}">
-                                        <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow"><i class="fa fa-lg fa-fw fa-pen"></i></button>
+                                                    {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}">
+                <button type="button" class="btn btn-xs btn-default text-primary mx-1 shadow">
+                    <i class="fa fa-lg fa-fw fa-pen"></i>
+                </button>
+            </a> --}}
 
-                                    </a> --}}
+                                                    <!-- <form id="formDelete{{ $inventario->id }}" method="POST" action="{{ route('inventarios.destroy', $inventario->id) }}" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="eliminar({{ $inventario->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
+                            <i class="fa fa-lg fa-fw fa-trash"></i>
+                        </button>
+                    </form> -->
 
-                                            <!-- <form id="formDelete{{ $inventario->id }}" method="POST" action="{{ route('inventarios.destroy', $inventario->id) }}" style="display: inline;">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="button" onclick="eliminar({{ $inventario->id }})" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
-                                                                        <i class="fa fa-lg fa-fw fa-trash"></i>
-                                                                    </button>
-                                                                </form> -->
-
-                                            <!-- <a href="{{ route('inventarios.index', $inventario) }}" target="_black"> en index estaba PDF
-                                                                    <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
-                                                                        <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
-                                                                    </button>
-                                                                </a> -->
-
+                                                    <!-- <a href="{{ route('inventarios.index', $inventario) }}" target="_black"> en index estaba PDF
+                        <button class="btn btn-xs btn-default mx-1 shadow" title="Details">
+                            <i class="fa fa-lg fa-fw fa-file-pdf text-pdf"></i>
+                        </button>
+                    </a> -->
+                                                </div>
+                                            </div>
                                         </td>
+
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -203,6 +221,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.31.1/filepond.min.js"
             integrity="sha512-UlakzTkpbSDfqJ7iKnPpXZ3HwcCnFtxYo1g95pxZxQXrcCLB0OP9+uUaFEj5vpX7WwexnUqYXIzplbxq9KSatw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
         <script>

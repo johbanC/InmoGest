@@ -81,10 +81,25 @@ class PropietarioController extends Controller
     /**
      * Display the specified resource.
      */
+
     public function show(string $id)
-    {
-        //
-    }
+{
+    $propietario = \App\Models\Cliente::with(['tipoDocumento', 'tipoEstatus', 'tipoCliente'])
+        ->findOrFail($id);
+
+    // Obtener solo el último dato bancario registrado
+    $ultimoDatoBancario = \App\Models\DatosBancarios::where('cliente_id', $id)
+        ->latest('created_at')
+        ->first();
+
+    // Obtener todos los datos bancarios registrados
+    $datosBancarios = \App\Models\DatosBancarios::where('cliente_id', $id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('propietarios.show', compact('propietario', 'ultimoDatoBancario', 'datosBancarios'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -101,7 +116,7 @@ class PropietarioController extends Controller
     public function update(Request $request, string $id)
     {
 
-        
+
         try {
             $data = $request->validate([
                 'tipo_documento_id' => 'required|exists:tipo_documentos,id',

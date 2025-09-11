@@ -7,12 +7,12 @@
     @section('content')
 
     <!-- start page title -->
-    <div class="page-title-box">
+    <div class="page-title-box" >
         <div class="row align-items-center">
             <div class="col-md-8">
                 <h6 class="page-title">Panel de control</h6>
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item active">Bienvenido a InmoGest - Panel de control</li>
+                    <li class="breadcrumb-item active">Bienvenido a SP Inmobiliario - Panel de control</li>
                 </ol>
             </div>
             <!-- <div class="col-md-4">

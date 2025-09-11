@@ -30,9 +30,9 @@
         @endcomponent
 
         @include('layouts.notificaciones')
-        <!-- Para poder verificar que error tengo
-     @dump($errors->all())
-     -->
+        <!-- Para poder verificar que error tengo -->
+         {{-- @dump($errors->all()) --}}
+         
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -55,7 +55,13 @@
         <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 
-
+        <!-- Inputmask para el número de cuenta -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                $('#numero_cuenta').inputmask('999 999999 99');
+            });
+        </script>
 
 
         <script>
@@ -93,5 +99,4 @@
                 mask: '(000) 000-0000'
             });
         </script>
-
     @endsection
