@@ -18,7 +18,7 @@ use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\FiadorController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\http\controllers\DatosBancariosController;
+use App\Http\Controllers\DatosBancariosController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
