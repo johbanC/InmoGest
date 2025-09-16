@@ -83,7 +83,8 @@ class InquilinoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $inquilino = Cliente::with(['tipoDocumento', 'tipoEstatus', 'tipoCliente'])->findOrFail($id);
+        return view('inquilinos.show', compact('inquilino'));
     }
 
     /**

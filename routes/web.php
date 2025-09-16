@@ -279,7 +279,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/inquilinos/{inquilino}', [InquilinoController::class, 'destroy'])
         ->name('inquilinos.destroy');
 
-    route::get('/inquilinos/{inventario}', [InquilinoController::class, 'show'])
+    route::get('/inquilinos/{inquilino}', [InquilinoController::class, 'show'])
         ->name('inquilinos.show');
 
 
@@ -303,7 +303,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/fiadores/{fiador}', [FiadorController::class, 'destroy'])
         ->name('fiadores.destroy');
 
-    Route::get('/fiadores/{inventario}', [FiadorController::class, 'show'])
+    Route::get('/fiadores/{fiadore}', [FiadorController::class, 'show'])
         ->name('fiadores.show');
 
   

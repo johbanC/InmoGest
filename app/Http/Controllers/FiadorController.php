@@ -83,7 +83,8 @@ class FiadorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $fiador = Cliente::with(['tipoDocumento', 'tipoEstatus', 'tipoCliente'])->findOrFail($id);
+        return view('fiadores.show', compact('fiador'));
     }
 
     /**
