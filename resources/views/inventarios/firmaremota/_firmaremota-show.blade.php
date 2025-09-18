@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.firmasremotas')
 @section('title')
     Inventario
 @endsection
