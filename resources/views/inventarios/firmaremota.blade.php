@@ -19,11 +19,6 @@
 <body data-sidebar="dark">
     @endsection
 
-    @section('content')
-    @component('components.breadcrumb')
-    @slot('page_title') Inventario @endslot
-    @slot('subtitle') Inventario @endslot
-    @endcomponent
 
     @include('layouts.notificaciones')
     <!-- Para poder verificar que error tengo
