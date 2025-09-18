@@ -1,4 +1,5 @@
 @extends('layouts.firmasremotas')
+
 @section('title')
     Inventario
 @endsection
