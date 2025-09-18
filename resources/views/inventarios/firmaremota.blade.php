@@ -20,7 +20,12 @@
 <body data-sidebar="dark">
     @endsection
 
+<<<<<<< HEAD
    
+=======
+    @section('content')
+    
+>>>>>>> dev
 
     @include('layouts.notificaciones')
     <!-- Para poder verificar que error tengo
