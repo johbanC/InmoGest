@@ -83,7 +83,8 @@ class FiadorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $fiador = Cliente::with(['tipoDocumento', 'tipoEstatus', 'tipoCliente'])->findOrFail($id);
+        return view('fiadores.show', compact('fiador'));
     }
 
     /**
@@ -140,8 +141,16 @@ class FiadorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(string $id){
+
+        $fiador = Cliente::findOrFail($id);
+
+        $fiador->update(['tipo_estatus_id' => 2]); // Cambia el estatus a inactivo antes de eliminar
+
+        if ($fiador) {
+            return to_route('fiadores.index')->with('status', 5);
+        } else {
+            return to_route('fiadores.index')->with(['status' => 6, 'error' => 'No se pudo eliminar el fiador.']);
+        }
     }
 }

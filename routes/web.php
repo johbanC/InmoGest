@@ -18,6 +18,7 @@ use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\FiadorController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\DatosBancariosController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
@@ -29,6 +30,7 @@ use PHPUnit\Framework\Reorderable;
 
 
 use App\Http\Controllers\ProfileController;
+use App\Models\DatosBancarios;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -254,11 +256,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/propietarios/{propietario}', [PropietarioController::class, 'destroy'])
         ->name('propietarios.destroy');
 
-    route::get('/propietarios/{inventario}', [PropietarioController::class, 'show'])
+    route::get('/propietarios/{propietario}', [PropietarioController::class, 'show'])
         ->name('propietarios.show');
-
-
-
 
 
     //  //Inquilinos
@@ -280,7 +279,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/inquilinos/{inquilino}', [InquilinoController::class, 'destroy'])
         ->name('inquilinos.destroy');
 
-    route::get('/inquilinos/{inventario}', [InquilinoController::class, 'show'])
+    route::get('/inquilinos/{inquilino}', [InquilinoController::class, 'show'])
         ->name('inquilinos.show');
 
 
@@ -304,10 +303,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/fiadores/{fiador}', [FiadorController::class, 'destroy'])
         ->name('fiadores.destroy');
 
-    route::get('/fiadores/{inventario}', [FiadorController::class, 'show'])
+    Route::get('/fiadores/{fiadore}', [FiadorController::class, 'show'])
         ->name('fiadores.show');
 
-
+  
 
 
 
@@ -360,6 +359,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/inventarios/generar-enlace-firma/{inventario}/{rol}', [InventarioController::class, 'generarEnlaceFirmaRemota'])
         ->name('inventarios.generarEnlaceFirmaRemota');
+
+    Route::get('certificados/{inventario}/pdf', [InventarioController::class, 'certificadoHashFirmaDigital'])
+        ->name('certificados.show');
 
 
 
@@ -438,3 +440,11 @@ Route::post('usuarios/{usuario}/asignar-rol', [UserController::class, 'asignarRo
 
 Route::get('roles/{role}/permisos', [RoleController::class, 'editPermissions'])->name('roles.permisos');
 Route::post('roles/{role}/permisos', [RoleController::class, 'updatePermissions'])->name('roles.permisos.update');
+
+
+
+
+
+//Rutas Datos Bancarios
+Route::post('/datosbancarios/{propietario}',[DatosBancariosController::class, 'store'])
+        ->name('datosbancarios.store');

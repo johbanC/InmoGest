@@ -84,8 +84,10 @@ class ClienteController extends Controller
 
     public function showPropietario($id)
     {
-        $cliente = Cliente::with('tipoDocumento')->findOrFail($id);
-        return view('propietarios.show', compact('cliente'));
+        $propietario = Cliente::with('tipoDocumento')->findOrFail($id);
+        $datosbancarios = \App\Models\DatosBancarios::where('cliente_id', $id)->get();
+
+        return view('propietarios.show', compact('propietario', 'datosbancarios'));
     }
 
 

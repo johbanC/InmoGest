@@ -81,9 +81,12 @@
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label for="comedor_fotos" class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${comedorId}][]" 
-                                                                       accept="image/*" class="form-control" multiple>
+                                                                <label for="comedor_fotos_${comedorId}" class="form-label">Cargar Imágenes</label><br>
+                                                                <input type="file" id="comedor_fotos_${comedorId}" name="fotos[${comedorId}][]" 
+                                                                       accept="image/*" class="form-control" multiple
+                                                                       onchange="previsualizarImagenesComedor(${comedorId}, this)">
+                                                                <div id="preview_container_comedor_${comedorId}" class="mt-3 d-flex flex-wrap gap-2">
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </tfoot>
@@ -115,5 +118,43 @@
         });
         
         comedorCounter = comedores.length;
+    }
+
+    function previsualizarImagenesComedor(comedorId, input) {
+        const container = document.getElementById(`preview_container_comedor_${comedorId}`);
+        container.innerHTML = '';
+
+        if (input.files && input.files.length > 0) {
+            Array.from(input.files).forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'position-relative';
+                    previewDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" style="max-width: 150px; max-height: 150px; object-fit: cover;" class="border rounded">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0" 
+                                onclick="eliminarImagenComedor(${comedorId}, ${index}, this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    container.appendChild(previewDiv);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    }
+
+    function eliminarImagenComedor(comedorId, index, button) {
+        const input = document.getElementById(`comedor_fotos_${comedorId}`);
+        const container = document.getElementById(`preview_container_comedor_${comedorId}`);
+        
+        // Crear un nuevo FileList sin la imagen eliminada
+        const dt = new DataTransfer();
+        Array.from(input.files).forEach((file, i) => {
+            if (i !== index) dt.items.add(file);
+        });
+        
+        input.files = dt.files;
+        button.closest('.position-relative').remove();
     }
 </script>

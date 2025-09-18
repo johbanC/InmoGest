@@ -81,10 +81,25 @@ class PropietarioController extends Controller
     /**
      * Display the specified resource.
      */
+
     public function show(string $id)
-    {
-        //
-    }
+{
+    $propietario = \App\Models\Cliente::with(['tipoDocumento', 'tipoEstatus', 'tipoCliente'])
+        ->findOrFail($id);
+
+    // Obtener solo el último dato bancario registrado
+    $ultimoDatoBancario = \App\Models\DatosBancarios::where('cliente_id', $id)
+        ->latest('created_at')
+        ->first();
+
+    // Obtener todos los datos bancarios registrados
+    $datosBancarios = \App\Models\DatosBancarios::where('cliente_id', $id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('propietarios.show', compact('propietario', 'ultimoDatoBancario', 'datosBancarios'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -101,7 +116,7 @@ class PropietarioController extends Controller
     public function update(Request $request, string $id)
     {
 
-        
+
         try {
             $data = $request->validate([
                 'tipo_documento_id' => 'required|exists:tipo_documentos,id',
@@ -140,8 +155,16 @@ class PropietarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(string $id){
+        
+        $propietario = Cliente::findOrFail($id);
+        
+        $propietario->update(['tipo_estatus_id' => 2]); // Cambia 2 por el ID correspondiente al estatus "Inactivo" en tu base de datos   
+
+        if ($propietario) {
+            return to_route('propietarios.index')->with('status', 5);
+        } else {
+            return to_route('propietarios.index')->with(['status' => 6, 'error' => 'No se pudo eliminar el propietario.']);
+        }
     }
 }

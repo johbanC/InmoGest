@@ -17,7 +17,7 @@
 
 @yield('body')
 <!-- Begin page -->
-<div id="layout-wrapper">
+<div id="layout-wrapper"style="background-image: {{ asset('assets/images/SP_Inmobiliiario _Negro.png') }}  ">
 
     @include('layouts.topbar')
     @include('layouts.sidebar')
@@ -28,9 +28,9 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" ;>
 
-            <div class="page-content">
+            <div class="page-content" style="background-image: {{ asset('assets/images/SP_Inmobiliario _Negro.png') }}">
                 <div class="container-fluid">
                     @yield('content')
                 </div>

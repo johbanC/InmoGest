@@ -83,10 +83,12 @@
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <label class="form-label">Cargar Imágenes</label><br>
-                                                                <input type="file" name="fotos[${salaId}][]" 
-                                                                       accept="image/*" class="form-control" multiple>
-                                                                <div class="image-preview mt-2" id="previewSala${salaId}"></div>
+                                                                <label for="sala_fotos_${salaId}" class="form-label">Cargar Imágenes</label><br>
+                                                                <input type="file" id="sala_fotos_${salaId}" name="fotos[${salaId}][]" 
+                                                                       accept="image/*" class="form-control" multiple
+                                                                       onchange="previsualizarImagenesSala(${salaId}, this)">
+                                                                <div id="preview_container_sala_${salaId}" class="mt-3 d-flex flex-wrap gap-2">
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </tfoot>
@@ -122,23 +124,41 @@
         salaCounter = salas.length;
     }
 
-    // Función opcional para previsualizar imágenes
-    function previewImages(event, salaId) {
-        const preview = document.getElementById(`previewSala${salaId}`);
-        preview.innerHTML = '';
-        
-        if (event.target.files.length > 0) {
-            Array.from(event.target.files).forEach(file => {
+    function previsualizarImagenesSala(salaId, input) {
+        const container = document.getElementById(`preview_container_sala_${salaId}`);
+        container.innerHTML = '';
+
+        if (input.files && input.files.length > 0) {
+            Array.from(input.files).forEach((file, index) => {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('img-thumbnail', 'me-2', 'mb-2');
-                    img.style.maxHeight = '100px';
-                    preview.appendChild(img);
-                }
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'position-relative';
+                    previewDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" style="max-width: 150px; max-height: 150px; object-fit: cover;" class="border rounded">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0" 
+                                onclick="eliminarImagenSala(${salaId}, ${index}, this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    container.appendChild(previewDiv);
+                };
                 reader.readAsDataURL(file);
             });
         }
+    }
+
+    function eliminarImagenSala(salaId, index, button) {
+        const input = document.getElementById(`sala_fotos_${salaId}`);
+        const container = document.getElementById(`preview_container_sala_${salaId}`);
+        
+        // Crear un nuevo FileList sin la imagen eliminada
+        const dt = new DataTransfer();
+        Array.from(input.files).forEach((file, i) => {
+            if (i !== index) dt.items.add(file);
+        });
+        
+        input.files = dt.files;
+        button.closest('.position-relative').remove();
     }
 </script>

@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/inmogest-light.png') }}" alt="" height="22">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Blanco.png') }}" alt="" height="70">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/inmogest-dark.png') }}" alt="" height="17">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Negro.png') }}" alt="" height="17">
                     </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/icono-sm.png') }}" alt="" height="22">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Blanco_Icono.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/inmogest-light.png') }}" alt="" height="18">
+                        <img src="{{ asset('assets/images/SP_Inmobiliario_Blanco.png') }}" alt="" height="18">
                     </span>
                 </a>
             </div>

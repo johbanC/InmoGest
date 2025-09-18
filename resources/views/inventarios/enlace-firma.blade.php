@@ -40,7 +40,7 @@
                         <div class="card-body">
                             <p><strong>Inventario ID:</strong> {{ $inventario->codigo }}</p>
                             <p><strong>Rol:</strong> {{ $rol }}</p>
-                            <p><strong>Enlace (expira en 30 minutos):</strong></p>
+                            <p><strong>Enlace (expira en 48 Horas):</strong></p>
 
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="enlaceFirma" value="{{ $url }}"

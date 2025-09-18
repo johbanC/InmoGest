@@ -39,7 +39,7 @@
                     <div class="card-body">
 
 
-                        @include('fiadors.form._fiador-show')
+                        @include('fiadores.form._fiador-show')
 
 
                     </div>
