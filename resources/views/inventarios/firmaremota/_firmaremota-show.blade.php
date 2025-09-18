@@ -1,8 +1,5 @@
 @extends('layouts.firmasremotas')
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
 @section('title')
     Inventario
 @endsection
