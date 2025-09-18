@@ -360,6 +360,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/inventarios/generar-enlace-firma/{inventario}/{rol}', [InventarioController::class, 'generarEnlaceFirmaRemota'])
         ->name('inventarios.generarEnlaceFirmaRemota');
 
+    Route::get('certificados/{inventario}/pdf', [InventarioController::class, 'certificadoHashFirmaDigital'])
+        ->name('certificados.show');
+
 
 
 

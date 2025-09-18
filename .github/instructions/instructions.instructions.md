@@ -1,0 +1,10 @@
+- Utilizar por defecto php.
+- Utilizar el framework de Laravel para crear webs.
+- Utilizar el motor de plantillas Blade.
+- Utilizar el sistema de rutas de Laravel.
+- Utilizar Eloquent ORM para la gestión de la base de datos.
+- Seguir las convenciones de codificación de Laravel.
+- Mantener una estructura de proyecto organizada y coherente.
+- Haz uso de buenas prácticas.
+- Refactoriza el código siempre que se pueda.
+- Crea test de las funcionalidades que desarrolles y principales.

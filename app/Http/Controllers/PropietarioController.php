@@ -155,8 +155,16 @@ class PropietarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(string $id){
+        
+        $propietario = Cliente::findOrFail($id);
+        
+        $propietario->update(['tipo_estatus_id' => 2]); // Cambia 2 por el ID correspondiente al estatus "Inactivo" en tu base de datos   
+
+        if ($propietario) {
+            return to_route('propietarios.index')->with('status', 5);
+        } else {
+            return to_route('propietarios.index')->with(['status' => 6, 'error' => 'No se pudo eliminar el propietario.']);
+        }
     }
 }

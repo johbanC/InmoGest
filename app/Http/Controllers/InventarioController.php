@@ -336,4 +336,27 @@ class InventarioController extends Controller
             'firmaRecibe' => $firmaRecibe,
         ]);
     }
+
+    public function certificadoHashFirmaDigital(Inventario $inventario)
+    {
+        // Cargar áreas con sus relaciones y las firmas digitales polimórficas
+        $inventario->load(['areas.items', 'areas.fotos', 'firmasDigitales']);
+
+        $firmas = $inventario->firmasDigitales; // colección de firmas asociadas
+
+        // Filtrar las firmas por tipo: 'entrega' y 'recibe' (según tu campo 'tipo' o similar)
+        $firmaEntrega = $firmas->firstWhere('rol_firmante', 'Entrega');
+        $firmaRecibe = $firmas->firstWhere('rol_firmante', 'Recibe');
+
+        $cliente = $inventario->cliente; // Obtener el cliente asociado al inventario
+
+        return view('inventarios.certificado-hash', [
+            'inventario' => $inventario,
+            'areas' => $inventario->areas,
+            'firmas' => $firmas,
+            'firmaEntrega' => $firmaEntrega,
+            'firmaRecibe' => $firmaRecibe,
+            'cliente' => $cliente,
+        ]);
+    }
 }

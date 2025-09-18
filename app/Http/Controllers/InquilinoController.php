@@ -141,8 +141,15 @@ class InquilinoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(string $id){
+        $inquilino = Cliente::findOrFail($id);
+        
+        $inquilino->update(['tipo_estatus_id' => 2]); // Cambia 2 por el ID correspondiente al estatus "Inactivo" en tu base de datos   
+
+        if ($inquilino) {
+            return to_route('inquilinos.index')->with('status', 5);
+        } else {
+            return to_route('inquilinos.index')->with(['status' => 6, 'error' => 'No se pudo eliminar el inquilino.']);
+        }
     }
 }
