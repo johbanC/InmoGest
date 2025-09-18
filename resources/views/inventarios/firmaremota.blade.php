@@ -19,6 +19,8 @@
 <body data-sidebar="dark">
     @endsection
 
+    @section('content')
+    
 
     @include('layouts.notificaciones')
     <!-- Para poder verificar que error tengo
